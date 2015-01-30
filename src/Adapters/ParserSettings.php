@@ -153,13 +153,9 @@ class ParserSettings {
     public function setMaxRows($maxRows)
     {
         if ( $this->getHasHeading() )
-        {
-            $this->maxRows = (int) 1 + $maxRows;
-        }
-        else
-        {
-            $this->maxRows = (int) $maxRows;
-        }
+            $maxRows++;
+
+        $this->maxRows = $maxRows;
 
         return $this;
     }

@@ -2,8 +2,6 @@
 
 use Closure;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
-use Maatwebsite\Clerk\Collections\RowCollection;
-use Maatwebsite\Clerk\Collections\SheetCollection;
 
 /**
  * Interface Reader
@@ -20,7 +18,7 @@ interface Reader {
     /**
      * Get all sheets/rows
      * @param array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function get($columns = array());
 
@@ -63,7 +61,7 @@ interface Reader {
     /**
      * Get first row/sheet only
      * @param  array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function first($columns = array());
 
@@ -79,7 +77,7 @@ interface Reader {
     /**
      * Each
      * @param  Closure $callback
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function each(Closure $callback);
 

@@ -5,8 +5,6 @@ use Maatwebsite\Clerk\LaravelExcelReader;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Reader as ReaderInterface;
-use Maatwebsite\Clerk\Collections\RowCollection;
-use Maatwebsite\Clerk\Collections\SheetCollection;
 
 /**
  * Class Reader
@@ -27,7 +25,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Get all sheets/rows
      * @param array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function get($columns = array())
     {
@@ -88,7 +86,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Get first row/sheet only
      * @param  array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function first($columns = array())
     {
@@ -110,7 +108,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Each
      * @param  Closure $callback
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function each(Closure $callback)
     {

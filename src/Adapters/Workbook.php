@@ -29,6 +29,33 @@ abstract class Workbook extends Adapter {
     }
 
     /**
+     * Set delimiter
+     * @return mixed
+     */
+    abstract public function setDelimiter($delimiter);
+
+    /**
+     * Set line ending
+     * @param $lineEnding
+     * @return mixed
+     */
+    abstract public function setLineEnding($lineEnding);
+
+    /**
+     * Set enclosure
+     * @param $enclosure
+     * @return mixed
+     */
+    abstract public function setEnclosure($enclosure);
+
+    /**
+     * Set encoding
+     * @param $encoding
+     * @return mixed
+     */
+    abstract public function setEncoding($encoding);
+
+    /**
      * Add a sheet to the sheets collection
      * @param SheetInterface $sheet
      * @return $this
