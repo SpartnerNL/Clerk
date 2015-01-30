@@ -1,10 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Writers;
 
-use Carbon\Carbon;
-use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
 use Maatwebsite\Clerk\Writer as WriterInterface;
-use PHPExcel_IOFactory;
-use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use PHPExcel_Writer_IWriter;
 
 /**
