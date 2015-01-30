@@ -33,7 +33,7 @@ class HeadingParser {
 
     /**
      * Get the heading
-     * @param $worksheet
+     * @param \PHPExcel_Worksheet $worksheet
      * @return array
      */
     protected function getHeading($worksheet)

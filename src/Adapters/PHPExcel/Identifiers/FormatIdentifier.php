@@ -50,7 +50,7 @@ class FormatIdentifier {
 
     /**
      * Identify file format
-     * @param $ext
+     * @param string $ext
      * @return  string $format
      */
     public function getFormatByExtension($ext)

@@ -26,7 +26,7 @@ abstract class File {
 
     /**
      * @param                  $title
-     * @param callable|Closure $callback
+     * @param Closure $callback
      * @param bool             $driver
      */
     public function __construct($title, Closure $callback = null, $driver = false)
@@ -43,7 +43,7 @@ abstract class File {
     /**
      * Create new file
      * @param          $filename
-     * @param callable $callback
+     * @param Closure $callback
      * @param bool     $driver
      * @return static
      */
@@ -55,7 +55,7 @@ abstract class File {
     /**
      * Create new file
      * @param          $file
-     * @param callable $callback
+     * @param Closure $callback
      * @param bool     $driver
      * @param bool     $type
      * @return \Maatwebsite\Clerk\Reader

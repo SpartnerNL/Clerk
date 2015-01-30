@@ -68,7 +68,7 @@ class Writer extends AbstractWriter implements WriterInterface {
 
     /**
      * @param WorkbookInterface $workbook
-     * @return mixed
+     * @return \PHPExcel
      */
     protected function convertToDriver(WorkbookInterface $workbook)
     {
