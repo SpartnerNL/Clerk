@@ -42,10 +42,19 @@ class Reader extends Adapter implements ReaderInterface {
      */
     public function __construct($type, $file, Closure $callback = null)
     {
-        $this->reader = PHPExcel_IOFactory::createReader($type);
+        $this->setWriter($type);
         $this->file = $file;
 
         $this->call($callback);
+    }
+
+    /**
+     * Set the writer
+     * @param $type
+     */
+    protected function setWriter($type)
+    {
+        $this->reader = PHPExcel_IOFactory::createReader($type);
     }
 
     /**

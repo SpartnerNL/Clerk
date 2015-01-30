@@ -6,6 +6,11 @@ use Maatwebsite\Clerk\CsvReader as CsvReaderInterface;
 class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface {
 
     /**
+     * @var \PHPExcel_Reader_CSV
+     */
+    protected $reader;
+
+    /**
      * Set CSV delimiter
      * @param $delimiter
      * @return Reader
