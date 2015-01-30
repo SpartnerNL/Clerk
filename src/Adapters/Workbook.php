@@ -106,7 +106,7 @@ abstract class Workbook extends Adapter {
 
     /**
      * Validate the sheet index
-     * @param $index
+     * @param integer $index
      * @throws InvalidArgumentException
      * @throws SheetNotFoundException
      */
