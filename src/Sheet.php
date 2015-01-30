@@ -15,7 +15,7 @@ interface Sheet {
     /**
      * Set the sheet title
      * @param string $title
-     * @return string
+     * @return $this
      */
     public function setTitle($title);
 

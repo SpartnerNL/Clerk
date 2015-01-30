@@ -54,14 +54,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
         $this->driver = $driver ?: new PHPExcel();
         $this->driver->disconnectWorksheets();
 
-        // Set defaults
-        $this->setDefaults();
-
-        // Set workbook title
-        $this->setTitle($title);
-
-        // Make a callback on the workbook
-        $this->call($callback);
+        parent::__construct($title, $callback);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters;
 
+use Closure;
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
@@ -16,6 +17,22 @@ abstract class Workbook extends Adapter {
      * @var array
      */
     protected $sheets = array();
+
+    /**
+     * @param          $title
+     * @param callable $callback
+     */
+    public function __construct($title, Closure $callback = null)
+    {
+        // Set defaults
+        $this->setDefaults();
+
+        // Set workbook title
+        $this->setTitle($title);
+
+        // Make a callback on the workbook
+        $this->call($callback);
+    }
 
     /**
      * Set reader defaults
