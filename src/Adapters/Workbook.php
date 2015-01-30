@@ -59,6 +59,24 @@ abstract class Workbook extends Adapter {
     }
 
     /**
+     * Get delimiter
+     * @return string
+     */
+    abstract public function getDelimiter();
+
+    /**
+     * Get enclosure
+     * @return string
+     */
+    abstract public function getEnclosure();
+
+    /**
+     * Get line ending
+     * @return string
+     */
+    abstract public function getLineEnding();
+
+    /**
      * Set delimiter
      * @return mixed
      */

@@ -24,4 +24,31 @@ class CsvWriter extends AbstractWriter implements WriterInterface {
 
         exit;
     }
+
+    /**
+     * Get delimiter
+     * @return string
+     */
+    public function getDelimiter()
+    {
+        // TODO: Implement getDelimiter() method.
+    }
+
+    /**
+     * Get enclosure
+     * @return string
+     */
+    public function getEnclosure()
+    {
+        // TODO: Implement getEnclosure() method.
+    }
+
+    /**
+     * Get line ending
+     * @return string
+     */
+    public function getLineEnding()
+    {
+        // TODO: Implement getLineEnding() method.
+    }
 }
