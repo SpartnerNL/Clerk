@@ -87,7 +87,7 @@ abstract class Workbook extends Adapter {
 
     /**
      * Check if the sheet exists in the collection
-     * @param $index
+     * @param integer $index
      * @return bool
      */
     public function sheetExists($index)
@@ -97,7 +97,7 @@ abstract class Workbook extends Adapter {
 
     /**
      * Check is the given index is valid
-     * @param $index
+     * @param integer $index
      * @return bool
      */
     public function isValidIndex($index)
