@@ -1,5 +1,7 @@
 <?php
 
+use Maatwebsite\Clerk\Reader;
+
 $workbook = new Workbook('title');
 $sheet = new Sheet($workbook, 'title');
 $workbook->addSheet($sheet);
@@ -40,8 +42,9 @@ new Excel('title', function ($workbook)
 Excel::load();
 Csv::load();
 
-new Reader('test.csv', function ($reader)
-{
-});
+//new Excel('test.csv', function (Reader $reader)
+//{
+//    $reader-
+//});
 
-new CsvReader('test.csv');
+//new CsvReader('test.csv');

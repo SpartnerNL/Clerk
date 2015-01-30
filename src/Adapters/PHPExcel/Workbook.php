@@ -1,6 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
+use Maatwebsite\Clerk\Ledger;
 use PHPExcel;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
@@ -32,6 +33,27 @@ class Workbook extends Adapter implements WorkbookInterface {
     protected $sheets = array();
 
     /**
+     * @var string
+     */
+    protected $lineEnding;
+
+    /**
+     * @var string
+     */
+
+    protected $delimiter;
+
+    /**
+     * @var string
+     */
+    protected $enclosure;
+
+    /**
+     * @var string
+     */
+    protected $encoding;
+
+    /**
      * @param          $title
      * @param callable $callback
      * @param PHPExcel $driver
@@ -42,11 +64,25 @@ class Workbook extends Adapter implements WorkbookInterface {
         $this->driver = $driver ?: new PHPExcel();
         $this->driver->disconnectWorksheets();
 
+        // Set defaults
+        $this->setDefaults();
+
         // Set workbook title
         $this->setTitle($title);
 
         // Make a callback on the workbook
         $this->call($callback);
+    }
+
+    /**
+     * Set reader defaults
+     */
+    protected function setDefaults()
+    {
+        $this->setDelimiter(Ledger::get('csv.delimiter'));
+        $this->setLineEnding(Ledger::get('csv.line_ending'));
+        $this->setEnclosure(Ledger::get('csv.enclosure'));
+        $this->setEncoding(Ledger::get('csv.encoding'));
     }
 
     /**
@@ -126,6 +162,79 @@ class Workbook extends Adapter implements WorkbookInterface {
     public function getSubject()
     {
         return $this->driver->getProperties()->getSubject();
+    }
+
+    /**
+     * Set the delimiter
+     * @param $delimiter
+     * @return $this
+     */
+    public function setDelimiter($delimiter)
+    {
+        $this->delimiter = $delimiter;
+
+        return $this;
+    }
+
+    /**
+     * Get the delimiter
+     * @return mixed
+     */
+    public function getDelimiter()
+    {
+        return $this->delimiter;
+    }
+
+    /**
+     * Set line ending
+     * @param $lineEnding
+     * @return $this
+     */
+    public function setLineEnding($lineEnding)
+    {
+        $this->lineEnding = $lineEnding;
+
+        return $this;
+    }
+
+    /**
+     * Set enclosure
+     * @param $enclosure
+     * @return $this
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->enclosure = $enclosure;
+
+        return $this;
+    }
+
+    /**
+     * Set encoding
+     * @param $encoding
+     * @return $this
+     */
+    public function setEncoding($encoding)
+    {
+        $this->encoding = $encoding;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLineEnding()
+    {
+        return $this->lineEnding;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnclosure()
+    {
+        return $this->enclosure;
     }
 
     /**

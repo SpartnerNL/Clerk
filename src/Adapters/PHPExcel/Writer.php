@@ -1,10 +1,13 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
+use Carbon\Carbon;
 use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
+use Maatwebsite\Clerk\Writer as WriterInterface;
 use PHPExcel_IOFactory;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
+use PHPExcel_Writer_IWriter;
 
-class Writer extends AbstractWriter {
+class Writer extends AbstractWriter implements WriterInterface {
 
     /**
      * @var string
@@ -34,7 +37,8 @@ class Writer extends AbstractWriter {
     }
 
     /**
-     * @param null $filename
+     * Export the workbook
+     * @param null|string $filename
      * @return mixed|void
      * @throws \Exception
      */
@@ -47,7 +51,7 @@ class Writer extends AbstractWriter {
             'Content-Type'        => $this->getContentType($this->type),
             'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->extension . '"',
             'Expires'             => 'Mon, 26 Jul 1997 05:00:00 GMT', // Date in the past
-            'Last-Modified'       => (new \DateTime('now'))->format('D, d M Y H:i:s'),
+            'Last-Modified'       => Carbon::now()->format('D, d M Y H:i:s'),
             'Cache-Control'       => 'cache, must-revalidate',
             'Pragma'              => 'public'
         ));
@@ -62,7 +66,7 @@ class Writer extends AbstractWriter {
      * @param WorkbookInterface $workbook
      * @return mixed
      */
-    public function convertToDriver(WorkbookInterface $workbook)
+    protected function convertToDriver(WorkbookInterface $workbook)
     {
         $driver = $workbook->getDriver();
 
@@ -79,7 +83,7 @@ class Writer extends AbstractWriter {
     }
 
     /**
-     * @return mixed
+     * @return PHPExcel_Writer_IWriter
      */
     protected function createWriter()
     {
@@ -87,6 +91,13 @@ class Writer extends AbstractWriter {
             $this->convertToDriver($this->workbook),
             $this->type
         );
+
+        if ( $this->type == 'CSV' )
+        {
+            $writer->setDelimiter($this->workbook->getDelimiter());
+            $writer->setEnclosure($this->workbook->getEnclosure());
+            $writer->setLineEnding($this->workbook->getLineEnding());
+        }
 
         return $writer;
     }

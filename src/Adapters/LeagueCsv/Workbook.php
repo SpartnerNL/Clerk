@@ -1,6 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
 
 use Closure;
+use Maatwebsite\Clerk\Ledger;
 use SplTempFileObject;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Adapters\Adapter;
@@ -43,11 +44,24 @@ class Workbook extends Adapter implements WorkbookInterface {
         // Set PHPExcel instance
         $this->driver = $driver ?: new LeagueWriter(new SplTempFileObject);
 
+        $this->setDefaults();
+
         // Set workbook title
         $this->setTitle($title);
 
         // Make a callback on the workbook
         $this->call($callback);
+    }
+
+    /**
+     * Set reader defaults
+     */
+    protected function setDefaults()
+    {
+        $this->setDelimiter(Ledger::get('csv.delimiter'));
+        $this->setLineEnding(Ledger::get('csv.line_ending'));
+        $this->setEnclosure(Ledger::get('csv.enclosure'));
+        $this->setEncoding(Ledger::get('csv.encoding'));
     }
 
     /**
@@ -115,6 +129,54 @@ class Workbook extends Adapter implements WorkbookInterface {
     public function getSubject()
     {
         //
+    }
+
+    /**
+     * Set the delimiter
+     * @param $delimiter
+     * @return $this
+     */
+    public function setDelimiter($delimiter)
+    {
+        $this->getDriver()->setDelimiter($delimiter);
+
+        return $this;
+    }
+
+    /**
+     * Set line ending
+     * @param $lineEnding
+     * @return $this
+     */
+    public function setLineEnding($lineEnding)
+    {
+        $this->getDriver()->setNewLine($lineEnding);
+
+        return $this;
+    }
+
+    /**
+     * Set enclosure
+     * @param $enclosure
+     * @return $this
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->getDriver()->setEnclosure($enclosure);
+
+        return $this;
+    }
+
+    /**
+     * Set encoding
+     * @param $encoding
+     * @return $this
+     */
+    public function setEncoding($encoding)
+    {
+        $this->getDriver()->setEncodingFrom($encoding);
+
+        return $this;
     }
 
     /**

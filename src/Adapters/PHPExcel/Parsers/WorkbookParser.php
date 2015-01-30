@@ -1,50 +1,44 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Parsers;
 
-use Maatwebsite\Clerk\Adapters\ParserSettings;
 use PHPExcel;
+use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\SheetCollection;
 
 class WorkbookParser {
 
     /**
-     * @var PHPExcel_WorksheetIterator
-     */
-    protected $workbook;
-
-    /**
      * @var ParserSettings
      */
-    private $settings;
+    protected $settings;
 
     /**
-     * @param PHPExcel       $workbook
      * @param ParserSettings $settings
      */
-    public function __construct(PHPExcel $workbook, ParserSettings $settings)
+    public function __construct(ParserSettings $settings)
     {
-        $this->workbook = $workbook;
         $this->settings = $settings;
     }
 
     /**
      * Parse the workbook
+     * @param PHPExcel $workbook
      * @return SheetCollection
      */
-    public function parse()
+    public function parse(PHPExcel $workbook)
     {
         // Init sheet collection
         $collection = new SheetCollection();
 
         // Set the workbook title
         $collection->setTitle(
-            $this->workbook->getProperties()->getTitle()
+            $workbook->getProperties()->getTitle()
         );
 
         // Worksheet parser
         $parser = new SheetParser($this->settings);
 
         // Loop through all worksheets
-        foreach ($this->workbook->getWorksheetIterator() as $index => $worksheet)
+        foreach ($workbook->getWorksheetIterator() as $index => $worksheet)
         {
             if ( $this->isSelected($index) )
             {

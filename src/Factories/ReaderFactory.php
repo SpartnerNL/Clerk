@@ -1,7 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Factories;
 
 use Closure;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
+use Maatwebsite\Clerk\Reader;
 
 class ReaderFactory {
 
@@ -10,12 +12,13 @@ class ReaderFactory {
      * @param          $type
      * @param          $file
      * @param callable $callback
-     * @return
+     * @return Reader
      * @throws DriverNotFoundException
      */
-    public static function create($driver, $type, $file, Closure $callback = null)
+    public static function create($driver, $file, Closure $callback = null, $type = null)
     {
-        $class = self::getClassByType($driver);
+        $class = self::getClassByDriver($driver);
+        $type = $type ?: self::getTypeByFile($file);
 
         if ( class_exists($class) )
             return new $class($type, $file, $callback);
@@ -27,8 +30,17 @@ class ReaderFactory {
      * @param $driver
      * @return string
      */
-    protected static function getClassByType($driver)
+    protected static function getClassByDriver($driver)
     {
         return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Reader';
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    protected static function getTypeByFile($file)
+    {
+        return (new FormatIdentifier())->getFormatByFile($file);
     }
 }

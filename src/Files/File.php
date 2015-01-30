@@ -30,8 +30,10 @@ abstract class File {
         // Get the driver
         $driver = $driver ?: $this->getDriver();
 
-        // Init a new workbook
-        $this->workbook = WorkbookFactory::create($driver, $title, $callback);
+        if ( $driver )
+        {
+            $this->workbook = WorkbookFactory::create($driver, $title, $callback);
+        }
     }
 
     /**
@@ -52,29 +54,41 @@ abstract class File {
      * @param callable $callback
      * @param bool     $driver
      * @param bool     $type
-     * @return static
+     * @return \Maatwebsite\Clerk\Reader
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      */
     public static function load($file, Closure $callback = null, $driver = false, $type = false)
     {
-        $instance = (new static(''));
+        // Passing in empty strings, will prevent a workbook from being initialized
+        $instance = (new static('', null, ''));
         $driver = $driver ?: $instance->getDriver();
         $type = $type ?: $instance->getType();
 
         return ReaderFactory::create(
             $driver,
-            $type,
             $file,
-            $callback
+            $callback,
+            $type
         );
     }
 
     /**
      * @param $filename
-     * @return WriterFactory
+     * @return mixed|void
      * @throws \Maatwebsite\Clerk\Factories\DriverNotFoundException
      */
     public function export($filename = null)
+    {
+        $writer = $this->initWriter();
+
+        return $writer->export($filename);
+    }
+
+    /**
+     * @return \Maatwebsite\Clerk\Writer
+     * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     */
+    protected function initWriter()
     {
         $writer = WriterFactory::create(
             $this->getDriver(),
@@ -83,7 +97,7 @@ abstract class File {
             $this->getWorkbook()
         );
 
-        return $writer->export($filename);
+        return $writer;
     }
 
     /**

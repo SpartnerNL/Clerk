@@ -1,5 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Adapters;
 
+use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
+
 abstract class Writer {
 
     /**
@@ -27,54 +29,12 @@ abstract class Writer {
     }
 
     /**
-     * @param $type
+     * @param $format
      * @return string
      */
-    public function getContentType($type)
+    public function getContentType($format)
     {
-        switch ($type)
-        {
-            /*
-            |--------------------------------------------------------------------------
-            | Excel 2007
-            |--------------------------------------------------------------------------
-            */
-            case 'Excel2007':
-                return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
-                break;
-            /*
-            |--------------------------------------------------------------------------
-            | Excel5
-            |--------------------------------------------------------------------------
-            */
-            case 'Excel5':
-                return 'application/vnd.ms-excel; charset=UTF-8';
-                break;
-            /*
-            |--------------------------------------------------------------------------
-            | HTML
-            |--------------------------------------------------------------------------
-            */
-            case 'HTML':
-                return 'HTML';
-                break;
-            /*
-            |--------------------------------------------------------------------------
-            | CSV
-            |--------------------------------------------------------------------------
-            */
-            case 'CSV':
-                return 'application/csv; charset=UTF-8';
-                break;
-            /*
-            |--------------------------------------------------------------------------
-            | PDF
-            |--------------------------------------------------------------------------
-            */
-            case 'PDF':
-                return 'application/pdf; charset=UTF-8';
-                break;
-        }
+        return (new FormatIdentifier())->getContentTypeByFormat($format);
     }
 
     /**

@@ -14,13 +14,19 @@ class Ledger implements ArrayAccess {
      *
      * @var array
      */
-    protected $items = [
-        'drivers' => [
+    protected $items = array(
+        'drivers' => array(
             'excel2003' => 'PHPExcel',
             'excel2007' => 'PHPExcel',
             'csv'       => 'LeagueCsv',
-        ]
-    ];
+        ),
+        'csv'     => array(
+            'delimiter'   => ',',
+            'enclosure'   => '"',
+            'line_ending' => "\r\n",
+            'encoding'    => 'UTF-8'
+        )
+    );
 
     /**
      * Determine if the given configuration value exists.

@@ -3,6 +3,11 @@
 abstract class Adapter {
 
     /**
+     * @var mixed
+     */
+    protected $driver;
+
+    /**
      * @return mixed
      */
     public function getDriver()
@@ -20,6 +25,6 @@ abstract class Adapter {
         if ( method_exists($this->getDriver(), $method) )
             return call_user_func_array([$this->getDriver(), $method], $params);
 
-        throw new \BadMethodCallException('Method not found');
+        throw new \BadMethodCallException("Method [{$method}] not found on Reader");
     }
 }

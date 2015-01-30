@@ -2,6 +2,7 @@
 
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 use Maatwebsite\Clerk\Workbook;
+use Maatwebsite\Clerk\Writer;
 
 class WriterFactory {
 
@@ -10,7 +11,7 @@ class WriterFactory {
      * @param          $type
      * @param          $extension
      * @param Workbook $workbook
-     * @return
+     * @return Writer
      * @throws DriverNotFoundException
      */
     public static function create($driver, $type, $extension, Workbook $workbook)

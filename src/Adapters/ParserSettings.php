@@ -110,7 +110,7 @@ class ParserSettings {
      */
     public function setColumns($columns)
     {
-        $this->columns = $columns;
+        $this->columns = array_merge($this->columns, $columns);
 
         return $this;
     }
@@ -148,7 +148,8 @@ class ParserSettings {
      */
     public function setMaxRows($maxRows)
     {
-        $this->maxRows = $maxRows;
+        // If we want to get the first 10 rows, the max rows is 11
+        $this->maxRows = 1 + $maxRows;
 
         return $this;
     }

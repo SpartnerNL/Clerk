@@ -1,10 +1,10 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
-use Carbon\Carbon;
-use Maatwebsite\Clerk\Adapters\ParserSettings;
 use PHPExcel_Cell;
+use Carbon\Carbon;
 use PHPExcel_Shared_Date;
 use PHPExcel_Style_NumberFormat;
+use Maatwebsite\Clerk\Adapters\ParserSettings;
 
 class Cell {
 
@@ -42,7 +42,7 @@ class Cell {
     {
         if ( $this->cellIsDate() )
         {
-            return $this->parseDate();
+            return $this->getDateValue();
         }
         elseif ( $this->needsCalculatedValue() )
         {
@@ -86,7 +86,7 @@ class Cell {
      * Parse the date
      * @return Carbon|string
      */
-    protected function parseDate()
+    public function getDateValue()
     {
         // If the date needs formatting
         if ( $this->settings->getNeedsDateFormatting() )

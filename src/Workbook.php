@@ -101,4 +101,32 @@ interface Workbook {
      * @return $this
      */
     public function removeSheetByIndex($index = 0);
+
+    /**
+     * Set the delimiter
+     * @param $delimiter
+     * @return $this
+     */
+    public function setDelimiter($delimiter);
+
+    /**
+     * Set line ending
+     * @param $lineEnding
+     * @return $this
+     */
+    public function setLineEnding($lineEnding);
+
+    /**
+     * Set enclosure
+     * @param $enclosure
+     * @return $this
+     */
+    public function setEnclosure($enclosure);
+
+    /**
+     * Set encoding
+     * @param $encoding
+     * @return $this
+     */
+    public function setEncoding($encoding);
 }
