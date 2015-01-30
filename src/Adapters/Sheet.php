@@ -16,7 +16,7 @@ abstract class Sheet extends Adapter {
     protected $title;
 
     /**
-     * @var PHPExcel_Worksheet
+     * @var mixed
      */
     protected $driver;
 

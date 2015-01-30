@@ -15,6 +15,11 @@ use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
+     * @var LeagueWriter
+     */
+    protected $driver;
+
+    /**
      * @param WorkbookInterface   $workbook
      * @param                     $title
      * @param Closure             $callback
