@@ -147,7 +147,7 @@ class ParserSettings {
     }
 
     /**
-     * @param int|bool $maxRows
+     * @param integer $maxRows
      * @return $this
      */
     public function setMaxRows($maxRows)

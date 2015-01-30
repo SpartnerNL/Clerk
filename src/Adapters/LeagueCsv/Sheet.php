@@ -1,7 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
 
 use Closure;
-use SplTempFileObject;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
