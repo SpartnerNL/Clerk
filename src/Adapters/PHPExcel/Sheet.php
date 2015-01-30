@@ -58,7 +58,7 @@ class Sheet extends Adapter implements SheetInterface {
     /**
      * Set the sheet title
      * @param string $title
-     * @return string
+     * @return $this
      */
     public function setTitle($title)
     {
@@ -68,14 +68,14 @@ class Sheet extends Adapter implements SheetInterface {
     }
 
     /**
-     * @param null   $source
+     * @param array  $source
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison
      * @return $this
      * @throws \PHPExcel_Exception
      */
-    public function fromArray($source = null, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
+    public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
     {
         $this->driver->fromArray($source, $nullValue, $startCell, $strictNullComparison);
 

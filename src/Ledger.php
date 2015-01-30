@@ -91,7 +91,7 @@ class Ledger implements ArrayAccess {
      */
     public function offsetExists($key)
     {
-        return $this->has($key);
+        return $this->hasConfig($key);
     }
 
     /**
@@ -102,7 +102,7 @@ class Ledger implements ArrayAccess {
      */
     public function offsetGet($key)
     {
-        return $this->get($key);
+        return $this->getConfig($key);
     }
 
     /**
@@ -114,7 +114,7 @@ class Ledger implements ArrayAccess {
      */
     public function offsetSet($key, $value)
     {
-        $this->set($key, $value);
+        $this->setConfig($key, $value);
     }
 
     /**
@@ -125,7 +125,7 @@ class Ledger implements ArrayAccess {
      */
     public function offsetUnset($key)
     {
-        $this->set($key, null);
+        $this->setConfig($key, null);
     }
 
     /**

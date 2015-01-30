@@ -19,15 +19,20 @@ abstract class File {
     protected $workbook;
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    /**
      * File extension
      * @var string
      */
     protected $extension;
 
     /**
-     * @param                  $title
-     * @param callable|Closure $callback
-     * @param bool             $driver
+     * @param string      $title
+     * @param Closure     $callback
+     * @param bool|string $driver
      */
     public function __construct($title, Closure $callback = null, $driver = false)
     {
@@ -42,9 +47,9 @@ abstract class File {
 
     /**
      * Create new file
-     * @param          $filename
-     * @param callable $callback
-     * @param bool     $driver
+     * @param string      $filename
+     * @param Closure     $callback
+     * @param bool|string $driver
      * @return static
      */
     public static function create($filename, Closure $callback = null, $driver = false)
@@ -54,10 +59,10 @@ abstract class File {
 
     /**
      * Create new file
-     * @param          $file
-     * @param callable $callback
-     * @param bool     $driver
-     * @param bool     $type
+     * @param string  $file
+     * @param Closure $callback
+     * @param bool|string    $driver
+     * @param bool|string    $type
      * @return \Maatwebsite\Clerk\Reader
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      */
@@ -105,7 +110,7 @@ abstract class File {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getType()
     {

@@ -11,33 +11,6 @@ use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
 class Writer extends AbstractWriter implements WriterInterface {
 
     /**
-     * @var string
-     */
-    protected $extension;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @var WorkbookInterface
-     */
-    protected $workbook;
-
-    /**
-     * @param                   $type
-     * @param                   $extension
-     * @param WorkbookInterface $workbook
-     */
-    public function __construct($type, $extension, WorkbookInterface $workbook)
-    {
-        $this->extension = $extension;
-        $this->type = $type;
-        $this->workbook = $workbook;
-    }
-
-    /**
      * @param null $filename
      * @return mixed
      * @throws \Exception
@@ -48,7 +21,7 @@ class Writer extends AbstractWriter implements WriterInterface {
 
         $workbook = $this->workbook->getDriver();
 
-        $workbook->output($filename . '.' . $this->extension);
+        $workbook->output($filename . '.' . $this->getExtension());
 
         exit;
     }

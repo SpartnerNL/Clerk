@@ -30,6 +30,11 @@ class Sheet extends Adapter implements SheetInterface {
     protected $driver;
 
     /**
+     * @var WorkbookInterface
+     */
+    protected $workbook;
+
+    /**
      * @param WorkbookInterface   $workbook
      * @param                     $title
      * @param callable            $callback
@@ -38,7 +43,7 @@ class Sheet extends Adapter implements SheetInterface {
     public function __construct(WorkbookInterface $workbook, $title = null, Closure $callback = null, LeagueWriter $driver = null)
     {
         // Set PHPExcel worksheet
-        $this->driver = $driver ?: new LeagueWriter(new SplTempFileObject);
+        $this->driver = $driver ?: $workbook->getDriver();
 
         // Set the title
         $this->setTitle($title);
@@ -59,7 +64,7 @@ class Sheet extends Adapter implements SheetInterface {
     /**
      * Set the sheet title
      * @param string $title
-     * @return string
+     * @return $this
      */
     public function setTitle($title)
     {
@@ -69,13 +74,13 @@ class Sheet extends Adapter implements SheetInterface {
     }
 
     /**
-     * @param null   $source
+     * @param array   $source
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison
      * @return SheetInterface
      */
-    public function fromArray($source = null, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
+    public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
     {
         if ( $nullValue == null && $strictNullComparison == false )
         {

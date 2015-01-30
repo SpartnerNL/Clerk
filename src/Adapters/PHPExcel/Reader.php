@@ -77,7 +77,7 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      * Take x rows
-     * @param  integer $amount
+     * @param  int $amount
      * @return $this
      */
     public function take($amount)
@@ -89,7 +89,7 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      * Skip x rows
-     * @param  integer $amount
+     * @param  int $amount
      * @return $this
      */
     public function skip($amount)
@@ -101,8 +101,8 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      * Limit the results by x
-     * @param  integer $take
-     * @param  integer $skip
+     * @param  int $take
+     * @param  int $skip
      * @return $this
      */
     public function limit($take, $skip = 0)
@@ -162,10 +162,10 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      * Each
-     * @param  callback $callback
+     * @param  Closure $callback
      * @return SheetCollection|RowCollection
      */
-    public function each($callback)
+    public function each(Closure $callback)
     {
         return $this->get()->each($callback);
     }
@@ -178,42 +178,6 @@ class Reader extends Adapter implements ReaderInterface {
     public function toArray($columns = array())
     {
         return (array) $this->get($columns)->toArray();
-    }
-
-    /**
-     *  Parse the file to an object.
-     * @param array $columns
-     * @return SheetCollection|RowCollection
-     */
-    public function toObject($columns = array())
-    {
-        return $this->get($columns);
-    }
-
-    /**
-     *  Dump the parsed file to a readable array
-     * @param  array   $columns
-     * @param  boolean $die
-     * @return string
-     */
-    public function dump($columns = array(), $die = false)
-    {
-        echo '<pre class="container" style="background: #f5f5f5; border: 1px solid #e3e3e3; padding:15px;">';
-        var_dump($this->get($columns));
-        echo '</pre>';
-
-        if ( $die )
-            die();
-    }
-
-    /**
-     * Die and dump
-     * @param array $columns
-     * @return string
-     */
-    public function dd($columns = array())
-    {
-        return $this->dump($columns, true);
     }
 
     /**
@@ -363,7 +327,7 @@ class Reader extends Adapter implements ReaderInterface {
         $filename = $this->file;
         $segments = explode('/', $filename);
         $file = end($segments);
-        list($name, $ext) = explode('.', $file);
+        list($name,) = explode('.', $file);
 
         return $name;
     }

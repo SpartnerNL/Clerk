@@ -20,11 +20,11 @@ interface Sheet {
     public function setTitle($title);
 
     /**
-     * @param null   $source
+     * @param array  $source
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison
      * @return $this
      */
-    public function fromArray($source = null, $nullValue = null, $startCell = 'A1', $strictNullComparison = false);
+    public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false);
 }

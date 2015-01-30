@@ -1,5 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters;
 
+use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 
 /**
@@ -9,10 +10,70 @@ use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 abstract class Writer {
 
     /**
+     * @var WorkbookInterface
+     */
+    protected $workbook;
+
+    /**
+     * @var string
+     */
+    protected $extension;
+
+    /**
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * @param                   $type
+     * @param                   $extension
+     * @param WorkbookInterface $workbook
+     */
+    public function __construct($type, $extension, WorkbookInterface $workbook)
+    {
+        $this->extension = $extension;
+        $this->type = $type;
+        $this->workbook = $workbook;
+    }
+
+    /**
      * @param null $filename
      * @return mixed
      */
     abstract public function export($filename = null);
+
+    /**
+     * @return WorkbookInterface
+     */
+    public function getWorkbook()
+    {
+        return $this->workbook;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Get title
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->getWorkbook()->getTitle();
+    }
 
     /**
      * @param $filename
@@ -21,12 +82,12 @@ abstract class Writer {
     protected function getFilename($filename = null)
     {
         if ( !$filename )
-            return $this->workbook->getTitle();
+            return $this->getTitle();
 
         // Strip of file extensions
         if ( strpos($filename, '.') !== false )
         {
-            return $filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+            return preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
         }
 
         return $filename;

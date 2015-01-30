@@ -28,7 +28,7 @@ class FormatIdentifier {
 
     /**
      * Get the file format by file
-     * @param $file
+     * @param string $file
      * @throws LaravelExcelException
      * @return string $format
      */
@@ -51,7 +51,7 @@ class FormatIdentifier {
     /**
      * Identify file format
      * @param $ext
-     * @return  string $format
+     * @return string $format
      */
     public function getFormatByExtension($ext)
     {
@@ -67,7 +67,6 @@ class FormatIdentifier {
             case 'xltx':
             case 'xltm':
                 return 'Excel2007';
-                break;
             /*
             |--------------------------------------------------------------------------
             | Excel5
@@ -76,7 +75,6 @@ class FormatIdentifier {
             case 'xls':
             case 'xlt':
                 return 'Excel5';
-                break;
             /*
             |--------------------------------------------------------------------------
             | OOCalc
@@ -85,7 +83,6 @@ class FormatIdentifier {
             case 'ods':
             case 'ots':
                 return 'OOCalc';
-                break;
             /*
             |--------------------------------------------------------------------------
             | SYLK
@@ -93,7 +90,6 @@ class FormatIdentifier {
             */
             case 'slk':
                 return 'SYLK';
-                break;
             /*
             |--------------------------------------------------------------------------
             | Excel2003XML
@@ -101,7 +97,6 @@ class FormatIdentifier {
             */
             case 'xml':
                 return 'Excel2003XML';
-                break;
             /*
             |--------------------------------------------------------------------------
             | Gnumeric
@@ -109,7 +104,6 @@ class FormatIdentifier {
             */
             case 'gnumeric':
                 return 'Gnumeric';
-                break;
             /*
             |--------------------------------------------------------------------------
             | HTML
@@ -118,7 +112,6 @@ class FormatIdentifier {
             case 'htm':
             case 'html':
                 return 'HTML';
-                break;
             /*
             |--------------------------------------------------------------------------
             | CSV
@@ -127,7 +120,6 @@ class FormatIdentifier {
             case 'csv':
             case 'txt':
                 return 'CSV';
-                break;
             /*
             |--------------------------------------------------------------------------
             | PDF
@@ -135,7 +127,6 @@ class FormatIdentifier {
             */
             case 'pdf':
                 return 'PDF';
-                break;
         }
     }
 
@@ -155,7 +146,6 @@ class FormatIdentifier {
             */
             case 'Excel2007':
                 return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
-                break;
             /*
             |--------------------------------------------------------------------------
             | Excel5
@@ -163,7 +153,6 @@ class FormatIdentifier {
             */
             case 'Excel5':
                 return 'application/vnd.ms-excel; charset=UTF-8';
-                break;
             /*
             |--------------------------------------------------------------------------
             | HTML
@@ -171,7 +160,6 @@ class FormatIdentifier {
             */
             case 'HTML':
                 return 'HTML';
-                break;
             /*
             |--------------------------------------------------------------------------
             | CSV
@@ -179,7 +167,6 @@ class FormatIdentifier {
             */
             case 'CSV':
                 return 'application/csv; charset=UTF-8';
-                break;
             /*
             |--------------------------------------------------------------------------
             | PDF
@@ -187,17 +174,16 @@ class FormatIdentifier {
             */
             case 'PDF':
                 return 'application/pdf; charset=UTF-8';
-                break;
         }
     }
 
     /**
      * Try every reader we have
-     * @param        $file
-     * @param bool   $wrongFormat
-     * @param string $ext
+     * @param  string          $file
+     * @param bool|null|string $wrongFormat
+     * @param string           $ext
+     * @return string
      * @throws LaravelExcelException
-     * @return string $format
      */
     protected function lastResort($file, $wrongFormat = false, $ext = 'xls')
     {
@@ -214,8 +200,8 @@ class FormatIdentifier {
 
     /**
      * Check if we can read the file
-     * @param $format
-     * @param $file
+     * @param string $format
+     * @param string $file
      * @return boolean
      */
     protected function canRead($format, $file)

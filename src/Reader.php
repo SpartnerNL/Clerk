@@ -1,5 +1,6 @@
 <?php namespace Maatwebsite\Clerk;
 
+use Closure;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\RowCollection;
 use Maatwebsite\Clerk\Collections\SheetCollection;
@@ -26,14 +27,14 @@ interface Reader {
     /**
      * Take x rows
      * @param  integer $amount
-     * @return LaravelExcelReader
+     * @return $this
      */
     public function take($amount);
 
     /**
      * Skip x rows
      * @param  integer $amount
-     * @return LaravelExcelReader
+     * @return $this
      */
     public function skip($amount);
 
@@ -41,21 +42,21 @@ interface Reader {
      * Limit the results by x
      * @param  integer $take
      * @param  integer $skip
-     * @return LaravelExcelReader
+     * @return $this
      */
     public function limit($take, $skip = 0);
 
     /**
      * Select certain columns
      * @param  array $columns
-     * @return LaravelExcelReader
+     * @return $this
      */
     public function select($columns = array());
 
     /**
      * Return all sheets/rows
      * @param  array $columns
-     * @return LaravelExcelReader
+     * @return $this
      */
     public function all($columns = array());
 
@@ -77,10 +78,10 @@ interface Reader {
 
     /**
      * Each
-     * @param  callback $callback
+     * @param  Closure $callback
      * @return SheetCollection|RowCollection
      */
-    public function each($callback);
+    public function each(Closure $callback);
 
     /**
      *  Parse the file to an array.
@@ -88,28 +89,6 @@ interface Reader {
      * @return array
      */
     public function toArray($columns = array());
-
-    /**
-     *  Parse the file to an object.
-     * @param array $columns
-     * @return SheetCollection|RowCollection
-     */
-    public function toObject($columns = array());
-
-    /**
-     *  Dump the parsed file to a readable array
-     * @param  array   $columns
-     * @param  boolean $die
-     * @return string
-     */
-    public function dump($columns = array(), $die = false);
-
-    /**
-     * Die and dump
-     * @param array $columns
-     * @return string
-     */
-    public function dd($columns = array());
 
     /**
      * Get the current filename

@@ -74,7 +74,7 @@ class Cell {
      */
     public function getCalculatedValue()
     {
-        return $this->cell->getCalculatedValue();
+        return $this->cell->getFormattedValue();
     }
 
     /**
@@ -112,10 +112,10 @@ class Cell {
     protected function parseDateAsCarbon()
     {
         // If has a date
-        if ( $cellContent = $this->cell->getCalculatedValue() )
+        if ( $cellContent = $this->cell->getFormattedValue() )
         {
             // Convert excel time to php date object
-            $date = PHPExcel_Shared_Date::ExcelToPHPObject($this->cell->getCalculatedValue())->format('Y-m-d H:i:s');
+            $date = PHPExcel_Shared_Date::ExcelToPHPObject($cellContent)->format('Y-m-d H:i:s');
 
             // Parse with carbon
             $date = Carbon::parse($date);
@@ -135,7 +135,7 @@ class Cell {
     {
         //Format the date to a formatted string
         return (string) PHPExcel_Style_NumberFormat::toFormattedString(
-            $this->cell->getCalculatedValue(),
+            $this->cell->getFormattedValue(),
             $this->cell->getWorksheet()->getParent()
                        ->getCellXfByIndex($this->cell->getXfIndex())
                        ->getNumberFormat()
@@ -152,7 +152,7 @@ class Cell {
         // For date formatting for certain given columns
         if ( $this->settings->getDateColumns() )
         {
-            return in_array($this->index, $this->reader->getDateColumns());
+            return in_array($this->index, $this->settings->getDateColumns());
         }
         else
         {

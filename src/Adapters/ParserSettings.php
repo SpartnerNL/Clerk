@@ -139,7 +139,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return int|bool
      */
     public function getMaxRows()
     {
@@ -147,18 +147,18 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $maxRows
+     * @param int|bool $maxRows
      * @return $this
      */
     public function setMaxRows($maxRows)
     {
         if ( $this->getHasHeading() )
         {
-            $this->maxRows = 1 + $maxRows;
+            $this->maxRows = (int) 1 + $maxRows;
         }
         else
         {
-            $this->maxRows = $maxRows;
+            $this->maxRows = (int) $maxRows;
         }
 
         return $this;

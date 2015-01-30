@@ -1,5 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
 
+use Closure;
 use Maatwebsite\Clerk\LaravelExcelReader;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
@@ -108,10 +109,10 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      * Each
-     * @param  callback $callback
+     * @param  Closure $callback
      * @return SheetCollection|RowCollection
      */
-    public function each($callback)
+    public function each(Closure $callback)
     {
         // TODO: Implement each() method.
     }
@@ -124,37 +125,6 @@ class Reader extends Adapter implements ReaderInterface {
     public function toArray($columns = array())
     {
         // TODO: Implement toArray() method.
-    }
-
-    /**
-     *  Parse the file to an object.
-     * @param array $columns
-     * @return SheetCollection|RowCollection
-     */
-    public function toObject($columns = array())
-    {
-        // TODO: Implement toObject() method.
-    }
-
-    /**
-     *  Dump the parsed file to a readable array
-     * @param  array   $columns
-     * @param  boolean $die
-     * @return string
-     */
-    public function dump($columns = array(), $die = false)
-    {
-        // TODO: Implement dump() method.
-    }
-
-    /**
-     * Die and dump
-     * @param array $columns
-     * @return string
-     */
-    public function dd($columns = array())
-    {
-        // TODO: Implement dd() method.
     }
 
     /**

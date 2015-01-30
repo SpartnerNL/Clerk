@@ -14,33 +14,6 @@ use PHPExcel_Writer_IWriter;
 class Writer extends AbstractWriter implements WriterInterface {
 
     /**
-     * @var string
-     */
-    protected $extension;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @var WorkbookInterface
-     */
-    protected $workbook;
-
-    /**
-     * @param                   $type
-     * @param                   $extension
-     * @param WorkbookInterface $workbook
-     */
-    public function __construct($type, $extension, WorkbookInterface $workbook)
-    {
-        $this->extension = $extension;
-        $this->type = $type;
-        $this->workbook = $workbook;
-    }
-
-    /**
      * Export the workbook
      * @param null|string $filename
      * @return mixed|void
@@ -52,8 +25,8 @@ class Writer extends AbstractWriter implements WriterInterface {
         $filename = $this->getFilename($filename);
 
         $this->sendHeaders(array(
-            'Content-Type'        => $this->getContentType($this->type),
-            'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->extension . '"',
+            'Content-Type'        => $this->getContentType($this->getType()),
+            'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->getExtension() . '"',
             'Expires'             => 'Mon, 26 Jul 1997 05:00:00 GMT', // Date in the past
             'Last-Modified'       => Carbon::now()->format('D, d M Y H:i:s'),
             'Cache-Control'       => 'cache, must-revalidate',
@@ -96,7 +69,7 @@ class Writer extends AbstractWriter implements WriterInterface {
             $this->type
         );
 
-        if ( $this->type == 'CSV' )
+        if ( $this->getType() == 'CSV' )
         {
             $writer->setDelimiter($this->workbook->getDelimiter());
             $writer->setEnclosure($this->workbook->getEnclosure());

@@ -71,23 +71,18 @@ class HeadingParser {
         {
             case 'slugged':
                 return $this->getSluggedIndex($value, $this->settings->getAscii());
-                break;
 
             case 'ascii':
                 return $this->getAsciiIndex($value);
-                break;
 
             case 'hashed':
                 return $this->getHashedIndex($value);
-                break;
 
             case 'trans':
                 return $this->getTranslatedIndex($value);
-                break;
 
             case 'original':
                 return $value;
-                break;
         }
     }
 
