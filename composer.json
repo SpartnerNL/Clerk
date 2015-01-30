@@ -1,6 +1,6 @@
 {
   "name": "maatwebsite/clerk",
-  "description": "An eloquent way of importing and exporting Excel and CSV in PHP 5.3+ with the power of packages PHPExcel, League/Csv and Laravel's Collections",
+  "description": "An eloquent way of importing and exporting Excel and CSV in PHP 5.4+ with the power of packages PHPExcel, League/Csv and Laravel's Collections",
   "license": "LGPL",
   "keywords": [
     "laravel",
@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "php": ">=5.3.0",
+    "php": ">=5.4.0",
     "nesbot/carbon": "~1.0",
     "league/csv": "~7.0@dev",
     "phpoffice/phpexcel": "~1.8.0",
