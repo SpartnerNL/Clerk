@@ -2,6 +2,7 @@
 
 use Closure;
 use Maatwebsite\Clerk\Ledger;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
@@ -13,6 +14,11 @@ use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
 abstract class Workbook extends Adapter {
 
     /**
+     * Traits
+     */
+    use CallableTrait;
+
+    /**
      * Sheet collection
      * @var array
      */
@@ -20,7 +26,7 @@ abstract class Workbook extends Adapter {
 
     /**
      * @param          $title
-     * @param callable $callback
+     * @param Closure  $callback
      */
     public function __construct($title, Closure $callback = null)
     {
@@ -33,6 +39,13 @@ abstract class Workbook extends Adapter {
         // Make a callback on the workbook
         $this->call($callback);
     }
+
+    /**
+     * Set title
+     * @param string $title
+     * @return $this
+     */
+    public abstract function setTitle($title);
 
     /**
      * Set reader defaults

@@ -1,7 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
 
 use Closure;
-use Maatwebsite\Clerk\LaravelExcelReader;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Reader as ReaderInterface;
@@ -35,7 +34,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Take x rows
      * @param  integer $amount
-     * @return LaravelExcelReader
+     * @return \Illuminate\Support\Collection
      */
     public function take($amount)
     {
@@ -45,7 +44,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Skip x rows
      * @param  integer $amount
-     * @return LaravelExcelReader
+     * @return \Illuminate\Support\Collection
      */
     public function skip($amount)
     {
@@ -56,7 +55,7 @@ class Reader extends Adapter implements ReaderInterface {
      * Limit the results by x
      * @param  integer $take
      * @param  integer $skip
-     * @return LaravelExcelReader
+     * @return \Illuminate\Support\Collection
      */
     public function limit($take, $skip = 0)
     {
@@ -66,7 +65,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Select certain columns
      * @param  array $columns
-     * @return LaravelExcelReader
+     * @return \Illuminate\Support\Collection
      */
     public function select($columns = array())
     {
@@ -76,7 +75,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Return all sheets/rows
      * @param  array $columns
-     * @return LaravelExcelReader
+     * @return \Illuminate\Support\Collection
      */
     public function all($columns = array())
     {

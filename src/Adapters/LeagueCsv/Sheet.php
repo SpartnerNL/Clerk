@@ -3,6 +3,7 @@
 use Closure;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Adapters\Adapter;
+use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
@@ -11,32 +12,12 @@ use Maatwebsite\Clerk\Workbook as WorkbookInterface;
  * Class Sheet
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
-class Sheet extends Adapter implements SheetInterface {
-
-    /**
-     * Traits
-     */
-    use CallableTrait;
-
-    /**
-     * @var string
-     */
-    protected $title;
-
-    /**
-     * @var LeagueWriter
-     */
-    protected $driver;
-
-    /**
-     * @var WorkbookInterface
-     */
-    protected $workbook;
+class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
      * @param WorkbookInterface   $workbook
      * @param                     $title
-     * @param Closure            $callback
+     * @param Closure             $callback
      * @param LeagueWriter        $driver
      */
     public function __construct(WorkbookInterface $workbook, $title = null, Closure $callback = null, LeagueWriter $driver = null)
@@ -44,11 +25,7 @@ class Sheet extends Adapter implements SheetInterface {
         // Set PHPExcel worksheet
         $this->driver = $driver ?: $workbook->getDriver();
 
-        // Set the title
-        $this->setTitle($title);
-
-        // Preform callback on the sheet
-        $this->call($callback);
+        parent::__construct($title, $callback);
     }
 
     /**
@@ -73,7 +50,7 @@ class Sheet extends Adapter implements SheetInterface {
     }
 
     /**
-     * @param array   $source
+     * @param array  $source
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison

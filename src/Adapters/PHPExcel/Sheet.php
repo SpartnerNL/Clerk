@@ -1,6 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
+use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
 use PHPExcel_Worksheet;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
@@ -11,22 +12,7 @@ use Maatwebsite\Clerk\Workbook as WorkbookInterface;
  * Class Sheet
  * @package Maatwebsite\Clerk\Adapters\PHPExcel
  */
-class Sheet extends Adapter implements SheetInterface {
-
-    /**
-     * Traits
-     */
-    use CallableTrait;
-
-    /**
-     * @var string
-     */
-    protected $title;
-
-    /**
-     * @var PHPExcel_Worksheet
-     */
-    protected $driver;
+class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
      * @param WorkbookInterface   $workbook
@@ -39,11 +25,7 @@ class Sheet extends Adapter implements SheetInterface {
         // Set PHPExcel worksheet
         $this->driver = $driver ?: new PHPExcel_Worksheet($workbook->getDriver());
 
-        // Set the title
-        $this->setTitle($title);
-
-        // Preform callback on the sheet
-        $this->call($callback);
+        parent::__construct($title, $callback);
     }
 
     /**

@@ -54,7 +54,7 @@ interface Reader {
     /**
      * Return all sheets/rows
      * @param  array $columns
-     * @return $this
+     * @return \Illuminate\Support\Collection
      */
     public function all($columns = array());
 

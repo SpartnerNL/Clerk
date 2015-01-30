@@ -2,9 +2,8 @@
 
 use Closure;
 use PHPExcel;
-use Maatwebsite\Clerk\Adapters\Workbook as AbstractWorkbook;
-use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
+use Maatwebsite\Clerk\Adapters\Workbook as AbstractWorkbook;
 
 /**
  * Class Workbook
@@ -12,12 +11,7 @@ use Maatwebsite\Clerk\Workbook as WorkbookInterface;
  */
 class Workbook extends AbstractWorkbook implements WorkbookInterface {
 
-    /**
-     * Traits
-     */
-    use CallableTrait;
-
-    /**
+    /*
      * @var PHPExcel
      */
     protected $driver;
@@ -67,8 +61,8 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     }
 
     /**
-     * Set the workbook title
-     * @param mixed $title
+     * Set title
+     * @param string $title
      * @return $this
      */
     public function setTitle($title)

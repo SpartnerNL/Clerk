@@ -3,7 +3,6 @@
 use Closure;
 use SplTempFileObject;
 use League\Csv\Writer as LeagueWriter;
-use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Adapters\Workbook as AbstractWorkbook;
 
@@ -12,11 +11,6 @@ use Maatwebsite\Clerk\Adapters\Workbook as AbstractWorkbook;
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
 class Workbook extends AbstractWorkbook implements WorkbookInterface {
-
-    /**
-     * Traits
-     */
-    use CallableTrait;
 
     /**
      * @var
@@ -50,11 +44,15 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     }
 
     /**
-     * @param mixed $title
+     * Set title
+     * @param string $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
