@@ -60,7 +60,7 @@ class Cell {
 
     /**
      * Get cell
-     * @return mixed
+     * @return PHPExcel_Cell
      */
     public function getCell()
     {

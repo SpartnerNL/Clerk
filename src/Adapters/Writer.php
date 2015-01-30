@@ -68,7 +68,7 @@ abstract class Writer {
 
     /**
      * Get title
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -76,8 +76,8 @@ abstract class Writer {
     }
 
     /**
-     * @param $filename
-     * @return mixed
+     * @param string|null $filename
+     * @return string
      */
     protected function getFilename($filename = null)
     {
@@ -94,7 +94,7 @@ abstract class Writer {
     }
 
     /**
-     * @param $format
+     * @param string $format
      * @return string
      */
     public function getContentType($format)

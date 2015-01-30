@@ -7,8 +7,6 @@ use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Reader as ReaderInterface;
-use Maatwebsite\Clerk\Collections\RowCollection;
-use Maatwebsite\Clerk\Collections\SheetCollection;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Parsers\WorkbookParser;
 
 /**
@@ -62,7 +60,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Get all sheets/rows
      * @param array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function get($columns = array())
     {
@@ -131,7 +129,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Return all sheets/rows
      * @param  array $columns
-     * @return $this
+     * @return \Illuminate\Support\Collection
      */
     public function all($columns = array())
     {
@@ -141,7 +139,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Get first row/sheet only
      * @param  array $columns
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function first($columns = array())
     {
@@ -163,7 +161,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Each
      * @param  Closure $callback
-     * @return SheetCollection|RowCollection
+     * @return \Illuminate\Support\Collection
      */
     public function each(Closure $callback)
     {
@@ -183,7 +181,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Select sheets by their indices
      * @param array $sheets
-     * @return mixed
+     * @return Reader
      */
     public function selectSheets($sheets = array())
     {
@@ -195,7 +193,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Ignore empty cells
      * @param $value
-     * @return mixed
+     * @return ParserSettings
      */
     public function ignoreEmpty($value)
     {
@@ -215,7 +213,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set date columns
      * @param array $columns
-     * @return $this
+     * @return ParserSettings
      */
     public function setDateColumns($columns = array())
     {
@@ -225,7 +223,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Workbook needs date formatting
      * @param $state
-     * @return mixed
+     * @return ParserSettings
      */
     public function needsDateFormatting($state)
     {
@@ -235,7 +233,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set the heading row
      * @param $row
-     * @return mixed
+     * @return ParserSettings
      */
     public function setHeadingRow($row)
     {
@@ -245,7 +243,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Has heading row
      * @param $state
-     * @return mixed
+     * @return ParserSettings
      */
     public function hasHeading($state)
     {
@@ -255,7 +253,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set the heading type
      * @param $type
-     * @return mixed
+     * @return ParserSettings
      */
     public function setHeadingType($type)
     {
@@ -265,7 +263,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set separator
      * @param $separator
-     * @return mixed
+     * @return ParserSettings
      */
     public function setSeparator($separator)
     {
@@ -275,7 +273,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Calculate cell values
      * @param $state
-     * @return mixed
+     * @return ParserSettings
      */
     public function calculate($state)
     {
@@ -285,7 +283,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set CSV delimiter
      * @param $delimiter
-     * @return mixed
+     * @return Reader
      */
     public function setDelimiter($delimiter)
     {
@@ -297,7 +295,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set CSV enclosure
      * @param $enclosure
-     * @return mixed
+     * @return Reader
      */
     public function setEnclosure($enclosure)
     {
@@ -309,7 +307,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * Set CSV the line endings
      * @param $lineEnding
-     * @return mixed
+     * @return Reader
      */
     public function setLineEnding($lineEnding)
     {

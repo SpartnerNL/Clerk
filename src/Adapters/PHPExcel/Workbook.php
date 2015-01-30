@@ -45,7 +45,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
 
     /**
      * @param          $title
-     * @param callable $callback
+     * @param Closure  $callback
      * @param PHPExcel $driver
      */
     public function __construct($title, Closure $callback = null, PHPExcel $driver = null)
@@ -66,7 +66,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
 
     /**
      * Get the workbook title
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -157,7 +157,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
 
     /**
      * Get the delimiter
-     * @return mixed
+     * @return string
      */
     public function getDelimiter()
     {
@@ -201,7 +201,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLineEnding()
     {
@@ -209,7 +209,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEnclosure()
     {
@@ -219,7 +219,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     /**
      * Init a new sheet
      * @param          $title
-     * @param callable $callback
+     * @param Closure  $callback
      * @return Sheet
      */
     public function sheet($title, Closure $callback = null)

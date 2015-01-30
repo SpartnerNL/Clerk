@@ -30,7 +30,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
 
     /**
      * @param              $title
-     * @param callable     $callback
+     * @param Closure      $callback
      * @param LeagueWriter $driver
      */
     public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
@@ -165,7 +165,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     /**
      * Init a new sheet
      * @param          $title
-     * @param callable $callback
+     * @param Closure  $callback
      * @return Sheet
      */
     public function sheet($title, Closure $callback = null)
