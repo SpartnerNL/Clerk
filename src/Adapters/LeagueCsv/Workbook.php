@@ -11,6 +11,10 @@ use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
 
+/**
+ * Class Workbook
+ * @package Maatwebsite\Clerk\Adapters\LeagueCsv
+ */
 class Workbook extends Adapter implements WorkbookInterface {
 
     /**

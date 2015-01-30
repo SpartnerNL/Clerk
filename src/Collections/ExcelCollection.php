@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Collection;
 
+/**
+ * Class ExcelCollection
+ * @package Maatwebsite\Clerk\Collections
+ */
 class ExcelCollection extends Collection {
 
     /**

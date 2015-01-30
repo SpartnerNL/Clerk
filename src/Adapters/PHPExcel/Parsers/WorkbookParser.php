@@ -4,6 +4,10 @@ use PHPExcel;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\SheetCollection;
 
+/**
+ * Class WorkbookParser
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ */
 class WorkbookParser {
 
     /**

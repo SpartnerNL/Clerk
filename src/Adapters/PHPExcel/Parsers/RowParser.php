@@ -6,6 +6,10 @@ use Maatwebsite\Clerk\Adapters\PHPExcel\Cell;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\CellCollection;
 
+/**
+ * Class RowParser
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ */
 class RowParser {
 
     /**
@@ -36,6 +40,8 @@ class RowParser {
     {
         $iterator = $row->getCellIterator();
         $iterator->setIterateOnlyExistingCells($this->settings->getIgnoreEmpty());
+
+        $cells = array();
 
         foreach ($iterator as $index => $cell)
         {

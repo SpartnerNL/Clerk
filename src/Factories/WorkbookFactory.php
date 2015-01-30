@@ -4,6 +4,10 @@ use Closure;
 use Maatwebsite\Clerk\Workbook;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
+/**
+ * Class WorkbookFactory
+ * @package Maatwebsite\Clerk\Factories
+ */
 class WorkbookFactory {
 
     /**

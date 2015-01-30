@@ -7,6 +7,10 @@ use PHPExcel_IOFactory;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use PHPExcel_Writer_IWriter;
 
+/**
+ * Class Writer
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ */
 class Writer extends AbstractWriter implements WriterInterface {
 
     /**

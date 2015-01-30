@@ -2,6 +2,10 @@
 
 use Maatwebsite\Clerk\Ledger;
 
+/**
+ * Class Excel2007
+ * @package Maatwebsite\Clerk\Files
+ */
 class Excel2007 extends File {
 
     /**

@@ -4,6 +4,10 @@ use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\RowCollection;
 use Maatwebsite\Clerk\Collections\SheetCollection;
 
+/**
+ * Interface Reader
+ * @package Maatwebsite\Clerk
+ */
 interface Reader {
 
     /**

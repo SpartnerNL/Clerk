@@ -7,6 +7,10 @@ use Maatwebsite\Clerk\Factories\WorkbookFactory;
 use Maatwebsite\Clerk\Factories\WriterFactory;
 use Maatwebsite\Clerk\Workbook;
 
+/**
+ * Class File
+ * @package Maatwebsite\Clerk\Files
+ */
 abstract class File {
 
     /**

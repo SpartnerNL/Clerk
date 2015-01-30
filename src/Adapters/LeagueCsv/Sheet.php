@@ -8,6 +8,10 @@ use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 
+/**
+ * Class Sheet
+ * @package Maatwebsite\Clerk\Adapters\LeagueCsv
+ */
 class Sheet extends Adapter implements SheetInterface {
 
     /**

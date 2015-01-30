@@ -2,6 +2,10 @@
 
 use Closure;
 
+/**
+ * Interface Workbook
+ * @package Maatwebsite\Clerk
+ */
 interface Workbook {
 
     /**

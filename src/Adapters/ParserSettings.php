@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Adapters;
 
+/**
+ * Class ParserSettings
+ * @package Maatwebsite\Clerk\Adapters
+ */
 class ParserSettings {
 
     /**
@@ -148,8 +152,14 @@ class ParserSettings {
      */
     public function setMaxRows($maxRows)
     {
-        // If we want to get the first 10 rows, the max rows is 11
-        $this->maxRows = 1 + $maxRows;
+        if ( $this->getHasHeading() )
+        {
+            $this->maxRows = 1 + $maxRows;
+        }
+        else
+        {
+            $this->maxRows = $maxRows;
+        }
 
         return $this;
     }

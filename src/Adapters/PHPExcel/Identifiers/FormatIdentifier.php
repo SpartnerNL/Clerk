@@ -2,6 +2,10 @@
 
 use PHPExcel_IOFactory;
 
+/**
+ * Class FormatIdentifier
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers
+ */
 class FormatIdentifier {
 
     /**

@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk;
 
+/**
+ * Interface Writer
+ * @package Maatwebsite\Clerk
+ */
 interface Writer {
 
     /**

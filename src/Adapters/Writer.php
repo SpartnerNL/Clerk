@@ -2,6 +2,10 @@
 
 use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 
+/**
+ * Class Writer
+ * @package Maatwebsite\Clerk\Adapters
+ */
 abstract class Writer {
 
     /**

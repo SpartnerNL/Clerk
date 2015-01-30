@@ -6,6 +6,10 @@ use PHPExcel_Shared_Date;
 use PHPExcel_Style_NumberFormat;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 
+/**
+ * Class Cell
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ */
 class Cell {
 
     /**
@@ -183,6 +187,6 @@ class Cell {
      */
     public function __toString()
     {
-        return $this->getValue();
+        return (string) $this->getValue();
     }
 }

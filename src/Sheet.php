@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk;
 
+/**
+ * Interface Sheet
+ * @package Maatwebsite\Clerk
+ */
 interface Sheet {
 
     /**

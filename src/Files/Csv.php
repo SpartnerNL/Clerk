@@ -2,6 +2,10 @@
 
 use Maatwebsite\Clerk\Ledger;
 
+/**
+ * Class Csv
+ * @package Maatwebsite\Clerk\Files
+ */
 class Csv extends File {
 
     /**

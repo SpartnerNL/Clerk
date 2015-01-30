@@ -11,6 +11,10 @@ use Maatwebsite\Clerk\Collections\RowCollection;
 use Maatwebsite\Clerk\Collections\SheetCollection;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Parsers\WorkbookParser;
 
+/**
+ * Class Reader
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ */
 class Reader extends Adapter implements ReaderInterface {
 
     /**
@@ -367,7 +371,7 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * @return \PHPExcel_Reader_IReader
      */
-    protected function getReader()
+    public function getReader()
     {
         return $this->reader;
     }

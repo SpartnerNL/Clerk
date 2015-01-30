@@ -5,6 +5,10 @@ use Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 use Maatwebsite\Clerk\Reader;
 
+/**
+ * Class ReaderFactory
+ * @package Maatwebsite\Clerk\Factories
+ */
 class ReaderFactory {
 
     /**

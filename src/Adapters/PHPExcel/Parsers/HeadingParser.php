@@ -3,6 +3,10 @@
 use Illuminate\Support\Str;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 
+/**
+ * Class HeadingParser
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ */
 class HeadingParser {
 
     /**

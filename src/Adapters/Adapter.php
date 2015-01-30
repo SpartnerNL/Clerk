@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Adapters;
 
+/**
+ * Class Adapter
+ * @package Maatwebsite\Clerk\Adapters
+ */
 abstract class Adapter {
 
     /**

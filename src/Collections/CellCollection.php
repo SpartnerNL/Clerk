@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Collections;
 
+/**
+ * Class CellCollection
+ * @package Maatwebsite\Clerk\Collections
+ */
 class CellCollection extends ExcelCollection {
 
     /**

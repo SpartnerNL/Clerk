@@ -5,6 +5,10 @@ use Illuminate\Support\Str;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Collections\RowCollection;
 
+/**
+ * Class SheetParser
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ */
 class SheetParser {
 
     /**

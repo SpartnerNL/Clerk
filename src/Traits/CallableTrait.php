@@ -2,6 +2,10 @@
 
 use Closure;
 
+/**
+ * Class CallableTrait
+ * @package Maatwebsite\Clerk\Traits
+ */
 trait CallableTrait {
 
     /**
