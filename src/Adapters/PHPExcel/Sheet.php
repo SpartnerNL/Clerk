@@ -31,7 +31,7 @@ class Sheet extends Adapter implements SheetInterface {
     /**
      * @param WorkbookInterface   $workbook
      * @param                     $title
-     * @param callable            $callback
+     * @param Closure            $callback
      * @param PHPExcel_Worksheet  $driver
      */
     public function __construct(WorkbookInterface $workbook, $title = null, Closure $callback = null, PHPExcel_Worksheet $driver = null)
@@ -58,7 +58,7 @@ class Sheet extends Adapter implements SheetInterface {
     /**
      * Set the sheet title
      * @param string $title
-     * @return string
+     * @return Sheet
      */
     public function setTitle($title)
     {

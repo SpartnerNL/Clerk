@@ -40,7 +40,7 @@ class Workbook extends Adapter implements WorkbookInterface {
 
     /**
      * @param              $title
-     * @param callable     $callback
+     * @param Closure     $callback
      * @param LeagueWriter $driver
      */
     public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
@@ -186,7 +186,7 @@ class Workbook extends Adapter implements WorkbookInterface {
     /**
      * Init a new sheet
      * @param          $title
-     * @param callable $callback
+     * @param Closure $callback
      * @return Sheet
      */
     public function sheet($title, Closure $callback = null)
@@ -286,7 +286,7 @@ class Workbook extends Adapter implements WorkbookInterface {
 
     /**
      * Validate the sheet index
-     * @param $index
+     * @param integer $index
      * @throws InvalidArgumentException
      * @throws SheetNotFoundException
      */

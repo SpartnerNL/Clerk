@@ -15,7 +15,7 @@ abstract class Writer {
     abstract public function export($filename = null);
 
     /**
-     * @param $filename
+     * @param string $filename
      * @return mixed
      */
     protected function getFilename($filename = null)
@@ -33,7 +33,7 @@ abstract class Writer {
     }
 
     /**
-     * @param $format
+     * @param string $format
      * @return string
      */
     public function getContentType($format)
