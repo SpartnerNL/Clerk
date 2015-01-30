@@ -4,7 +4,7 @@ use Maatwebsite\Clerk\Writer as WriterInterface;
 use PHPExcel_Writer_IWriter;
 
 /**
- * Class Writer
+ * Class CsvWriter
  * @package Maatwebsite\Clerk\Adapters\PHPExcel
  */
 class CsvWriter extends Writer implements WriterInterface {

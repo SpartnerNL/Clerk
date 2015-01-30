@@ -3,6 +3,10 @@
 use Maatwebsite\Clerk\Reader as ReaderInterface;
 use Maatwebsite\Clerk\CsvReader as CsvReaderInterface;
 
+/**
+ * Class CsvReader
+ * @package Maatwebsite\Clerk\Adapters\PHPExcel\Readers
+ */
 class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface {
 
     /**

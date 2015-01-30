@@ -4,7 +4,7 @@ use Maatwebsite\Clerk\Writer as WriterInterface;
 use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
 
 /**
- * Class Writer
+ * Class CsvWriter
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
 class CsvWriter extends AbstractWriter implements WriterInterface {

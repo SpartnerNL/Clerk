@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk;
 
+/**
+ * Interface CsvReader
+ * @package Maatwebsite\Clerk
+ */
 interface CsvReader {
 
     /**

@@ -7,7 +7,7 @@ use Maatwebsite\Clerk\Reader as ReaderInterface;
 use Maatwebsite\Clerk\CsvReader as CsvReaderInterface;
 
 /**
- * Class Reader
+ * Class CsvReader
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
 class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
