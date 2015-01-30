@@ -1,14 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
+<?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv\Writers;
 
 use Maatwebsite\Clerk\Writer as WriterInterface;
-use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
 
 /**
  * Class Writer
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
-class Writer extends AbstractWriter implements WriterInterface {
+class CsvWriter extends AbstractWriter implements WriterInterface {
 
     /**
      * @param null $filename

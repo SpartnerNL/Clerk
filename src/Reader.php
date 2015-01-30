@@ -163,25 +163,4 @@ interface Reader {
      * @return mixed
      */
     public function calculate($state);
-
-    /**
-     * Set CSV delimiter
-     * @param $delimiter
-     * @return mixed
-     */
-    public function setDelimiter($delimiter);
-
-    /**
-     * Set CSV enclosure
-     * @param $enclosure
-     * @return mixed
-     */
-    public function setEnclosure($enclosure);
-
-    /**
-     * Set CSV the line endings
-     * @param $lineEnding
-     * @return mixed
-     */
-    public function setLineEnding($lineEnding);
 }

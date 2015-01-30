@@ -10,9 +10,10 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase {
         $workbook = new Workbook('mock');
         $workbook->sheet('mock');
 
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Writer', WriterFactory::create('PHPExcel', 'Excel5', 'xls', $workbook));
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Writer', WriterFactory::create('PHPExcel', 'Excel2007', 'xlsx', $workbook));
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\LeagueCsv\Writer', WriterFactory::create('LeagueCsv', 'Csv', 'csv', $workbook));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Writers\Writer', WriterFactory::create('PHPExcel', 'Excel5', 'xls', $workbook));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Writers\Writer', WriterFactory::create('PHPExcel', 'Excel2007', 'xlsx', $workbook));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\LeagueCsv\Writers\CsvWriter', WriterFactory::create('LeagueCsv', 'Csv', 'csv', $workbook));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Writers\CsvWriter', WriterFactory::create('PHPExcel', 'Csv', 'csv', $workbook));
     }
 
 

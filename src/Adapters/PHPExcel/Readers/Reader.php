@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
+<?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Readers;
 
 use Closure;
 use PHPExcel;
@@ -278,42 +278,6 @@ class Reader extends Adapter implements ReaderInterface {
     public function calculate($state)
     {
         return $this->settings()->setCalculatedCellValues($state);
-    }
-
-    /**
-     * Set CSV delimiter
-     * @param $delimiter
-     * @return Reader
-     */
-    public function setDelimiter($delimiter)
-    {
-        $this->reader->setDelimiter($delimiter);
-
-        return $this;
-    }
-
-    /**
-     * Set CSV enclosure
-     * @param $enclosure
-     * @return Reader
-     */
-    public function setEnclosure($enclosure)
-    {
-        $this->reader->setEnclosure($enclosure);
-
-        return $this;
-    }
-
-    /**
-     * Set CSV the line endings
-     * @param $lineEnding
-     * @return Reader
-     */
-    public function setLineEnding($lineEnding)
-    {
-        $this->reader->setLineEnding($lineEnding);
-
-        return $this;
     }
 
     /**

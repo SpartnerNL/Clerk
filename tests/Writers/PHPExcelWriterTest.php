@@ -1,7 +1,8 @@
 <?php namespace Maatwebsite\Clerk\Tests\Writers;
 
+use Maatwebsite\Clerk\Adapters\PHPExcel\Writers\CsvWriter;
 use Mockery as m;
-use Maatwebsite\Clerk\Adapters\PHPExcel\Writer;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Writers\Writer;
 
 class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase {
 
@@ -30,6 +31,9 @@ class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase {
     public function test_get_content_type()
     {
         $writer = new Writer('CSV', 'csv', $this->workbook);
+        $this->assertContains('application/csv; charset=UTF-8', $writer->getContentType('CSV'));
+
+        $writer = new CsvWriter('CSV', 'csv', $this->workbook);
         $this->assertContains('application/csv; charset=UTF-8', $writer->getContentType('CSV'));
 
         $writer = new Writer('Excel5', 'xls', $this->workbook);

@@ -21,8 +21,14 @@ class ReaderFactory {
      */
     public static function create($driver, $file, Closure $callback = null, $type = null)
     {
-        $class = self::getClassByDriver($driver);
         $type = $type ?: self::getTypeByFile($file);
+        $class = self::getClassByDriverAndType($driver, $type);
+
+        if ( class_exists($class) )
+            return new $class($type, $file, $callback);
+
+        // Get the default writer
+        $class = self::getDefaultClass($driver);
 
         if ( class_exists($class) )
             return new $class($type, $file, $callback);
@@ -34,9 +40,20 @@ class ReaderFactory {
      * @param $driver
      * @return string
      */
-    protected static function getClassByDriver($driver)
+    protected static function getDefaultClass($driver)
     {
-        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Reader';
+        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Readers\Reader';
+    }
+
+    /**
+     * Get a specific reader
+     * @param $driver
+     * @param $type
+     * @return string
+     */
+    protected static function getClassByDriverAndType($driver, $type)
+    {
+        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Readers\\' . ucfirst(strtolower($type)) . 'Reader';
     }
 
     /**

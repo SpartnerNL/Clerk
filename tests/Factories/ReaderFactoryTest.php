@@ -6,9 +6,9 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function test_factory_returns_writer()
     {
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Reader', ReaderFactory::create('PHPExcel', 'test.xls', null, 'Excel5'));
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Reader', ReaderFactory::create('PHPExcel', 'test.xlsx', null, 'Excel2007'));
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\LeagueCsv\Reader', ReaderFactory::create('LeagueCsv', 'test.csv', null, 'CSV'));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Readers\Reader', ReaderFactory::create('PHPExcel', 'test.xls', null, 'Excel5'));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Readers\Reader', ReaderFactory::create('PHPExcel', 'test.xlsx', null, 'Excel2007'));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\LeagueCsv\Readers\CsvReader', ReaderFactory::create('LeagueCsv', 'test.csv', null, 'CSV'));
     }
 
 
@@ -21,6 +21,6 @@ class ReaderFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function test_that_factory_can_guess_the_file_type()
     {
-        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Reader', ReaderFactory::create('PHPExcel', __DIR__ . '/import/test.xls'));
+        $this->assertInstanceOf('Maatwebsite\Clerk\Adapters\PHPExcel\Readers\Reader', ReaderFactory::create('PHPExcel', __DIR__ . '/import/test.xls'));
     }
 }

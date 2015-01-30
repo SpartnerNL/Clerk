@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
+<?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Writers;
 
 use Carbon\Carbon;
 use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
@@ -64,18 +64,9 @@ class Writer extends AbstractWriter implements WriterInterface {
      */
     protected function createWriter()
     {
-        $writer = PHPExcel_IOFactory::createWriter(
+        return PHPExcel_IOFactory::createWriter(
             $this->convertToDriver($this->workbook),
             $this->type
         );
-
-        if ( $this->getType() == 'CSV' )
-        {
-            $writer->setDelimiter($this->workbook->getDelimiter());
-            $writer->setEnclosure($this->workbook->getEnclosure());
-            $writer->setLineEnding($this->workbook->getLineEnding());
-        }
-
-        return $writer;
     }
 }

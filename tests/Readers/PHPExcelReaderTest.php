@@ -1,6 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Tests\Readers;
 
-use Maatwebsite\Clerk\Adapters\PHPExcel\Reader;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Readers\Reader;
 
 class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
 

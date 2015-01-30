@@ -1,6 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Tests\Writers;
 
-use Maatwebsite\Clerk\Adapters\LeagueCsv\Writer;
+use Maatwebsite\Clerk\Adapters\LeagueCsv\Writers\CsvWriter;
 use Mockery as m;
 
 class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase {
@@ -22,7 +22,7 @@ class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase {
 
     public function test_can_init()
     {
-        $writer = new Writer('CSV', 'csv', $this->workbook);
+        $writer = new CsvWriter('CSV', 'csv', $this->workbook);
 
         $this->assertInstanceOf('Maatwebsite\Clerk\Writer', $writer);
     }

@@ -26,7 +26,13 @@ class WriterFactory {
         if ( $workbook->getSheetCount() < 1 )
             throw new ExportFailedException('No sheets are added to your Excel file. Make sure you do so, before attempting to export');
 
-        $class = self::getClassByType($driver);
+        $class = self::getClassByDriverAndType($driver, $type);
+
+        if ( class_exists($class) )
+            return new $class($type, $extension, $workbook);
+
+        // Default writer
+        $class = self::getClassByDriver($driver);
 
         if ( class_exists($class) )
             return new $class($type, $extension, $workbook);
@@ -38,8 +44,18 @@ class WriterFactory {
      * @param $driver
      * @return string
      */
-    protected static function getClassByType($driver)
+    protected static function getClassByDriver($driver)
     {
-        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Writer';
+        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Writers\\Writer';
+    }
+
+    /**
+     * @param $driver
+     * @param $type
+     * @return string
+     */
+    private static function getClassByDriverAndType($driver, $type)
+    {
+        return 'Maatwebsite\\Clerk\\Adapters\\' . $driver . '\\Writers\\' . ucfirst(strtolower($type)) . 'Writer';
     }
 }

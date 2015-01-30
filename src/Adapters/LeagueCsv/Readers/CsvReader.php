@@ -1,16 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv;
+<?php namespace Maatwebsite\Clerk\Adapters\LeagueCsv\Readers;
 
 use Closure;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Adapters\ParserSettings;
 use Maatwebsite\Clerk\Reader as ReaderInterface;
+use Maatwebsite\Clerk\CsvReader as CsvReaderInterface;
 
 /**
  * Class Reader
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
-class Reader extends Adapter implements ReaderInterface {
-
+class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
 
     /**
      * Settings
@@ -234,32 +234,50 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set CSV delimiter
+     * Set the delimiter
      * @param $delimiter
-     * @return mixed
+     * @return $this
      */
     public function setDelimiter($delimiter)
     {
-        // TODO: Implement setDelimiter() method.
+        $this->getDriver()->setDelimiter($delimiter);
+
+        return $this;
     }
 
     /**
-     * Set CSV enclosure
-     * @param $enclosure
-     * @return mixed
-     */
-    public function setEnclosure($enclosure)
-    {
-        // TODO: Implement setEnclosure() method.
-    }
-
-    /**
-     * Set CSV the line endings
+     * Set line ending
      * @param $lineEnding
-     * @return mixed
+     * @return $this
      */
     public function setLineEnding($lineEnding)
     {
-        // TODO: Implement setLineEnding() method.
+        $this->getDriver()->setNewLine($lineEnding);
+
+        return $this;
+    }
+
+    /**
+     * Set enclosure
+     * @param $enclosure
+     * @return $this
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->getDriver()->setEnclosure($enclosure);
+
+        return $this;
+    }
+
+    /**
+     * Set encoding
+     * @param $encoding
+     * @return $this
+     */
+    public function setEncoding($encoding)
+    {
+        $this->getDriver()->setEncodingFrom($encoding);
+
+        return $this;
     }
 }
