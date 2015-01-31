@@ -2,7 +2,6 @@
 
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
-use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Engines\EngineResolver;
