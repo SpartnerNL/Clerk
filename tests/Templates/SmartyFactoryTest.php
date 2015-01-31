@@ -10,7 +10,7 @@ class SmartyFactoryTest extends \PHPUnit_Framework_TestCase {
     {
         Ledger::set('templates.path', __DIR__ . '/files');
         Ledger::set('templates.cache', __DIR__ . '/files/.cache');
-        Ledger::set('templates.compiled', __DIR__ . '/files/.cache');
+        Ledger::set('templates.compile', __DIR__ . '/files/.cache');
         Ledger::set('templates.config', __DIR__ . '/files/.cache');
     }
 
