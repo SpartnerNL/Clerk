@@ -54,10 +54,10 @@ class StylesheetExtractor {
 
     /**
      * Get clean stylesheet link
-     * @param SimpleXMLElement $node
+     * @param  $node
      * @return string
      */
-    protected function getCleanStylesheetLink(SimpleXMLElement $node)
+    protected function getCleanStylesheetLink($node)
     {
         // Get the link
         $link = $node->attributes()->href;
