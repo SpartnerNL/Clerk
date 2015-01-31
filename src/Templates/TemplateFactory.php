@@ -26,7 +26,7 @@ class TemplateFactory {
     }
 
     /**
-     * @param $engine
+     * @param string $engine
      * @return string
      */
     protected static function getFactoryClass($engine)

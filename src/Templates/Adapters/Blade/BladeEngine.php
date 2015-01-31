@@ -67,7 +67,7 @@ class BladeEngine {
     /**
      * Register the engine resolver instance.
      *
-     * @return void
+     * @return EngineResolver
      */
     public function getEngineResolver()
     {
