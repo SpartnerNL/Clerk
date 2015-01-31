@@ -4,6 +4,7 @@ use DOMDocument;
 use Maatwebsite\Clerk\Sheet;
 use Maatwebsite\Clerk\Exceptions\ExportFailedException;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\Elements\Document;
+use Maatwebsite\Clerk\Templates\Css\CssInliner;
 
 class HtmlToSheetConverter {
 
@@ -19,7 +20,7 @@ class HtmlToSheetConverter {
         $document = new DOMDocument();
 
         // Load the Html into the DOMDocument
-        if ( !$document->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), $this->getXmlReaderOptions()) )
+        if ( !$document->loadHTML($this->getNormalizedHtml($html), $this->getXmlReaderOptions()) )
             throw new ExportFailedException('Failed to load the template');
 
         // Discard white space
@@ -32,6 +33,17 @@ class HtmlToSheetConverter {
         );
 
         return $sheet;
+    }
+
+    /**
+     * @param $html
+     * @return bool|mixed|string
+     */
+    public function getNormalizedHtml($html)
+    {
+        $html = (new CssInliner())->transformCssToInlineStyles($html);
+
+        return mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
     }
 
     /**

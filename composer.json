@@ -23,7 +23,8 @@
     "league/csv": "~7.0@dev",
     "phpoffice/phpexcel": "~1.8.0",
     "patchwork/utf8": "~1.2.1",
-    "illuminate/support": "~4.0|~5.0@dev"
+    "illuminate/support": "~4.0|~5.0@dev",
+    "tijsverkoyen/css-to-inline-styles": "~1.5"
   },
   "suggets": {
     "illuminate/view": "If you want to use Blade as templating engine",
