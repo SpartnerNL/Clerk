@@ -113,11 +113,6 @@ class EngineResolver {
      */
     protected function getEngines()
     {
-        return Ledger::get('templates.engines', array(
-            'blade'  => '.blade',
-            'twig'   => '.html',
-            'smarty' => '.tpl',
-            'php'    => '.php'
-        ));
+        return Ledger::get('templates.engines', $this->engines);
     }
 }

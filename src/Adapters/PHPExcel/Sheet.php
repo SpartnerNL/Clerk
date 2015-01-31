@@ -95,9 +95,9 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
      * Set value for a cell for given coordinate
-     * @param string $coordinate
-     * @param null   $value
-     * @param bool   $returnCell
+     * @param string      $coordinate
+     * @param string|null $value
+     * @param bool        $returnCell
      * @return mixed
      */
     public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false)
