@@ -11,6 +11,11 @@ class PhpFactory implements Factory {
     protected $extension = 'php';
 
     /**
+     * @var string
+     */
+    protected $results;
+
+    /**
      * Make the view
      * @param string $file
      * @param array  $data

@@ -1,4 +1,5 @@
 <?php namespace Maatwebsite\Clerk\Templates\Adapters\Php;
+use Exception;
 
 /**
  * Class PhpEngine

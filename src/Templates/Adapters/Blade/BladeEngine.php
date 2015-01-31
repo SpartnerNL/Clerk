@@ -12,7 +12,12 @@ use Illuminate\View\Compilers\BladeCompiler;
 class BladeEngine {
 
     /**
-     * Array containg paths where to look for blade files
+     * @var Filesystem
+     */
+    protected $files;
+
+    /**
+     * Array containing paths where to look for blade files
      * @var array
      */
     public $viewPaths;
@@ -22,16 +27,6 @@ class BladeEngine {
      * @var string
      */
     public $cachePath;
-
-    /**
-     * @var Container
-     */
-    protected $container;
-
-    /**
-     * @var Factory
-     */
-    protected $instance;
 
     /**
      * Initialize class
@@ -82,11 +77,13 @@ class BladeEngine {
         // Add Blade compiler engine
         $resolver->register('blade', function ()
         {
+            $compiler = new BladeCompiler(
+                $this->files,
+                $this->cachePath
+            );
+
             return new CompilerEngine(
-                new BladeCompiler(
-                    $this->files,
-                    $this->cachePath
-                ),
+                $compiler,
                 $this->files
             );
         });
