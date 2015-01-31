@@ -88,4 +88,16 @@ class Sheet extends AbstractSheet implements SheetInterface {
     {
         // TODO: Implement loadTemplate() method.
     }
+
+    /**
+     * Set value for a cell for given coordinate
+     * @param string $coordinate
+     * @param null   $value
+     * @param bool   $returnCell
+     * @return mixed
+     */
+    public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false)
+    {
+        // TODO: Implement setCellValue() method.
+    }
 }

@@ -92,4 +92,16 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
         return $this;
     }
+
+    /**
+     * Set value for a cell for given coordinate
+     * @param string $coordinate
+     * @param null   $value
+     * @param bool   $returnCell
+     * @return mixed
+     */
+    public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false)
+    {
+        return $this->driver->setCellValue($coordinate, $value, $returnCell);
+    }
 }

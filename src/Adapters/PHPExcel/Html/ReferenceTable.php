@@ -165,11 +165,11 @@ class ReferenceTable {
     }
 
     /**
-     * @return void
+     * @param $content
      */
-    public function rememberData()
+    public function rememberData($content)
     {
-        $this->data[$this->getRow()][$this->getColumn()] = $this->getContent();
+        $this->data[$this->getRow()][$this->getColumn()] = $content;
     }
 
     /**

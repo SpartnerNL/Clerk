@@ -90,8 +90,8 @@ class EngineResolver {
 
     /**
      * Check if the extension matches
-     * @param $file
-     * @param $extension
+     * @param string $file
+     * @param string $extension
      * @return bool
      */
     protected function checkExtension($file, $extension)

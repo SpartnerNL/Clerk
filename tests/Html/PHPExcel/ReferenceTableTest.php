@@ -49,12 +49,12 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
     public function test_remember_data()
     {
         $this->table->setContent('cell content');
-        $this->table->rememberData();
+        $this->table->rememberData($this->table->getContent());
 
         $data = $this->table->getData();
         $this->assertEquals('cell content', $data[$this->table->getRow()][$this->table->getColumn()]);
     }
-    
+
 
     public function test_set_start_column()
     {
