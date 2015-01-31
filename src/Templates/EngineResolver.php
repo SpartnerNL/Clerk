@@ -54,7 +54,7 @@ class EngineResolver {
     }
 
     /**
-     * @param $engine
+     * @param string $engine
      * @return bool
      */
     protected function isRegisteredEngine($engine)
@@ -63,7 +63,7 @@ class EngineResolver {
     }
 
     /**
-     * @param $file
+     * @param string $file
      * @return bool|int|string
      */
     protected function basedOnFileExtension($file)
