@@ -1,6 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Html\HtmlToSheetConverter;
 use PHPExcel_Worksheet;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Templates\TemplateFactory;
@@ -83,6 +84,12 @@ class Sheet extends AbstractSheet implements SheetInterface {
         // Render the template
         $html = $factory->make($template, $data)->render();
 
-        dd($html);
+        // Convert the html to a sheet
+        (new HtmlToSheetConverter())->convert(
+            $html,
+            $this
+        );
+
+        return $this;
     }
 }
