@@ -1,6 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Templates\Css;
 
 use DOMDocument;
+use SimpleXMLElement;
 
 class StylesheetExtractor {
 
@@ -8,6 +9,11 @@ class StylesheetExtractor {
      * @var string
      */
     protected $html;
+
+    /**
+     * @var SimpleXMLElement
+     */
+    protected $xml;
 
     /**
      * @param string $html
@@ -48,10 +54,10 @@ class StylesheetExtractor {
 
     /**
      * Get clean stylesheet link
-     * @param $node
-     * @return mixed
+     * @param SimpleXMLElement $node
+     * @return string
      */
-    protected function getCleanStylesheetLink($node)
+    protected function getCleanStylesheetLink(SimpleXMLElement $node)
     {
         // Get the link
         $link = $node->attributes()->href;
@@ -62,7 +68,7 @@ class StylesheetExtractor {
     /**
      * Get css from link
      * @param  string $link
-     * @return string|boolean
+     * @return string
      */
     protected function getCssFromLink($link)
     {

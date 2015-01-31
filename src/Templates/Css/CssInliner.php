@@ -5,6 +5,11 @@ use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 class CssInliner {
 
     /**
+     * @var CssToInlineStyles
+     */
+    protected $inliner;
+
+    /**
      * Constructor
      */
     public function __construct()
