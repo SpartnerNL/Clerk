@@ -82,8 +82,7 @@ class BladeEngine {
             );
 
             return new CompilerEngine(
-                $compiler,
-                $this->files
+                $compiler
             );
         });
 

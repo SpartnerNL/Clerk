@@ -1,5 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Templates\Adapters;
 
+/**
+ * Class ExtensionChecker
+ * @package Maatwebsite\Clerk\Templates\Adapters
+ */
 trait ExtensionChecker {
 
     /**
