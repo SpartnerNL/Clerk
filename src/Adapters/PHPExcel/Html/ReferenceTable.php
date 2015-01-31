@@ -101,7 +101,7 @@ class ReferenceTable {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -165,7 +165,7 @@ class ReferenceTable {
     }
 
     /**
-     * @param $content
+     * @param string $content
      */
     public function rememberData($content)
     {
