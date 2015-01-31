@@ -25,9 +25,17 @@
     "patchwork/utf8": "~1.2.1",
     "illuminate/support": "~4.0|~5.0@dev"
   },
+  "suggets": {
+    "illuminate/view": "If you want to use Blade as templating engine",
+    "twig/twig": "If you want to use Twig as templating engine",
+    "smarty/smarty": "If you want to use Smarty as templating engine"
+  },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
-    "mockery/mockery": "~0.9"
+    "mockery/mockery": "~0.9",
+    "illuminate/view": "~4.0|~5.0@dev",
+    "twig/twig": "~1.18.0",
+    "smarty/smarty": "~3.1.21"
   },
   "autoload": {
     "psr-4": {
@@ -38,5 +46,6 @@
     "psr-4": {
       "Maatwebsite\\Clerk\\Tests\\": "tests/"
     }
-  }
+  },
+  "minimum-stability": "dev"
 }

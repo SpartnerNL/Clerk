@@ -1,12 +1,11 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
-use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
 use PHPExcel_Worksheet;
-use Maatwebsite\Clerk\Adapters\Adapter;
-use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
+use Maatwebsite\Clerk\Templates\TemplateFactory;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
+use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
 
 /**
  * Class Sheet
@@ -67,5 +66,23 @@ class Sheet extends AbstractSheet implements SheetInterface {
         $this->driver->fromArray($source, $nullValue, $startCell, $strictNullComparison);
 
         return $this;
+    }
+
+    /**
+     * Load from template
+     * @param       $template
+     * @param array $data
+     * @param null  $engine
+     * @return mixed
+     */
+    public function loadTemplate($template, array $data = array(), $engine = null)
+    {
+        // Init factory based on given engine, based on extension or use of default engine
+        $factory = TemplateFactory::create($template, $engine);
+
+        // Render the template
+        $html = $factory->make($template, $data)->render();
+
+        dd($html);
     }
 }

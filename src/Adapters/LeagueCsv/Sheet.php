@@ -76,4 +76,16 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
         return $this;
     }
+
+    /**
+     * Load from template
+     * @param       $template
+     * @param array $data
+     * @param null  $engine
+     * @return mixed
+     */
+    public function loadTemplate($template, array $data = array(), $engine = null)
+    {
+        // TODO: Implement loadTemplate() method.
+    }
 }

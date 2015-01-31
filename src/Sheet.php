@@ -27,4 +27,13 @@ interface Sheet {
      * @return $this
      */
     public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false);
+
+    /**
+     * Load from template
+     * @param       $template
+     * @param array $data
+     * @param null  $engine
+     * @return mixed
+     */
+    public function loadTemplate($template, array $data = array(), $engine = null);
 }

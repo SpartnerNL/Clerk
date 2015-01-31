@@ -15,16 +15,32 @@ class Ledger implements ArrayAccess {
      * @var array
      */
     protected $items = array(
-        'drivers' => array(
+
+        'drivers'   => array(
             'excel2003' => 'PHPExcel',
             'excel2007' => 'PHPExcel',
             'csv'       => 'LeagueCsv',
         ),
-        'csv'     => array(
+
+        'csv'       => array(
             'delimiter'   => ',',
             'enclosure'   => '"',
             'line_ending' => "\r\n",
             'encoding'    => 'UTF-8'
+        ),
+
+        'templates' => array(
+            'default' => 'php',
+            'engines' => array(
+                'blade'  => '.blade',
+                'twig'   => '.html',
+                'smarty' => '.tpl',
+                'php'    => '.php'
+            ),
+            'path'    => 'templates',
+            'cache'   => 'template/.cache',
+            'compile' => 'templates/.compiled',
+            'config'  => 'templates/config'
         )
     );
 
