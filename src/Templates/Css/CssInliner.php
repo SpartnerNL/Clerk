@@ -12,6 +12,7 @@ class CssInliner {
         $this->inliner = new CssToInlineStyles();
         $this->inliner->setCleanup(true);
         $this->inliner->setUseInlineStylesBlock(true);
+        $this->inliner->setStripOriginalStyleTags(true);
     }
 
     /**
