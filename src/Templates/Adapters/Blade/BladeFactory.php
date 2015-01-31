@@ -55,8 +55,8 @@ class BladeFactory implements Factory {
 
     /**
      * Get the template file
-     * @param $file
-     * @return mixed|string
+     * @param string $file
+     * @return string
      */
     protected function getFile($file)
     {

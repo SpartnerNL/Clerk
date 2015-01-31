@@ -5,7 +5,7 @@ trait ExtensionChecker {
     /**
      * Get file
      * @param $file
-     * @return mixed
+     * @return string|null
      */
     protected function getFile($file)
     {

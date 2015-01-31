@@ -25,8 +25,8 @@ class EngineResolver {
     protected $file;
 
     /**
-     * @param      $file
-     * @param null $engine
+     * @param      string $file
+     * @param string|null $engine
      */
     public function __construct($file, $engine = null)
     {
