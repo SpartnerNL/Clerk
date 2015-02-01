@@ -1,34 +1,22 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Html\Attributes;
 
-use DOMNode;
-use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ReferenceTable;
-
 /**
  * Class ColspanAttribute
  * @package Maatwebsite\Clerk\Adapters\PHPExcel\Html\Attributes
  */
-class ColspanAttribute extends Attribute {
+class ColspanAttribute extends MergeCells {
 
     /**
-     * @param DOMNode        $element
-     * @param ReferenceTable $table
-     * @return mixed
+     * @param $attribute
+     * @param $table
+     * @return string
      */
-    public function parse(DOMNode $element, ReferenceTable &$table)
+    public function getEndCell($attribute, &$table)
     {
-        // Set start cell
-        $startCell = $table->getColumn() . $table->getRow();
-
         // Find end column letter
-        $table->nextColumn($element->value - 1);
+        $table->nextColumn($attribute->value - 1);
 
         // Set end cell
-        $endCell = $table->getColumn() . $table->getRow();
-
-        // Set range
-        $range = $startCell . ':' . $endCell;
-
-        // Merge the cells
-        $this->sheet->mergeCells($range);
+        return $table->getColumn() . $table->getRow();
     }
 }

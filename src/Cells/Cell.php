@@ -21,7 +21,7 @@ class Cell implements CellInterface {
     protected $styles = [];
 
     /**
-     * @var string
+     * @var Coordinate
      */
     protected $coordinate;
 
@@ -185,10 +185,6 @@ class Cell implements CellInterface {
         $this->dataType = $dataType;
     }
 
-    public function format($format)
-    {
-    }
-
     /**
      * Format as string
      * @param null $value
@@ -228,9 +224,13 @@ class Cell implements CellInterface {
         {
             $method = str_replace('as', '', $method);
             $method = strtoupper(snake_case($method));
-            $format = constant("self::$method");
 
-            return $this->format($format);
+            if ( defined("self::$method") )
+            {
+                $format = constant("self::$method");
+
+                return $this->setDataType($format);
+            }
         }
     }
 }

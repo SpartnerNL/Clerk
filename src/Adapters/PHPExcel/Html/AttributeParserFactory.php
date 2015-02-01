@@ -8,7 +8,7 @@ class AttributeParserFactory {
     /**
      * @param string $attribute
      * @param Sheet  $sheet
-     * @return Attribute
+     * @return Attribute|null
      */
     public static function create($attribute, Sheet $sheet)
     {
@@ -19,7 +19,7 @@ class AttributeParserFactory {
     }
 
     /**
-     * @param $attribute
+     * @param string $attribute
      * @return string
      */
     protected static function getClass($attribute)

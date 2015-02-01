@@ -29,9 +29,9 @@ class CellWriter {
             $cell->getValue()
         );
 
-        //$this->sheet->getStyleByColumnAndRow(
-        //    $cell->getCoordinate()->getColumn(),
-        //    $cell->getCoordinate()->getRow()
-        //)->getNumberFormat()->setFormatCode($cell->getDataType());
+        $this->sheet->getStyleByColumnAndRow(
+            $cell->getCoordinate()->getColumn(),
+            $cell->getCoordinate()->getRow()
+        )->getNumberFormat()->setFormatCode($cell->getDataType());
     }
 }

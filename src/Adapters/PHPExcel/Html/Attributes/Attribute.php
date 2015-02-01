@@ -1,6 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Html\Attributes;
 
-use DOMNode;
+use DOMAttr;
 use Maatwebsite\Clerk\Sheet;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ReferenceTable;
 
@@ -20,9 +20,9 @@ abstract class Attribute {
     }
 
     /**
-     * @param DOMNode        $element
+     * @param DOMAttr     $attribute
      * @param ReferenceTable $table
      * @return mixed
      */
-    abstract public function parse(DOMNode $element, ReferenceTable &$table);
+    abstract public function parse(DOMAttr $attribute, ReferenceTable &$table);
 }

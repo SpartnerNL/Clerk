@@ -1,8 +1,8 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
-use Maatwebsite\Clerk\Cells\Cell;
 use PHPExcel_Worksheet;
+use Maatwebsite\Clerk\Cells\Cell as AbstractCell;
 use Maatwebsite\Clerk\Cell as CellInterface;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Templates\TemplateFactory;
@@ -86,7 +86,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
      * @param       $template
      * @param array $data
      * @param null  $engine
-     * @return mixed
+     * @return $this
      */
     public function loadTemplate($template, array $data = array(), $engine = null)
     {
@@ -137,7 +137,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
      * Set the column width
      * @param string|array $column
      * @param integer      $width
-     * @return mixed
+     * @return $this
      */
     public function setColumnWidth($column, $width)
     {
@@ -186,11 +186,11 @@ class Sheet extends AbstractSheet implements SheetInterface {
      * New cell
      * @param  array|string       $coordinate
      * @param Closure|string|null $callback
-     * @return mixed
+     * @return $this
      */
     public function cell($coordinate, $callback = null)
     {
-        $cell = new Cell();
+        $cell = new AbstractCell();
 
         // If the cell already exists (e.g. set with fromArray)
         if ( $content = $this->getDriver()->getCell($coordinate) )
@@ -206,7 +206,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
         {
             $cell->call($callback);
         }
-        elseif ( $callback )
+        elseif ( !is_null($callback) )
         {
             $cell->setValue($callback);
         }

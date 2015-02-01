@@ -1,17 +1,16 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Html\Attributes;
 
-use DOMNode;
+use DOMAttr;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ReferenceTable;
-use PHPExcel_Style_Alignment;
 
 class AlignAttribute extends Attribute {
 
     /**
-     * @param DOMNode        $element
+     * @param DOMAttr        $attribute
      * @param ReferenceTable $table
      * @return mixed
      */
-    public function parse(DOMNode $element, ReferenceTable &$table)
+    public function parse(DOMAttr $attribute, ReferenceTable &$table)
     {
         //$horizontal = false;
         //
@@ -19,7 +18,7 @@ class AlignAttribute extends Attribute {
         //    $table->getColumn() . $table->getRow()
         //);
         //
-        //switch ($element->value)
+        //switch ($attribute->value)
         //{
         //    case 'center':
         //        $horizontal = PHPExcel_Style_Alignment::HORIZONTAL_CENTER;
