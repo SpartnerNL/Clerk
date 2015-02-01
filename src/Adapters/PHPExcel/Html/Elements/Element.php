@@ -1,12 +1,12 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Html\Elements;
 
 use DOMNode;
-use DOMElement;
 use DOMTEXT;
-use Maatwebsite\Clerk\Adapters\PHPExcel\Html\AttributeParserFactory;
+use DOMElement;
 use Maatwebsite\Clerk\Sheet;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ElementParserFactory;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Html\AttributeParserFactory;
 
 abstract class Element {
 
@@ -82,8 +82,11 @@ abstract class Element {
         {
             if ( trim($table->getContent()) > '' )
             {
-                // Set cell value
-                $this->sheet->setCellValue($table->getColumn() . $table->getRow(), $table->getContent(), true);
+                $this->sheet->cell(
+                    $table->getColumn() . $table->getRow(),
+                    $table->getContent()
+                );
+
                 $table->rememberData($table->getContent());
             }
         }

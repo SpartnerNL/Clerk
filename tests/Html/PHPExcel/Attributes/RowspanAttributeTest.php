@@ -27,7 +27,7 @@ class RowspanAttributeTest extends \PHPUnit_Framework_TestCase {
         $attribute->parse($node, $table);
 
         // 3 rows in the first column
-        $this->assertContains('A1:A3', $sheet->getDriver()->getMergeCells());
+        $this->assertContains('A1:A3', $sheet->getMergeCells());
     }
 
     /**

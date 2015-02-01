@@ -23,7 +23,7 @@ class HtmlToSheetConverterTest extends \PHPUnit_Framework_TestCase {
     public function mockSheet()
     {
         $sheet = \Mockery::mock('Maatwebsite\Clerk\Sheet')->makePartial();
-        $sheet->shouldReceive('setCellValue')->with('A1', 'Patrick', true)->once();
+        $sheet->shouldReceive('cell')->with('A1', 'Patrick')->once();
 
         return $sheet;
     }

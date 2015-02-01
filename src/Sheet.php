@@ -1,5 +1,7 @@
 <?php namespace Maatwebsite\Clerk;
 
+use Closure;
+
 /**
  * Interface Sheet
  * @package Maatwebsite\Clerk
@@ -20,6 +22,26 @@ interface Sheet {
     public function setTitle($title);
 
     /**
+     * New cell
+     * @param array|string        $cell
+     * @param Closure|string|null $callback
+     * @return mixed
+     */
+    public function cell($cell, $callback = null);
+
+    /**
+     * Add a cell
+     * @param Cell $cell
+     * @return mixed
+     */
+    public function addCell(Cell $cell);
+
+    /**
+     * @return Cell[]
+     */
+    public function getCells();
+
+    /**
      * @param array  $source
      * @param null   $nullValue
      * @param string $startCell
@@ -36,15 +58,6 @@ interface Sheet {
      * @return mixed
      */
     public function loadTemplate($template, array $data = array(), $engine = null);
-
-    /**
-     * Set value for a cell for given coordinate
-     * @param string      $coordinate
-     * @param string|null $value
-     * @param bool        $returnCell
-     * @return mixed
-     */
-    public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false);
 
     /**
      * Set height for a certain row
@@ -68,4 +81,9 @@ interface Sheet {
      * @return $this
      */
     public function mergeCells($range = 'A1:A1', $alignment = false);
+
+    /**
+     * @return array
+     */
+    public function getMergeCells();
 }

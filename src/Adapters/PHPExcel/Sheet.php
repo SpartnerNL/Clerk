@@ -1,12 +1,14 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel;
 
 use Closure;
-use Maatwebsite\Clerk\Adapters\PHPExcel\Html\HtmlToSheetConverter;
+use Maatwebsite\Clerk\Cells\Cell;
 use PHPExcel_Worksheet;
+use Maatwebsite\Clerk\Cell as CellInterface;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Templates\TemplateFactory;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Html\HtmlToSheetConverter;
 
 /**
  * Class Sheet
@@ -18,6 +20,16 @@ class Sheet extends AbstractSheet implements SheetInterface {
      * @var PHPExcel_Worksheet
      */
     protected $driver;
+
+    /**
+     * @var array
+     */
+    protected $cells = array();
+
+    /**
+     * @var array
+     */
+    protected $mergeCells = array();
 
     /**
      * @param WorkbookInterface   $workbook
@@ -94,18 +106,6 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Set value for a cell for given coordinate
-     * @param string      $coordinate
-     * @param string|null $value
-     * @param bool        $returnCell
-     * @return mixed
-     */
-    public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false)
-    {
-        return $this->driver->setCellValue($coordinate, $value, $returnCell);
-    }
-
-    /**
      * Set height for a certain row
      * @param string|array $row
      * @param integer      $height
@@ -169,9 +169,68 @@ class Sheet extends AbstractSheet implements SheetInterface {
      */
     public function mergeCells($range = 'A1:A1', $alignment = false)
     {
-        $this->getDriver()->mergeCells($range);
-        // TODO: Do cell alignment stuff
+        $this->mergeCells[] = $range;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMergeCells()
+    {
+        return $this->mergeCells;
+    }
+
+    /**
+     * New cell
+     * @param  array|string       $coordinate
+     * @param Closure|string|null $callback
+     * @return mixed
+     */
+    public function cell($coordinate, $callback = null)
+    {
+        $cell = new Cell();
+
+        // If the cell already exists (e.g. set with fromArray)
+        if ( $content = $this->getDriver()->getCell($coordinate) )
+        {
+            $cell->setValue($content->getValue());
+            $cell->setDataType($content->getDataType());
+        }
+
+        // Set coordinates
+        $cell->setCoordinate($coordinate);
+
+        if ( is_callable($callback) )
+        {
+            $cell->call($callback);
+        }
+        elseif ( $callback )
+        {
+            $cell->setValue($callback);
+        }
+
+        $this->addCell($cell);
+
+        return $this;
+    }
+
+    /**
+     * Add a cell
+     * @param CellInterface $cell
+     * @return mixed
+     */
+    public function addCell(CellInterface $cell)
+    {
+        $this->cells[] = $cell;
+    }
+
+    /**
+     * @return CellInterface[]
+     */
+    public function getCells()
+    {
+        return $this->cells;
     }
 }

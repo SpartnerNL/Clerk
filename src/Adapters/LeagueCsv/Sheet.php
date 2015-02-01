@@ -4,6 +4,7 @@ use Closure;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Adapters\Adapter;
 use Maatwebsite\Clerk\Adapters\Sheet as AbstractSheet;
+use Maatwebsite\Clerk\Cell;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Workbook as WorkbookInterface;
@@ -90,18 +91,6 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Set value for a cell for given coordinate
-     * @param string      $coordinate
-     * @param string|null $value
-     * @param bool        $returnCell
-     * @return mixed
-     */
-    public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false)
-    {
-        // TODO: Implement setCellValue() method.
-    }
-
-    /**
      * Set height for a certain row
      * @param $row
      * @param $height
@@ -131,5 +120,42 @@ class Sheet extends AbstractSheet implements SheetInterface {
     public function mergeCells($range = 'A1:A1', $alignment = false)
     {
         return $this;
+    }
+
+    /**
+     * New cell
+     * @param array|string        $cell
+     * @param Closure|string|null $callback
+     * @return mixed
+     */
+    public function cell($cell, $callback = null)
+    {
+        // TODO: Implement cell() method.
+    }
+
+    /**
+     * Add a cell
+     * @param Cell $cell
+     * @return mixed
+     */
+    public function addCell(Cell $cell)
+    {
+        // TODO: Implement addCell() method.
+    }
+
+    /**
+     * @return Cell[]
+     */
+    public function getCells()
+    {
+        // TODO: Implement getCells() method.
+    }
+
+    /**
+     * @return array
+     */
+    public function getMergeCells()
+    {
+        // TODO: Implement getMergeCells() method.
     }
 }

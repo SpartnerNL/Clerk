@@ -1,11 +1,11 @@
 <?php namespace Maatwebsite\Clerk\Adapters\PHPExcel\Writers;
 
 use Carbon\Carbon;
-use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
-use Maatwebsite\Clerk\Writer as WriterInterface;
 use PHPExcel_IOFactory;
-use Maatwebsite\Clerk\Workbook as WorkbookInterface;
 use PHPExcel_Writer_IWriter;
+use Maatwebsite\Clerk\Writer as WriterInterface;
+use Maatwebsite\Clerk\Workbook as WorkbookInterface;
+use Maatwebsite\Clerk\Adapters\Writer as AbstractWriter;
 
 /**
  * Class Writer
@@ -51,10 +51,24 @@ class Writer extends AbstractWriter implements WriterInterface {
         {
             $driverWorksheet = $sheet->getDriver();
 
-            $driver->addSheet($driverWorksheet);
-        }
+            // Init cell writer for the current sheet
+            $cellWriter = new CellWriter($driverWorksheet);
 
-        $driver->setActiveSheetIndex(0);
+            // Add sheet to workbook
+            $driver->addSheet($driverWorksheet);
+
+            // Add cells
+            foreach ($sheet->getCells() as $cell)
+            {
+                $cellWriter->write($cell);
+            }
+
+            // Merge given cells
+            foreach ($sheet->getMergeCells() as $range)
+            {
+                $driverWorksheet->mergeCells($range);
+            }
+        }
 
         return $driver;
     }

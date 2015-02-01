@@ -27,7 +27,7 @@ class ColspanAttributeTest extends \PHPUnit_Framework_TestCase {
         $attribute->parse($node, $table);
 
         // 3 columns on the first row
-        $this->assertContains('A1:C1', $sheet->getDriver()->getMergeCells());
+        $this->assertContains('A1:C1', $sheet->getMergeCells());
     }
 
     /**

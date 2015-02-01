@@ -68,7 +68,7 @@ interface Workbook {
 
     /**
      * Get the sheet collection
-     * @return array
+     * @return Sheet[]
      */
     public function getSheets();
 
