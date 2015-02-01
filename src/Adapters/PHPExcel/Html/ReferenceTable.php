@@ -31,7 +31,7 @@ class ReferenceTable {
     protected $data = [];
 
     /**
-     * @var
+     * @var array
      */
     protected $nested = [];
 
@@ -53,10 +53,14 @@ class ReferenceTable {
 
     /**
      * Increment the row
+     * @param int $amount
      */
-    public function nextRow()
+    public function nextRow($amount = 1)
     {
-        $this->row++;
+        for ($i = 0; $i < $amount; $i++)
+        {
+            $this->row++;
+        }
     }
 
     /**
@@ -86,10 +90,14 @@ class ReferenceTable {
 
     /**
      * Increment the column
+     * @param int $amount
      */
-    public function nextColumn()
+    public function nextColumn($amount = 1)
     {
-        $this->column++;
+        for ($i = 0; $i < $amount; $i++)
+        {
+            $this->column++;
+        }
     }
 
     /**

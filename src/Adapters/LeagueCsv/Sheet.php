@@ -100,4 +100,36 @@ class Sheet extends AbstractSheet implements SheetInterface {
     {
         // TODO: Implement setCellValue() method.
     }
+
+    /**
+     * Set height for a certain row
+     * @param $row
+     * @param $height
+     * @return $this
+     */
+    public function setRowHeight($row, $height)
+    {
+        return $this;
+    }
+
+    /**
+     * Set the column width
+     * @param $column
+     * @param $width
+     * @return mixed
+     */
+    public function setColumnWidth($column, $width)
+    {
+        return $this;
+    }
+
+    /**
+     * @param string $range
+     * @param bool   $alignment
+     * @return $this
+     */
+    public function mergeCells($range = 'A1:A1', $alignment = false)
+    {
+        return $this;
+    }
 }

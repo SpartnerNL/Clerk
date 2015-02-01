@@ -3,6 +3,7 @@
 use DOMNode;
 use DOMElement;
 use DOMTEXT;
+use Maatwebsite\Clerk\Adapters\PHPExcel\Html\AttributeParserFactory;
 use Maatwebsite\Clerk\Sheet;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Adapters\PHPExcel\Html\ElementParserFactory;
@@ -44,6 +45,14 @@ abstract class Element {
             }
             elseif ( $child instanceof DOMElement )
             {
+                foreach ($child->attributes as $attribute)
+                {
+                    $parser = AttributeParserFactory::create($attribute->name, $this->sheet);
+
+                    if ( $parser )
+                        $parser->parse($attribute, $table);
+                }
+
                 // Get the element parser based on the node name
                 $parser = ElementParserFactory::create($child->nodeName, $this->sheet);
 

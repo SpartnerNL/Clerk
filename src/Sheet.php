@@ -45,4 +45,27 @@ interface Sheet {
      * @return mixed
      */
     public function setCellValue($coordinate = 'A1', $value = null, $returnCell = false);
+
+    /**
+     * Set height for a certain row
+     * @param $row
+     * @param $height
+     * @return $this
+     */
+    public function setRowHeight($row, $height);
+
+    /**
+     * Set the column width
+     * @param $column
+     * @param $width
+     * @return mixed
+     */
+    public function setColumnWidth($column, $width);
+
+    /**
+     * @param string $range
+     * @param bool   $alignment
+     * @return $this
+     */
+    public function mergeCells($range = 'A1:A1', $alignment = false);
 }
