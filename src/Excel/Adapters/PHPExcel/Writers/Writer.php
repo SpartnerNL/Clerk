@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use PHPExcel_IOFactory;
 use PHPExcel_Writer_IWriter;
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
-use Maatwebsite\Clerk\Excel\Workbooks as WorkbookInterface;
+use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Excel\Writers\Writer as AbstractWriter;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 
