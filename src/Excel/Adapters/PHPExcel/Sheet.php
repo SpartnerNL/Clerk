@@ -190,9 +190,17 @@ class Sheet extends AbstractSheet implements SheetInterface {
      */
     public function cell($coordinate, $callback = null)
     {
-        $cell = new AbstractCell();
+        if ( $this->cellExists($coordinate) )
+        {
+            $cell = $this->getCellByCoordinate($coordinate);
+        }
+        else
+        {
+            $cell = new AbstractCell();
+        }
 
-        // If the cell already exists (e.g. set with fromArray)
+        // If the cell already exists the driver (e.g. set with fromArray)
+        // TODO: try to get rid of this
         if ( $content = $this->getDriver()->getCell($coordinate) )
         {
             $cell->setValue($content->getValue());
@@ -223,7 +231,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
      */
     public function addCell(CellInterface $cell)
     {
-        $this->cells[] = $cell;
+        $this->cells[$cell->getCoordinate()->get()] = $cell;
     }
 
     /**
@@ -232,5 +240,24 @@ class Sheet extends AbstractSheet implements SheetInterface {
     public function getCells()
     {
         return $this->cells;
+    }
+
+    /**
+     * @param $coordinate
+     * @return bool
+     */
+    public function cellExists($coordinate)
+    {
+        return in_array($coordinate, array_keys($this->getCells()));
+    }
+
+    /**
+     * @param $coordinate
+     * @return mixed
+     */
+    public function getCellByCoordinate($coordinate)
+    {
+        if ( $this->cellExists($coordinate) )
+            return $this->cells[$coordinate];
     }
 }

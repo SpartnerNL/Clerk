@@ -2,6 +2,7 @@
 
 use DOMAttr;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
+use Maatwebsite\Clerk\Excel\Cell;
 
 class AlignAttribute extends Attribute {
 
@@ -12,7 +13,9 @@ class AlignAttribute extends Attribute {
      */
     public function parse(DOMAttr $attribute, ReferenceTable &$table)
     {
-        $this->sheet->cell($table->getColumn() . $table->getRow())
-                    ->align($attribute->value);
+        $this->sheet->cell($table->getColumn() . $table->getRow(), function (Cell $cell) use ($attribute)
+        {
+            $cell->align($attribute->value);
+        });
     }
 }
