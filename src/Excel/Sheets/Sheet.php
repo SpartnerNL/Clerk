@@ -3,13 +3,15 @@
 use Closure;
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
+use Maatwebsite\Clerk\Excel\Styles\Styleable;
+use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
 
-abstract class Sheet extends Adapter {
+abstract class Sheet extends Adapter implements Styleable {
 
     /**
      * Traits
      */
-    use CallableTrait;
+    use CallableTrait, StyleableTrait;
 
     /**
      * @var string

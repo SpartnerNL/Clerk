@@ -23,6 +23,9 @@ class CellWriter {
      */
     public function write(Cell $cell)
     {
+        /**
+         * CELL VALUE
+         */
         $this->sheet->setCellValueExplicitByColumnAndRow(
             $cell->getCoordinate()->getColumn(),
             $cell->getCoordinate()->getRow(),
@@ -30,9 +33,25 @@ class CellWriter {
             (string) $cell->getDataType()
         );
 
+        /**
+         * NUMBER FORMAT
+         */
         $this->sheet->getStyleByColumnAndRow(
             $cell->getCoordinate()->getColumn(),
             $cell->getCoordinate()->getRow()
         )->getNumberFormat()->setFormatCode((string) $cell->getFormat());
+
+        /**
+         * CELL STYLES
+         */
+        if ( $cell->hasStyles() )
+        {
+            $styles = (new StyleWriter())->convert(
+                $cell->getStyles()
+            );
+
+            $this->sheet->getStyle($cell->getCoordinate()->get())
+                        ->applyFromArray($styles);
+        }
     }
 }

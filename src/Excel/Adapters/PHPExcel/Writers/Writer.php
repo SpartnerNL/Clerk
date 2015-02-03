@@ -46,11 +46,16 @@ class Writer extends AbstractWriter implements WriterInterface {
      */
     protected function convertToDriver(WorkbookInterface $workbook)
     {
-        $driver = $workbook->getDriver();
-
         $styleWriter = new StyleWriter();
 
-        // Apply default workbook styles
+        /**
+         * FIND DRIVER
+         */
+        $driver = $workbook->getDriver();
+
+        /**
+         * WORKBOOK STYLES
+         */
         if ( $workbook->hasStyles() )
         {
             $styles = $styleWriter->convert(
@@ -60,11 +65,28 @@ class Writer extends AbstractWriter implements WriterInterface {
             $driver->getDefaultStyle()->applyFromArray($styles);
         }
 
+        /**
+         * WORKBOOK SHEETS
+         */
         foreach ($workbook->getSheets() as $sheet)
         {
             $driverWorksheet = $sheet->getDriver();
 
-            // Init cell writer for the current sheet
+            /**
+             * WORKSHEET STYLES
+             */
+            if ( $sheet->hasStyles() )
+            {
+                $styles = $styleWriter->convert(
+                    $sheet->getStyles()
+                );
+
+                $driverWorksheet->getDefaultStyle()->applyFromArray($styles);
+            }
+
+            /**
+             * CELLS
+             */
             $cellWriter = new CellWriter($driverWorksheet);
 
             // Add sheet to workbook

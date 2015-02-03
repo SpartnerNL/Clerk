@@ -1,24 +1,21 @@
 <?php namespace Maatwebsite\Clerk\Excel\Cells;
 
+use Maatwebsite\Clerk\Excel\Styles\Styleable;
+use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Excel\Cell as CellInterface;
 
-class Cell implements CellInterface {
+class Cell implements CellInterface, Styleable {
 
     /**
      * Traits
      */
-    use CallableTrait;
+    use CallableTrait, StyleableTrait;
 
     /**
      * @var string|null
      */
     protected $value;
-
-    /**
-     * @var array
-     */
-    protected $styles = [];
 
     /**
      * @var Coordinate
@@ -78,33 +75,6 @@ class Cell implements CellInterface {
     public function getCoordinate()
     {
         return $this->coordinate;
-    }
-
-    /**
-     * @param array $styles
-     * @return $this
-     */
-    public function setStyles(array $styles)
-    {
-        $this->styles = $styles;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getStyles()
-    {
-        return $this->styles;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasStyles()
-    {
-        return empty($this->styles) ? false : true;
     }
 
     /**
