@@ -36,7 +36,7 @@ class DataType {
     const DATE       = 'd';
 
     /**
-     * @param null $type
+     * @param string|null $type
      */
     public function __construct($type = null)
     {

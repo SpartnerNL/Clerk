@@ -78,7 +78,7 @@ class Cell implements CellInterface, Styleable {
     }
 
     /**
-     * @return string
+     * @return DataType
      */
     public function getDataType()
     {
@@ -94,7 +94,7 @@ class Cell implements CellInterface, Styleable {
     }
 
     /**
-     * @param $format
+     * @param string $format
      * @return $this
      */
     public function format($format)
@@ -105,7 +105,7 @@ class Cell implements CellInterface, Styleable {
     }
 
     /**
-     * @return mixed
+     * @return Format
      */
     public function getFormat()
     {
@@ -123,7 +123,7 @@ class Cell implements CellInterface, Styleable {
             $this->setValue($value);
 
         $this->setDataType(DataType::STRING);
-        $this->setFormat(Format::TEXT);
+        $this->format(Format::TEXT);
 
         return $this;
     }

@@ -11,7 +11,7 @@ trait StyleableTrait {
     protected $styles;
 
     /**
-     * @param callable $callback
+     * @param Closure $callback
      * @return Font
      */
     public function font(Closure $callback = null)
@@ -27,7 +27,7 @@ trait StyleableTrait {
     }
 
     /**
-     * @param string|callable $callback
+     * @param string|Closure $callback
      * @param string|null     $type
      * @return Fill
      */
@@ -37,7 +37,7 @@ trait StyleableTrait {
     }
 
     /**
-     * @param string|callable|null $callback
+     * @param string|Closure|null $callback
      * @param string|null          $type
      * @return Fill
      */
@@ -63,7 +63,7 @@ trait StyleableTrait {
     }
 
     /**
-     * @param string|callable|null $callback
+     * @param string|Closure|null $callback
      * @param string|null          $style
      * @return Border
      */
@@ -89,7 +89,7 @@ trait StyleableTrait {
     }
 
     /**
-     * @param callable|null $callback
+     * @param Closure|null $callback
      * @return Border
      */
     public function borders(Closure $callback = null)
@@ -105,7 +105,7 @@ trait StyleableTrait {
     }
 
     /**
-     * @param string|callable|null $callback
+     * @param string|Closure|null $callback
      * @param string|null          $vertical
      * @return Alignment
      */

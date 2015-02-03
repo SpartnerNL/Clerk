@@ -1,7 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Files;
 
 use Closure;
-use Maatwebsite\Clerk\Excel\Workbooks;
+use Maatwebsite\Clerk\Excel\Workbook;
 use Maatwebsite\Clerk\Excel\Readers\ReaderFactory;
 use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
 use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;

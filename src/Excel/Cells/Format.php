@@ -76,7 +76,7 @@ class Format {
     const CURRENCY_EUR_SIMPLE     = '[$EUR ]#,##0.00_-';
 
     /**
-     * @param null $format
+     * @param string|null $format
      */
     public function __construct($format = null)
     {

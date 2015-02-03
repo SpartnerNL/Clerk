@@ -1,7 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Excel\Styles;
 
 use Maatwebsite\Clerk\Traits\CallableTrait;
-use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
 
 class Borders implements Style {
 
@@ -143,8 +142,6 @@ class Borders implements Style {
 
         if ( $style )
             $border->setStyle($style);
-
-        return $border;
 
         return $border;
     }

@@ -72,14 +72,14 @@ class Font implements Style {
 
     /**
      * Set size
-     * @param string $size
+     * @param int $size
      * @throws InvalidArgumentException
      * @return Font
      */
     public function size($size)
     {
         if ( false === filter_var($size, FILTER_VALIDATE_INT) )
-            throw new \InvalidArgumentException("The font size should be a numeric value");
+            throw new InvalidArgumentException("The font size should be a numeric value");
 
         $this->size = $size;
 
@@ -87,7 +87,7 @@ class Font implements Style {
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getSize()
     {
@@ -101,7 +101,7 @@ class Font implements Style {
     public function bold($state = true)
     {
         if ( !is_bool($state) )
-            throw new \InvalidArgumentException("The parameter must be a boolean value");
+            throw new InvalidArgumentException("The parameter must be a boolean value");
 
         $this->bold = $state;
 
@@ -123,7 +123,7 @@ class Font implements Style {
     public function italic($state = true)
     {
         if ( !is_bool($state) )
-            throw new \InvalidArgumentException("The parameter must be a boolean value");
+            throw new InvalidArgumentException("The parameter must be a boolean value");
 
         $this->italic = $state;
 
