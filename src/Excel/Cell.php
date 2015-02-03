@@ -92,4 +92,10 @@ interface Cell {
      * @return Alignment
      */
     public function align($callback = null, $vertical = null);
+
+    /**
+     * @param $vertical
+     * @return mixed
+     */
+    public function valign($vertical);
 }

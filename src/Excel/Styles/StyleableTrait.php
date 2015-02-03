@@ -131,6 +131,15 @@ trait StyleableTrait {
     }
 
     /**
+     * @param $vertical
+     * @return Alignment
+     */
+    public function valign($vertical)
+    {
+        return $this->align(null, $vertical);
+    }
+
+    /**
      * @param Style $style
      * @return $this
      */

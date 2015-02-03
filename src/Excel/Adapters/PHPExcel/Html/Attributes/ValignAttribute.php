@@ -3,7 +3,7 @@
 use DOMAttr;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class AlignAttribute extends Attribute {
+class ValignAttribute extends Attribute {
 
     /**
      * @param DOMAttr        $attribute
@@ -13,6 +13,6 @@ class AlignAttribute extends Attribute {
     public function parse(DOMAttr $attribute, ReferenceTable &$table)
     {
         $this->sheet->cell($table->getColumn() . $table->getRow())
-                    ->align($attribute->value);
+                    ->valign($attribute->value);
     }
 }
