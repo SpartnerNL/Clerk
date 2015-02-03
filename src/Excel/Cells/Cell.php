@@ -26,76 +26,14 @@ class Cell implements CellInterface {
     protected $coordinate;
 
     /**
-     * @var string
+     * @var DataType
      */
-    protected $dataType = self::GENERAL;
+    protected $dataType;
 
-    /* Pre-defined formats */
-    const GENERAL                 = 'General';
-
-    const TEXT                    = '@';
-
-    const NUMBER                  = '0';
-
-    const NUMBER_00               = '0.00';
-
-    const NUMBER_COMMA_SEPARATED1 = '#,##0.00';
-
-    const NUMBER_COMMA_SEPARATED2 = '#,##0.00_-';
-
-    const PERCENTAGE              = '0%';
-
-    const PERCENTAGE_00           = '0.00%';
-
-    const DATE_YYYYMMDD2          = 'yyyy-mm-dd';
-
-    const DATE_YYYYMMDD           = 'yy-mm-dd';
-
-    const DATE_DDMMYYYY           = 'dd/mm/yy';
-
-    const DATE_DMYSLASH           = 'd/m/y';
-
-    const DATE_DMYMINUS           = 'd-m-y';
-
-    const DATE_DMMINUS            = 'd-m';
-
-    const DATE_MYMINUS            = 'm-y';
-
-    const DATE_XLSX14             = 'mm-dd-yy';
-
-    const DATE_XLSX15             = 'd-mmm-yy';
-
-    const DATE_XLSX16             = 'd-mmm';
-
-    const DATE_XLSX17             = 'mmm-yy';
-
-    const DATE_XLSX22             = 'm/d/yy h:mm';
-
-    const DATE_DATETIME           = 'd/m/y h:mm';
-
-    const DATE_TIME1              = 'h:mm AM/PM';
-
-    const DATE_TIME2              = 'h:mm:ss AM/PM';
-
-    const DATE_TIME3              = 'h:mm';
-
-    const DATE_TIME4              = 'h:mm:ss';
-
-    const DATE_TIME5              = 'mm:ss';
-
-    const DATE_TIME6              = 'h:mm:ss';
-
-    const DATE_TIME7              = 'i:s.S';
-
-    const DATE_TIME8              = 'h:mm:ss;@';
-
-    const DATE_YYYYMMDDSLASH      = 'yy/mm/dd;@';
-
-    const CURRENCY_USD_SIMPLE     = '"$"#,##0.00_-';
-
-    const CURRENCY_USD            = '$#,##0_-';
-
-    const CURRENCY_EUR_SIMPLE     = '[$EUR ]#,##0.00_-';
+    /**
+     * @var Format
+     */
+    protected $format;
 
     /**
      * @param string|null $value
@@ -182,7 +120,26 @@ class Cell implements CellInterface {
      */
     public function setDataType($dataType)
     {
-        $this->dataType = $dataType;
+        $this->dataType = new DataType($dataType);
+    }
+
+    /**
+     * @param $format
+     * @return $this
+     */
+    public function format($format)
+    {
+        $this->format = new Format($format);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
     }
 
     /**
@@ -195,39 +152,9 @@ class Cell implements CellInterface {
         if ( $value )
             $this->setValue($value);
 
-        $this->setDataType(self::TEXT);
+        $this->setDataType(DataType::STRING);
+        $this->setFormat(Format::TEXT);
 
         return $this;
-    }
-
-    /**
-     * @param $format
-     * @return $this
-     */
-    public function format($format)
-    {
-        $this->setDataType($format);
-
-        return $this;
-    }
-
-    /**
-     * @param $method
-     * @param $params
-     */
-    public function __call($method, $params)
-    {
-        if ( starts_with($method, 'as') )
-        {
-            $method = str_replace('as', '', $method);
-            $method = strtoupper(snake_case($method));
-
-            if ( defined("self::$method") )
-            {
-                $format = constant("self::$method");
-
-                return $this->setDataType($format);
-            }
-        }
     }
 }

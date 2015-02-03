@@ -5,7 +5,7 @@ use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Excel\Styles\Styleable;
-use Maatwebsite\Clerk\Excel\Traits\StyleableTrait;
+use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
 use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
