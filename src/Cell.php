@@ -38,12 +38,6 @@ interface Cell {
     public function asString($value = null);
 
     /**
-     * @param null $value
-     * @return $this
-     */
-    public function asNumber($value = null);
-
-    /**
      * @param $coordinate
      */
     public function setCoordinate($coordinate);
@@ -62,4 +56,10 @@ interface Cell {
      * @param string $dataType
      */
     public function setDataType($dataType);
+
+    /**
+     * @param $format
+     * @return mixed
+     */
+    public function format($format);
 }

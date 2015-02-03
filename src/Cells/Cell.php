@@ -201,15 +201,12 @@ class Cell implements CellInterface {
     }
 
     /**
-     * @param null $value
+     * @param $format
      * @return $this
      */
-    public function asNumber($value = null)
+    public function format($format)
     {
-        if ( $value )
-            $this->setValue($value);
-
-        $this->setDataType(self::NUMBER);
+        $this->setDataType($format);
 
         return $this;
     }

@@ -47,6 +47,18 @@ class Writer extends AbstractWriter implements WriterInterface {
     {
         $driver = $workbook->getDriver();
 
+        $styleWriter = new StyleWriter();
+
+        // Apply default workbook styles
+        if ( $workbook->hasStyles() )
+        {
+            $styles = $styleWriter->convert(
+                $workbook->getStyles()
+            );
+
+            $driver->getDefaultStyle()->applyFromArray($styles);
+        }
+
         foreach ($workbook->getSheets() as $sheet)
         {
             $driverWorksheet = $sheet->getDriver();
@@ -69,6 +81,9 @@ class Writer extends AbstractWriter implements WriterInterface {
                 $driverWorksheet->mergeCells($range);
             }
         }
+
+        // Rewind
+        $driver->setActiveSheetIndex(0);
 
         return $driver;
     }

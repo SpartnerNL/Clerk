@@ -2,7 +2,9 @@
 
 use Closure;
 use Maatwebsite\Clerk\Ledger;
+use Maatwebsite\Clerk\Styles\Styleable;
 use Maatwebsite\Clerk\Traits\CallableTrait;
+use Maatwebsite\Clerk\Traits\StyleableTrait;
 use Maatwebsite\Clerk\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
@@ -11,12 +13,12 @@ use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
  * Class Workbook
  * @package Maatwebsite\Clerk\Adapters
  */
-abstract class Workbook extends Adapter {
+abstract class Workbook extends Adapter implements Styleable {
 
     /**
      * Traits
      */
-    use CallableTrait;
+    use CallableTrait, StyleableTrait;
 
     /**
      * Sheet collection
