@@ -7,7 +7,7 @@ trait FileTestCase {
         $excel = new $this->class('Workbook title');
 
         $this->assertInstanceOf($this->class, $excel);
-        $this->assertInstanceOf('Maatwebsite\Clerk\Workbook', $excel->getWorkbook());
+        $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Workbook', $excel->getWorkbook());
         $this->assertEquals('Workbook title', $excel->getWorkbook()->getTitle());
     }
 
@@ -20,7 +20,7 @@ trait FileTestCase {
         });
 
         $this->assertInstanceOf($this->class, $excel);
-        $this->assertInstanceOf('Maatwebsite\Clerk\Workbook', $excel->getWorkbook());
+        $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Workbook', $excel->getWorkbook());
         $this->assertEquals('overruled', $excel->getWorkbook()->getTitle());
     }
 
@@ -31,7 +31,7 @@ trait FileTestCase {
         $excel = $class::create('Workbook title', null, '');
 
         $this->assertInstanceOf($this->class, $excel);
-        $this->assertInstanceOf('Maatwebsite\Clerk\Workbook', $excel->getWorkbook());
+        $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Workbook', $excel->getWorkbook());
         $this->assertEquals('Workbook title', $excel->getWorkbook()->getTitle());
     }
 
@@ -55,6 +55,6 @@ trait FileTestCase {
         $class = $this->class;
         $excel = $class::load(__DIR__ . '/import/test.' . $this->ext, null, '');
 
-        $this->assertInstanceOf('Maatwebsite\Clerk\Reader', $excel);
+        $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Reader', $excel);
     }
 }

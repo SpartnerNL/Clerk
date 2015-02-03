@@ -1,7 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Templates;
 
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
-use Maatwebsite\Clerk\Templates\EngineResolver;
 
 class TemplateFactory {
 
@@ -31,6 +30,6 @@ class TemplateFactory {
      */
     protected static function getFactoryClass($engine)
     {
-        return 'Maatwebsite\\Clerk\\Templates\\Adapters\\' . ucfirst($engine) . '\\' . ucfirst($engine) . 'Factory';
+        return __NAMESPACE__ . '\\Adapters\\' . ucfirst($engine) . '\\' . ucfirst($engine) . 'Factory';
     }
 }

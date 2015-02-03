@@ -1,11 +1,10 @@
 <?php namespace Maatwebsite\Clerk\Files;
 
 use Closure;
-use League\Csv\Reader;
-use Maatwebsite\Clerk\Factories\ReaderFactory;
-use Maatwebsite\Clerk\Factories\WorkbookFactory;
-use Maatwebsite\Clerk\Factories\WriterFactory;
-use Maatwebsite\Clerk\Workbook;
+use Maatwebsite\Clerk\Excel\Workbooks;
+use Maatwebsite\Clerk\Excel\Readers\ReaderFactory;
+use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
+use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
 
 /**
  * Class File
@@ -59,10 +58,10 @@ abstract class File {
 
     /**
      * Create new file
-     * @param string  $file
-     * @param Closure $callback
-     * @param bool|string    $driver
-     * @param bool|string    $type
+     * @param string      $file
+     * @param Closure     $callback
+     * @param bool|string $driver
+     * @param bool|string $type
      * @return \Maatwebsite\Clerk\Reader
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      */
