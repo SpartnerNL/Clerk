@@ -51,17 +51,6 @@ abstract class Element {
              */
             elseif ( $child instanceof DOMElement )
             {
-                /**
-                 * Attributes
-                 */
-                foreach ($child->attributes as $attribute)
-                {
-                    $parser = AttributeParserFactory::create($attribute->name, $this->sheet);
-
-                    if ( $parser )
-                        $parser->parse($attribute, $table);
-                }
-
                 // Get the element parser based on the node name
                 $parser = ElementParserFactory::create($child->nodeName, $this->sheet);
 
@@ -77,6 +66,17 @@ abstract class Element {
                 else
                 {
                     $this->next($child, $table);
+                }
+
+                /**
+                 * Attributes
+                 */
+                foreach ($child->attributes as $attribute)
+                {
+                    $parser = AttributeParserFactory::create($attribute->name, $this->sheet);
+
+                    if ( $parser )
+                        $parser->parse($attribute, $table);
                 }
             }
         }
@@ -95,7 +95,7 @@ abstract class Element {
                     $table->getColumn() . $table->getRow(),
                     $table->getContent()
                 );
-                
+
                 $table->rememberData($table->getContent());
             }
         }
