@@ -34,7 +34,7 @@ abstract class File {
     }
 
     /**
-     * @return Workbook
+     * @return \Maatwebsite\Clerk\Excel\Workbook
      */
     public function getWorkbook()
     {

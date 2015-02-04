@@ -137,7 +137,7 @@ class Alignment implements Style {
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getHorizontals()
     {
@@ -152,7 +152,7 @@ class Alignment implements Style {
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getVerticals()
     {

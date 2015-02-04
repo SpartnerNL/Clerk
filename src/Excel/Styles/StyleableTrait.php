@@ -90,7 +90,7 @@ trait StyleableTrait {
 
     /**
      * @param Closure|null $callback
-     * @return Border
+     * @return Borders
      */
     public function borders(Closure $callback = null)
     {

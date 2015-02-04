@@ -1,6 +1,5 @@
 <?php namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
 
-use PhpOffice\PhpWord\PhpWord;
 use Maatwebsite\Clerk\Word\Document;
 use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 
