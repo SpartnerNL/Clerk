@@ -6,7 +6,7 @@ use Maatwebsite\Clerk\Ledger;
  * Class Excel2007
  * @package Maatwebsite\Clerk\Files
  */
-class Excel2007 extends File {
+class Excel2007 extends Excel {
 
     /**
      * @var string
@@ -16,7 +16,7 @@ class Excel2007 extends File {
     /**
      * @var string
      */
-    protected $type = 'Excel2007';
+    protected $format = 'Excel2007';
 
     /**
      * Get the driver

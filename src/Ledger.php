@@ -17,9 +17,11 @@ class Ledger implements ArrayAccess {
     protected $items = array(
 
         'drivers'   => array(
+            'csv'       => 'LeagueCsv',
             'excel2003' => 'PHPExcel',
             'excel2007' => 'PHPExcel',
-            'csv'       => 'LeagueCsv',
+            'word2003'  => 'PHPWord',
+            'word2007'  => 'PHPWord',
         ),
 
         'csv'       => array(

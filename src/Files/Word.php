@@ -2,31 +2,29 @@
 
 use Closure;
 use Maatwebsite\Clerk\Ledger;
-use Maatwebsite\Clerk\Excel\Workbook;
-use Maatwebsite\Clerk\Excel\Readers\ReaderFactory;
-use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
-use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
+use Maatwebsite\Clerk\Word\Documents\DocumentFactory;
+use Maatwebsite\Clerk\Word\Writers\WriterFactory;
 
 /**
  * Class Excel
  * @package Maatwebsite\Clerk\Files
  */
-class Excel extends File {
-
-    /**
-     * @var Workbook
-     */
-    protected $workbook;
+class Word extends File {
 
     /**
      * @var string
      */
-    protected $extension = 'xls';
+    protected $extension = 'doc';
 
     /**
      * @var string
      */
-    protected $format = 'Excel5';
+    protected $format = 'Word2007';
+
+    /**
+     * @var \Maatwebsite\Clerk\Word\Document
+     */
+    protected $document;
 
     /**
      * @param string      $title
@@ -40,7 +38,7 @@ class Excel extends File {
 
         if ( $driver )
         {
-            $this->workbook = WorkbookFactory::create($driver, $title, $callback);
+            $this->document = DocumentFactory::create($driver, $title, $callback);
         }
     }
 
@@ -67,17 +65,6 @@ class Excel extends File {
      */
     public static function load($file, Closure $callback = null, $driver = false, $format = null)
     {
-        // Passing in empty strings, will prevent a workbook from being initialized
-        $instance = (new static('', null, ''));
-        $driver = $driver ?: $instance->getDriver();
-        $format = $format ?: $instance->getFormat();
-
-        return ReaderFactory::create(
-            $driver,
-            $file,
-            $callback,
-            $format
-        );
     }
 
     /**
@@ -102,10 +89,18 @@ class Excel extends File {
             $this->getDriver(),
             $this->getFormat(),
             $this->getExtension(),
-            $this->getWorkbook()
+            $this->getDocument()
         );
 
         return $writer;
+    }
+
+    /**
+     * @return \Maatwebsite\Clerk\Word\Document
+     */
+    public function getDocument()
+    {
+        return $this->document;
     }
 
     /**
@@ -114,6 +109,6 @@ class Excel extends File {
      */
     protected function getDriver()
     {
-        return Ledger::get('drivers.excel2003', 'PHPExcel');
+        return Ledger::get('drivers.word2003', 'PHPWord');
     }
 }

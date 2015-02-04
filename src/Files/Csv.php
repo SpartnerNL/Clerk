@@ -6,7 +6,7 @@ use Maatwebsite\Clerk\Ledger;
  * Class Csv
  * @package Maatwebsite\Clerk\Files
  */
-class Csv extends File {
+class Csv extends Excel {
 
     /**
      * @var string
@@ -16,7 +16,7 @@ class Csv extends File {
     /**
      * @var string
      */
-    protected $type = 'CSV';
+    protected $format = 'CSV';
 
     /**
      * @return mixed
