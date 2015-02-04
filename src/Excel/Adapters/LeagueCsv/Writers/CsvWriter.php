@@ -1,7 +1,7 @@
 <?php namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Writers;
 
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
-use Maatwebsite\Clerk\Excel\Writers\Writer as AbstractWriter;
+use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 
 /**
  * Class CsvWriter
@@ -18,7 +18,7 @@ class CsvWriter extends AbstractWriter implements WriterInterface {
     {
         $filename = $this->getFilename($filename);
 
-        $workbook = $this->workbook->getDriver();
+        $workbook = $this->getExportable()->getDriver();
 
         $workbook->output($filename . '.' . $this->getExtension());
 

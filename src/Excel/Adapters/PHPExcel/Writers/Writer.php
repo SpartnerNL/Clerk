@@ -4,8 +4,8 @@ use Carbon\Carbon;
 use PHPExcel_IOFactory;
 use PHPExcel_Writer_IWriter;
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
+use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
-use Maatwebsite\Clerk\Excel\Writers\Writer as AbstractWriter;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 
 /**
@@ -117,7 +117,7 @@ class Writer extends AbstractWriter implements WriterInterface {
     protected function createWriter()
     {
         return PHPExcel_IOFactory::createWriter(
-            $this->convertToDriver($this->workbook),
+            $this->convertToDriver($this->getExportable()),
             $this->type
         );
     }

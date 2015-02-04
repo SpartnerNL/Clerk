@@ -1,12 +1,13 @@
 <?php namespace Maatwebsite\Clerk\Excel;
 
 use Closure;
+use Maatwebsite\Clerk\Writers\Exportable;
 
 /**
  * Interface Workbook
  * @package Maatwebsite\Clerk
  */
-interface Workbook {
+interface Workbook extends Exportable {
 
     /**
      * @return mixed

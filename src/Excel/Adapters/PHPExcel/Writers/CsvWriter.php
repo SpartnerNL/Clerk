@@ -15,14 +15,14 @@ class CsvWriter extends Writer implements WriterInterface {
     protected function createWriter()
     {
         $writer = new \PHPExcel_Writer_CSV(
-            $this->convertToDriver($this->getWorkbook())
+            $this->convertToDriver($this->getExportable())
         );
 
         if ( $this->getType() == 'CSV' )
         {
-            $writer->setDelimiter($this->workbook->getDelimiter());
-            $writer->setEnclosure($this->workbook->getEnclosure());
-            $writer->setLineEnding($this->workbook->getLineEnding());
+            $writer->setDelimiter($this->getExportable()->getDelimiter());
+            $writer->setEnclosure($this->getExportable()->getEnclosure());
+            $writer->setLineEnding($this->getExportable()->getLineEnding());
         }
 
         return $writer;
