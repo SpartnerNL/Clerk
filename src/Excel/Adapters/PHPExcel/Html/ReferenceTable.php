@@ -241,4 +241,12 @@ class ReferenceTable {
     {
         return $this->nested;
     }
+
+    /**
+     * @return string
+     */
+    public function getCoordinate()
+    {
+        return $this->getColumn() . $this->getRow();
+    }
 }

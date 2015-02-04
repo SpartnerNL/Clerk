@@ -142,7 +142,7 @@ class Font implements Style {
      * @param string $color
      * @return $this
      */
-    public function withColor($color)
+    public function color($color)
     {
         $this->color = $color;
 

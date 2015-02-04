@@ -38,13 +38,22 @@ abstract class Element {
     {
         foreach ($node->childNodes as $child)
         {
-            // Text value
+            /**
+             * Text
+             */
             if ( $child instanceof DOMTEXT )
             {
                 $table->appendContentByNode($child);
             }
+
+            /**
+             * Element
+             */
             elseif ( $child instanceof DOMElement )
             {
+                /**
+                 * Attributes
+                 */
                 foreach ($child->attributes as $attribute)
                 {
                     $parser = AttributeParserFactory::create($attribute->name, $this->sheet);
@@ -86,7 +95,7 @@ abstract class Element {
                     $table->getColumn() . $table->getRow(),
                     $table->getContent()
                 );
-
+                
                 $table->rememberData($table->getContent());
             }
         }
