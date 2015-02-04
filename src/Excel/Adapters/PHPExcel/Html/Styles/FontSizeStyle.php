@@ -3,7 +3,7 @@
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
 
-class TextAlignStyle extends Style {
+class FontSizeStyle extends Style {
 
     /**
      * @param Cell           $cell
@@ -13,6 +13,6 @@ class TextAlignStyle extends Style {
      */
     public function parse(Cell $cell, $value, ReferenceTable &$table)
     {
-        $cell->align($value);
+        $cell->font()->size($value);
     }
 }

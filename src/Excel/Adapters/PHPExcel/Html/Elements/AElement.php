@@ -23,7 +23,6 @@ class AElement extends Element {
                 // Underline and make it blue
                 $this->sheet->cell($table->getCoordinate(), function ($cell)
                 {
-                    $cell->align('right');
                     $cell->font()->underline()->color('0000ff');
                 });
             }

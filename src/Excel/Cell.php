@@ -2,6 +2,9 @@
 
 use Closure;
 use Maatwebsite\Clerk\Excel\Cells\Coordinate;
+use Maatwebsite\Clerk\Excel\Styles\Alignment;
+use Maatwebsite\Clerk\Excel\Styles\Border;
+use Maatwebsite\Clerk\Excel\Styles\Font;
 
 interface Cell {
 

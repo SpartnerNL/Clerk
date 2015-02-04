@@ -40,6 +40,11 @@ class Font implements Style {
      */
     protected $underline = self::UNDERLINE_NONE;
 
+    /**
+     * @var bool
+     */
+    protected $strikethrough = false;
+
     const UNDERLINE_NONE             = 'none';
 
     const UNDERLINE_DOUBLE           = 'double';
@@ -50,6 +55,14 @@ class Font implements Style {
 
     const UNDERLINE_SINGLEACCOUNTING = 'singleAccounting';
 
+    /**
+     * @param $name
+     * @return Font
+     */
+    public function family($name)
+    {
+        return $this->name($name);
+    }
 
     /**
      * @param string $name
@@ -180,6 +193,25 @@ class Font implements Style {
     public function getUnderline()
     {
         return $this->underline;
+    }
+
+    /**
+     * @param bool $state
+     * @return $this
+     */
+    public function strikethrough($state = true)
+    {
+        $this->strikethrough = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getStrikethrough()
+    {
+        return $this->strikethrough;
     }
 
     /**

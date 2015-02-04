@@ -28,17 +28,15 @@ class StyleAttribute extends Attribute {
 
         foreach ($styles as $style)
         {
-            // Get style name and value
-            try
-            {
-                list($style, $value) = explode($this->valueSeperator, $style);
+            $style = explode($this->valueSeperator, $style);
+            $name = trim(reset($style));
+            $value = trim(end($style));
 
-                // When the parser exists, parse the style
-                if ( $parser = StyleParserFactory::create($style, $this->sheet) )
-                    $parser->parse($value, $table);
-            }
-            catch (\Exception $e)
+            // When the parser exists, parse the style
+            if ( $name && $value && $parser = StyleParserFactory::create($name, $this->sheet) )
             {
+                $cell = $this->sheet->cell($table->getCoordinate());
+                $parser->parse($cell, $value, $table);
             }
         }
     }

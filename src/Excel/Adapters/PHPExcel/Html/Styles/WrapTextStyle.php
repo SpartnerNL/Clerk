@@ -1,9 +1,10 @@
 <?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
 
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
+use Maatwebsite\Clerk\Excel\Styles\Border;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class TextAlignStyle extends Style {
+class WrapTextStyle extends Style {
 
     /**
      * @param Cell           $cell
@@ -13,6 +14,12 @@ class TextAlignStyle extends Style {
      */
     public function parse(Cell $cell, $value, ReferenceTable &$table)
     {
-        $cell->align($value);
+        if ( $value == 'true' )
+            $state = true;
+
+        if ( !$value || $value == 'false' )
+            $state = false;
+
+        $cell->align()->wrapText($state);
     }
 }

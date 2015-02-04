@@ -3,7 +3,7 @@
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
 
-class TextAlignStyle extends Style {
+class FontStyleStyle extends Style {
 
     /**
      * @param Cell           $cell
@@ -13,6 +13,13 @@ class TextAlignStyle extends Style {
      */
     public function parse(Cell $cell, $value, ReferenceTable &$table)
     {
-        $cell->align($value);
+        if ( $value == 'italic' )
+        {
+            $cell->font()->italic();
+        }
+        elseif ( $value == 'normal' )
+        {
+            $cell->font()->italic(false);
+        }
     }
 }

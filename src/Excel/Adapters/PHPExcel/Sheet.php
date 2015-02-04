@@ -221,7 +221,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
         $this->addCell($cell);
 
-        return $this;
+        return $cell;
     }
 
     /**

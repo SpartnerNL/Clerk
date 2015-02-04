@@ -23,7 +23,8 @@ class StyleWriter extends AbstractStyleWriter {
                 'bold'      => $font->isBold(),
                 'italic'    => $font->isItalic(),
                 'color'     => ['rgb' => $font->getColor()],
-                'underline' => $font->getUnderline()
+                'underline' => $font->getUnderline(),
+                'strike'    => $font->getStrikethrough()
             ]
         ];
     }
@@ -53,7 +54,9 @@ class StyleWriter extends AbstractStyleWriter {
             'alignment',
             [
                 'horizontal' => $alignment->getHorizontal(),
-                'vertical'   => $alignment->getVertical()
+                'vertical'   => $alignment->getVertical(),
+                'wrap'       => $alignment->getWrapText(),
+                'indent'     => $alignment->getTextIndent()
             ]
         ];
     }

@@ -20,6 +20,16 @@ class Alignment implements Style {
      */
     protected $horizontal = self::HORIZONTAL_GENERAL;
 
+    /**
+     * @var bool
+     */
+    protected $wrapText = false;
+
+    /**
+     * @var integer
+     */
+    protected $textIndent;
+
     const HORIZONTAL_GENERAL           = 'general';
 
     const HORIZONTAL_LEFT              = 'left';
@@ -86,6 +96,44 @@ class Alignment implements Style {
     public function getVertical()
     {
         return $this->vertical;
+    }
+
+    /**
+     * @param bool $state
+     * @return $this
+     */
+    public function wrap($state = true)
+    {
+        $this->wrapText = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getWrapText()
+    {
+        return $this->wrapText;
+    }
+
+    /**
+     * @param int $indent
+     * @return $this
+     */
+    public function indent($indent)
+    {
+        $this->textIndent = str_replace('px', '', $indent);
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTextIndent()
+    {
+        return $this->textIndent;
     }
 
     /**

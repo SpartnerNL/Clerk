@@ -13,7 +13,7 @@ class AlignAttribute extends Attribute {
      */
     public function parse(DOMAttr $attribute, ReferenceTable &$table)
     {
-        $this->sheet->cell($table->getColumn() . $table->getRow(), function (Cell $cell) use ($attribute)
+        $this->sheet->cell($table->getCoordinate(), function (Cell $cell) use ($attribute)
         {
             $cell->align($attribute->value);
         });
