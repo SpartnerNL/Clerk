@@ -62,7 +62,7 @@ class Excel extends File {
      * @param Closure     $callback
      * @param bool|string $driver
      * @param null        $format
-     * @return \Maatwebsite\Clerk\Reader
+     * @return \Maatwebsite\Clerk\Excel\Reader
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      */
     public static function load($file, Closure $callback = null, $driver = false, $format = null)

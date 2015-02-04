@@ -1,10 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Files;
 
-use Closure;
 use Maatwebsite\Clerk\Ledger;
-use Maatwebsite\Clerk\Excel\Readers\ReaderFactory;
-use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
-use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
 
 /**
  * Class Excel

@@ -1,7 +1,6 @@
 <?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
 
 use Maatwebsite\Clerk\Excel\Cell;
-use Maatwebsite\Clerk\Excel\Styles\Border;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
 class WrapTextStyle extends Style {

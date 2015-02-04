@@ -15,7 +15,7 @@ class Document extends AbstractDocument implements DocumentInterface {
     /**
      * @param          $title
      * @param Closure  $callback
-     * @param PHPWord  $driver
+     * @param PhpWord  $driver
      */
     public function __construct($title, Closure $callback = null, PHPWord $driver = null)
     {
@@ -49,7 +49,7 @@ class Document extends AbstractDocument implements DocumentInterface {
      * Init a new section
      * @param          $text
      * @param Closure  $callback
-     * @return Sheet
+     * @return Section
      */
     public function section($text, Closure $callback = null)
     {
