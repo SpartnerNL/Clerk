@@ -2,7 +2,7 @@
 
 class CsvTest extends \PHPUnit_Framework_TestCase {
 
-    use FileTestCase;
+    use ExcelFileTestCase;
 
     protected $class = '\Maatwebsite\Clerk\Files\Csv';
 

@@ -1,8 +1,8 @@
 <?php namespace Maatwebsite\Clerk\Tests\Files;
 
-trait FileTestCase {
+trait ExcelFileTestCase {
 
-    public function test_initializing_a_new_excel2003_file()
+    public function test_initializing_file()
     {
         $excel = new $this->class('Workbook title');
 

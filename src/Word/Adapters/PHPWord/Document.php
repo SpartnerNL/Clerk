@@ -64,4 +64,9 @@ class Document extends AbstractDocument implements DocumentInterface {
 
         return $section;
     }
+
+    public function save($file, $format = 'Excel2007', $download = true)
+    {
+        // TODO: Implement save() method.
+    }
 }
