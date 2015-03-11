@@ -10,7 +10,8 @@ use Maatwebsite\Clerk\Excel\Workbooks\Workbook as AbstractWorkbook;
  * Class Workbook
  * @package Maatwebsite\Clerk\Adapters\LeagueCsv
  */
-class Workbook extends AbstractWorkbook implements WorkbookInterface {
+class Workbook extends AbstractWorkbook implements WorkbookInterface
+{
 
     /**
      * @var
@@ -30,7 +31,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface {
     public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
     {
         // Set PHPExcel instance
-        $this->driver = $driver ?: new LeagueWriter(new SplTempFileObject);
+        $this->driver = $driver ?: LeagueWriter::createFromFileObject(new SplTempFileObject);
 
         parent::__construct($title, $callback);
     }
