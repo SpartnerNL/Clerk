@@ -3,8 +3,8 @@
 namespace Maatwebsite\Clerk\Excel\Html\Attributes;
 
 use DOMAttr;
-use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
+use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 
 class ValignAttribute extends Attribute
 {

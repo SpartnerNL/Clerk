@@ -1,9 +1,9 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Html\Attributes\ColspanAttribute;
-use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
+use Maatwebsite\Clerk\Excel\Html\Attributes\ColspanAttribute;
+use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 
 class ColspanAttributeTest extends \PHPUnit_Framework_TestCase
 {

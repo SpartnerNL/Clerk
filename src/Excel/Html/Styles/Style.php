@@ -2,8 +2,8 @@
 
 namespace Maatwebsite\Clerk\Excel\Html\Styles;
 
-use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
+use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Sheet;
 
 abstract class Style
