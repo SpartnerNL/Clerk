@@ -46,8 +46,8 @@
     }
   },
   "autoload-dev": {
-    "psr-4": {
-      "Maatwebsite\\Clerk\\Tests\\": "tests/"
-    }
+    "classmap": [
+      "tests"
+    ]
   }
 }

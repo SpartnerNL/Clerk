@@ -1,9 +1,10 @@
-<?php namespace Maatwebsite\Clerk\Tests\Templates;
+<?php
 
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Adapters\Php\PhpFactory;
 
-class PhpFactoryTest extends \PHPUnit_Framework_TestCase {
+class PhpFactoryTest extends \PHPUnit_Framework_TestCase
+{
 
 
     public function setUp()

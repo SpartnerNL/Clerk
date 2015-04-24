@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Readers;
+<?php
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers\Reader;
 

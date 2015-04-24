@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Files;
+<?php
 
 class ExcelTest extends \PHPUnit_Framework_TestCase {
 

@@ -1,10 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Tests\Sheets;
+<?php
 
 use Mockery as m;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 
-class PHPExcelSheetTest extends \PHPUnit_Framework_TestCase {
+class PHPExcelSheetTest extends \PHPUnit_Framework_TestCase
+{
 
 
     public function tearDown()
@@ -35,8 +36,7 @@ class PHPExcelSheetTest extends \PHPUnit_Framework_TestCase {
     public function test_setting_title_through_the_callback()
     {
         $workbook = new Workbook('Workbook');
-        $sheet = new Sheet($workbook, 'Sheet title', function ($sheet)
-        {
+        $sheet = new Sheet($workbook, 'Sheet title', function ($sheet) {
             $sheet->setTitle('From closure');
         });
 

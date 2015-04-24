@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Templates;
+<?php
 
 use Maatwebsite\Clerk\Templates\Css\StylesheetExtractor;
 

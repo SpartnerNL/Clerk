@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests;
+<?php
 
 use Maatwebsite\Clerk\Ledger;
 

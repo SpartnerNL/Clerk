@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Identifiers;
+<?php
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 

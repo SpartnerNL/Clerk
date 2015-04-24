@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Excel\Tests\Html\PHPExcel\Elements;
+<?php
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements\TdElement;

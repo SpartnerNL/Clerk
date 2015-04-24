@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Sheets;
+<?php
 
 use Mockery as m;
 use Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Sheet;

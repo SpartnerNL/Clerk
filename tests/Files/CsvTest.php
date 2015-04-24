@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Files;
+<?php
 
 class CsvTest extends \PHPUnit_Framework_TestCase {
 

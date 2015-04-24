@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Parsers\PHPExcel;
+<?php
 
 use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;

@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Workbook;
+<?php
 
 use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
 

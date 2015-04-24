@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Templates;
+<?php
 
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Adapters\Twig\TwigFactory;

@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Excel\Html\PHPExcel\Attributes;
+<?php
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes\RowspanAttribute;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;

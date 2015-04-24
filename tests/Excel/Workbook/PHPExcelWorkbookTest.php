@@ -1,4 +1,4 @@
-<?php namespace Maatwebsite\Clerk\Tests\Workbook;
+<?php
 
 use Mockery as m;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
