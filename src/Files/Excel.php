@@ -1,18 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Files;
+<?php
+
+namespace Maatwebsite\Clerk\Files;
 
 use Closure;
-use Maatwebsite\Clerk\Ledger;
-use Maatwebsite\Clerk\Excel\Workbook;
 use Maatwebsite\Clerk\Excel\Readers\ReaderFactory;
-use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
+use Maatwebsite\Clerk\Excel\Workbook;
 use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
+use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
+use Maatwebsite\Clerk\Ledger;
 
 /**
- * Class Excel
- * @package Maatwebsite\Clerk\Files
+ * Class Excel.
  */
-class Excel extends File {
-
+class Excel extends File
+{
     /**
      * @var Workbook
      */
@@ -38,17 +39,18 @@ class Excel extends File {
         // Get the driver
         $driver = $driver ?: $this->getDriver();
 
-        if ( $driver )
-        {
+        if ($driver) {
             $this->workbook = WorkbookFactory::create($driver, $title, $callback);
         }
     }
 
     /**
-     * Create new file
+     * Create new file.
+     *
      * @param string      $filename
      * @param Closure     $callback
      * @param bool|string $driver
+     *
      * @return static
      */
     public static function create($filename, Closure $callback = null, $driver = false)
@@ -57,20 +59,22 @@ class Excel extends File {
     }
 
     /**
-     * Create new file
+     * Create new file.
+     *
      * @param string      $file
      * @param Closure     $callback
      * @param bool|string $driver
      * @param null        $format
-     * @return \Maatwebsite\Clerk\Excel\Reader
+     *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return \Maatwebsite\Clerk\Excel\Reader
      */
     public static function load($file, Closure $callback = null, $driver = false, $format = null)
     {
         // Passing in empty strings, will prevent a workbook from being initialized
         $instance = (new static('', null, ''));
-        $driver = $driver ?: $instance->getDriver();
-        $format = $format ?: $instance->getFormat();
+        $driver   = $driver ?: $instance->getDriver();
+        $format   = $format ?: $instance->getFormat();
 
         return ReaderFactory::create(
             $driver,
@@ -82,8 +86,9 @@ class Excel extends File {
 
     /**
      * @param $filename
-     * @return mixed|void
+     *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return mixed|void
      */
     public function export($filename = null)
     {
@@ -93,8 +98,8 @@ class Excel extends File {
     }
 
     /**
-     * @return \Maatwebsite\Clerk\Writer
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return \Maatwebsite\Clerk\Writer
      */
     protected function initWriter()
     {
@@ -109,7 +114,8 @@ class Excel extends File {
     }
 
     /**
-     * Get the driver
+     * Get the driver.
+     *
      * @return mixed
      */
     protected function getDriver()

@@ -1,21 +1,24 @@
-<?php namespace Maatwebsite\Clerk\Excel\Collections;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Collections;
 
 use Illuminate\Support\Collection;
 
 /**
- * Class ExcelCollection
- * @package Maatwebsite\Clerk\Collections
+ * Class ExcelCollection.
  */
-class ExcelCollection extends Collection {
-
+class ExcelCollection extends Collection
+{
     /**
-     * Sheet title
+     * Sheet title.
+     *
      * @var string
      */
     protected $title;
 
     /**
-     * Get the title
+     * Get the title.
+     *
      * @return string
      */
     public function getTitle()
@@ -24,7 +27,8 @@ class ExcelCollection extends Collection {
     }
 
     /**
-     * Set the title
+     * Set the title.
+     *
      * @param $title
      */
     public function setTitle($title)

@@ -1,35 +1,37 @@
-<?php namespace Maatwebsite\Clerk\Excel\Workbooks;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Workbooks;
 
 use Closure;
-use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Adapter;
-use Maatwebsite\Clerk\Traits\CallableTrait;
+use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Excel\Styles\Styleable;
 use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
-use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
-use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
+use Maatwebsite\Clerk\Exceptions\SheetNotFoundException;
+use Maatwebsite\Clerk\Ledger;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
 /**
- * Class Workbook
- * @package Maatwebsite\Clerk\Adapters
+ * Class Workbook.
  */
-abstract class Workbook extends Adapter implements Styleable {
-
-    /**
+abstract class Workbook extends Adapter implements Styleable
+{
+    /*
      * Traits
      */
     use CallableTrait, StyleableTrait;
 
     /**
-     * Sheet collection
+     * Sheet collection.
+     *
      * @var array
      */
-    protected $sheets = array();
+    protected $sheets = [];
 
     /**
-     * @param          $title
-     * @param Closure  $callback
+     * @param         $title
+     * @param Closure $callback
      */
     public function __construct($title, Closure $callback = null)
     {
@@ -44,14 +46,16 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Set title
+     * Set title.
+     *
      * @param string $title
+     *
      * @return $this
      */
-    public abstract function setTitle($title);
+    abstract public function setTitle($title);
 
     /**
-     * Set reader defaults
+     * Set reader defaults.
      */
     protected function setDefaults()
     {
@@ -62,53 +66,65 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Get delimiter
+     * Get delimiter.
+     *
      * @return string
      */
     abstract public function getDelimiter();
 
     /**
-     * Get enclosure
+     * Get enclosure.
+     *
      * @return string
      */
     abstract public function getEnclosure();
 
     /**
-     * Get line ending
+     * Get line ending.
+     *
      * @return string
      */
     abstract public function getLineEnding();
 
     /**
-     * Set delimiter
+     * Set delimiter.
+     *
      * @return mixed
      */
     abstract public function setDelimiter($delimiter);
 
     /**
-     * Set line ending
+     * Set line ending.
+     *
      * @param $lineEnding
+     *
      * @return mixed
      */
     abstract public function setLineEnding($lineEnding);
 
     /**
-     * Set enclosure
+     * Set enclosure.
+     *
      * @param $enclosure
+     *
      * @return mixed
      */
     abstract public function setEnclosure($enclosure);
 
     /**
-     * Set encoding
+     * Set encoding.
+     *
      * @param $encoding
+     *
      * @return mixed
      */
     abstract public function setEncoding($encoding);
 
     /**
-     * Add a sheet to the sheets collection
+     * Add a sheet to the sheets collection.
+     *
      * @param SheetInterface $sheet
+     *
      * @return $this
      */
     public function addSheet(SheetInterface $sheet)
@@ -119,7 +135,8 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Get the sheet collection
+     * Get the sheet collection.
+     *
      * @return array
      */
     public function getSheets()
@@ -128,7 +145,8 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Get the sheet count
+     * Get the sheet count.
+     *
      * @return int
      */
     public function getSheetCount()
@@ -137,8 +155,10 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Check if the sheet exists in the collection
-     * @param integer $index
+     * Check if the sheet exists in the collection.
+     *
+     * @param int $index
+     *
      * @return bool
      */
     public function sheetExists($index)
@@ -147,8 +167,10 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Check is the given index is valid
-     * @param integer $index
+     * Check is the given index is valid.
+     *
+     * @param int $index
+     *
      * @return bool
      */
     public function isValidIndex($index)
@@ -158,8 +180,9 @@ abstract class Workbook extends Adapter implements Styleable {
 
     /**
      * @param $index
-     * @return Sheet
+     *
      * @throws SheetNotFoundException
+     * @return Sheet
      */
     public function getSheetByIndex($index = 0)
     {
@@ -169,8 +192,10 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Remove the sheet by index
+     * Remove the sheet by index.
+     *
      * @param $index
+     *
      * @return $this
      */
     public function removeSheetByIndex($index = 0)
@@ -183,19 +208,23 @@ abstract class Workbook extends Adapter implements Styleable {
     }
 
     /**
-     * Validate the sheet index
-     * @param integer $index
+     * Validate the sheet index.
+     *
+     * @param int $index
+     *
      * @throws InvalidArgumentException
      * @throws SheetNotFoundException
      */
     protected function validateSheetIndex($index)
     {
         // We only accept integers as index
-        if ( !$this->isValidIndex($index) )
-            throw new InvalidArgumentException("You should provide a valid sheet index");
+        if (!$this->isValidIndex($index)) {
+            throw new InvalidArgumentException('You should provide a valid sheet index');
+        }
 
         // The sheet index should exist inside the collection
-        if ( !$this->sheetExists($index) )
+        if (!$this->sheetExists($index)) {
             throw new SheetNotFoundException("Sheet with index [{$index}] not found on this workbook");
+        }
     }
 }

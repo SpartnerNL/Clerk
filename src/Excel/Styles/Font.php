@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
 
-use Maatwebsite\Clerk\Traits\CallableTrait;
+namespace Maatwebsite\Clerk\Excel\Styles;
+
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
-class Font implements Style {
-
-    /**
+class Font implements Style
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -57,6 +59,7 @@ class Font implements Style {
 
     /**
      * @param $name
+     *
      * @return Font
      */
     public function family($name)
@@ -66,6 +69,7 @@ class Font implements Style {
 
     /**
      * @param string $name
+     *
      * @return Font
      */
     public function name($name)
@@ -84,15 +88,19 @@ class Font implements Style {
     }
 
     /**
-     * Set size
+     * Set size.
+     *
      * @param int $size
+     *
      * @throws InvalidArgumentException
+     *
      * @return Font
      */
     public function size($size)
     {
-        if ( false === filter_var($size, FILTER_VALIDATE_INT) )
-            throw new InvalidArgumentException("The font size should be a numeric value");
+        if (false === filter_var($size, FILTER_VALIDATE_INT)) {
+            throw new InvalidArgumentException('The font size should be a numeric value');
+        }
 
         $this->size = $size;
 
@@ -109,12 +117,14 @@ class Font implements Style {
 
     /**
      * @param bool $state
+     *
      * @return Font If bold isn't boolean
      */
     public function bold($state = true)
     {
-        if ( !is_bool($state) )
-            throw new InvalidArgumentException("The parameter must be a boolean value");
+        if (!is_bool($state)) {
+            throw new InvalidArgumentException('The parameter must be a boolean value');
+        }
 
         $this->bold = $state;
 
@@ -122,7 +132,7 @@ class Font implements Style {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isBold()
     {
@@ -131,12 +141,14 @@ class Font implements Style {
 
     /**
      * @param bool $state
+     *
      * @return Font
      */
     public function italic($state = true)
     {
-        if ( !is_bool($state) )
-            throw new InvalidArgumentException("The parameter must be a boolean value");
+        if (!is_bool($state)) {
+            throw new InvalidArgumentException('The parameter must be a boolean value');
+        }
 
         $this->italic = $state;
 
@@ -144,7 +156,7 @@ class Font implements Style {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isItalic()
     {
@@ -153,6 +165,7 @@ class Font implements Style {
 
     /**
      * @param string $color
+     *
      * @return $this
      */
     public function color($color)
@@ -172,13 +185,16 @@ class Font implements Style {
 
     /**
      * @param string $underline
+     *
      * @throws InvalidArgumentException
+     *
      * @return $this
      */
     public function underline($underline = self::UNDERLINE_SINGLE)
     {
-        if ( !in_array($underline, $this->getUnderlines()) )
-            throw new InvalidArgumentException("You should specifiy a valid underline value");
+        if (!in_array($underline, $this->getUnderlines())) {
+            throw new InvalidArgumentException('You should specifiy a valid underline value');
+        }
 
         $this->underline = $underline;
 
@@ -186,7 +202,7 @@ class Font implements Style {
     }
 
     /**
-     * Get underline
+     * Get underline.
      *
      * @return string
      */
@@ -197,6 +213,7 @@ class Font implements Style {
 
     /**
      * @param bool $state
+     *
      * @return $this
      */
     public function strikethrough($state = true)
@@ -207,7 +224,7 @@ class Font implements Style {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getStrikethrough()
     {
@@ -215,7 +232,7 @@ class Font implements Style {
     }
 
     /**
-     * Return the underline parameter list
+     * Return the underline parameter list.
      *
      * @return array
      */

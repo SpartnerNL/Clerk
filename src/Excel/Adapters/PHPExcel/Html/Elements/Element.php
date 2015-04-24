@@ -1,15 +1,17 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements;
+<?php
 
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements;
+
+use DOMElement;
 use DOMNode;
 use DOMTEXT;
-use DOMElement;
-use Maatwebsite\Clerk\Excel\Sheet;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ElementParserFactory;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\AttributeParserFactory;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ElementParserFactory;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
+use Maatwebsite\Clerk\Excel\Sheet;
 
-abstract class Element {
-
+abstract class Element
+{
     /**
      * @var Sheet
      */
@@ -18,7 +20,7 @@ abstract class Element {
     /**
      * @param Sheet $sheet
      */
-    public function __construct(Sheet &$sheet)
+    public function __construct(Sheet & $sheet)
     {
         $this->sheet = $sheet;
     }
@@ -26,40 +28,38 @@ abstract class Element {
     /**
      * @param DOMNode        $element
      * @param ReferenceTable $table
+     *
      * @return mixed
      */
-    abstract public function parse(DOMNode $element, ReferenceTable &$table);
+    abstract public function parse(DOMNode $element, ReferenceTable & $table);
 
     /**
      * @param DOMNode        $node
      * @param ReferenceTable $table
      */
-    public function next(DOMNode $node, ReferenceTable &$table)
+    public function next(DOMNode $node, ReferenceTable & $table)
     {
-        foreach ($node->childNodes as $child)
-        {
-            /**
+        foreach ($node->childNodes as $child) {
+            /*
              * Text
              */
-            if ( $child instanceof DOMTEXT )
-            {
+            if ($child instanceof DOMTEXT) {
                 $table->appendContentByNode($child);
             }
 
-            /**
+            /*
              * Element
              */
-            elseif ( $child instanceof DOMElement )
-            {
-                /**
+            elseif ($child instanceof DOMElement) {
+                /*
                  * Attributes
                  */
-                foreach ($child->attributes as $attribute)
-                {
+                foreach ($child->attributes as $attribute) {
                     $parser = AttributeParserFactory::create($attribute->name, $this->sheet);
 
-                    if ( $parser )
+                    if ($parser) {
                         $parser->parse($attribute, $table);
+                    }
                 }
 
                 // Get the element parser based on the node name
@@ -68,14 +68,12 @@ abstract class Element {
                 // It's possible a parser does not exist
                 // That means it's probably not very interesting
                 // to parse that element
-                if ( $parser )
-                {
+                if ($parser) {
                     $parser->parse($child, $table);
                 }
 
                 // But we will keep going through it's children
-                else
-                {
+                else {
                     $this->next($child, $table);
                 }
             }
@@ -85,12 +83,10 @@ abstract class Element {
     /**
      * @param ReferenceTable $table
      */
-    public function flush(ReferenceTable &$table)
+    public function flush(ReferenceTable & $table)
     {
-        if ( is_string($table->getContent()) )
-        {
-            if ( trim($table->getContent()) > '' )
-            {
+        if (is_string($table->getContent())) {
+            if (trim($table->getContent()) > '') {
                 $this->sheet->cell(
                     $table->getColumn() . $table->getRow(),
                     $table->getContent()
@@ -98,9 +94,7 @@ abstract class Element {
 
                 $table->rememberData($table->getContent());
             }
-        }
-        else
-        {
+        } else {
             $table->rememberData('RICH TEXT: ' . $table->getContent());
         }
 

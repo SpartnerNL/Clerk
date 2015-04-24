@@ -1,14 +1,14 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
-class WorkbookParserTest extends \PHPUnit_Framework_TestCase {
-
+class WorkbookParserTest extends \PHPUnit_Framework_TestCase
+{
     public function test_parse()
     {
         $settings = new ParserSettings();
-        $parser = new WorkbookParser($settings);
+        $parser   = new WorkbookParser($settings);
 
         $parsed = $parser->parse($this->mockWorkbook());
 
@@ -16,7 +16,6 @@ class WorkbookParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('mocked', $parsed->getTitle());
         $this->assertCount(2, $parsed);
     }
-
 
     public function test_parse_with_selected_sheets()
     {
@@ -31,7 +30,6 @@ class WorkbookParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('mocked', $parsed->getTitle());
         $this->assertCount(1, $parsed);
     }
-
 
     /**
      * @return \PHPExcel

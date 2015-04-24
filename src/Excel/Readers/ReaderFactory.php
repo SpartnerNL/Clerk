@@ -1,43 +1,48 @@
-<?php namespace Maatwebsite\Clerk\Excel\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Readers;
 
 use Closure;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 use Maatwebsite\Clerk\Excel\Reader;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 
 /**
- * Class ReaderFactory
- * @package Maatwebsite\Clerk\Factories
+ * Class ReaderFactory.
  */
-class ReaderFactory {
-
+class ReaderFactory
+{
     /**
      * @param          $driver
      * @param          $type
      * @param          $file
      * @param callable $callback
-     * @return Reader
+     *
      * @throws DriverNotFoundException
+     * @return Reader
      */
     public static function create($driver, $file, Closure $callback = null, $type = null)
     {
-        $type = $type ?: self::getTypeByFile($file);
+        $type  = $type ?: self::getTypeByFile($file);
         $class = self::getClassByDriverAndType($driver, $type);
 
-        if ( class_exists($class) )
+        if (class_exists($class)) {
             return new $class($type, $file, $callback);
+        }
 
         // Get the default writer
         $class = self::getDefaultClass($driver);
 
-        if ( class_exists($class) )
+        if (class_exists($class)) {
             return new $class($type, $file, $callback);
+        }
 
         throw new DriverNotFoundException("Reader driver [{$driver}] was not found");
     }
 
     /**
      * @param $driver
+     *
      * @return string
      */
     protected static function getDefaultClass($driver)
@@ -46,9 +51,11 @@ class ReaderFactory {
     }
 
     /**
-     * Get a specific reader
+     * Get a specific reader.
+     *
      * @param $driver
      * @param $type
+     *
      * @return string
      */
     protected static function getClassByDriverAndType($driver, $type)
@@ -58,6 +65,7 @@ class ReaderFactory {
 
     /**
      * @param $file
+     *
      * @return string
      */
     protected static function getTypeByFile($file)

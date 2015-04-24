@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
 
-use Maatwebsite\Clerk\Traits\CallableTrait;
+namespace Maatwebsite\Clerk\Excel\Styles;
+
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
-class Alignment implements Style {
-
-    /**
+class Alignment implements Style
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -26,7 +28,7 @@ class Alignment implements Style {
     protected $wrapText = false;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $textIndent;
 
@@ -52,13 +54,16 @@ class Alignment implements Style {
 
     /**
      * @param string $alignment
+     *
      * @throws InvalidArgumentException
+     *
      * @return $this
      */
     public function horizontal($alignment)
     {
-        if ( !in_array($alignment, $this->getHorizontals()) )
+        if (!in_array($alignment, $this->getHorizontals())) {
             throw new InvalidArgumentException("[{$alignment}] is not a valid horizontal parameter");
+        }
 
         $this->horizontal = $alignment;
 
@@ -75,13 +80,16 @@ class Alignment implements Style {
 
     /**
      * @param string $alignment
+     *
      * @throws InvalidArgumentException
+     *
      * @return $this
      */
     public function vertical($alignment)
     {
-        if ( !in_array($alignment, $this->getVerticals()) )
+        if (!in_array($alignment, $this->getVerticals())) {
             throw new InvalidArgumentException("[{$alignment}] is not a valid vertical parameter");
+        }
 
         $this->vertical = $alignment;
 
@@ -89,7 +97,7 @@ class Alignment implements Style {
     }
 
     /**
-     * Get vertical alignment
+     * Get vertical alignment.
      *
      * @return string
      */
@@ -100,6 +108,7 @@ class Alignment implements Style {
 
     /**
      * @param bool $state
+     *
      * @return $this
      */
     public function wrap($state = true)
@@ -119,6 +128,7 @@ class Alignment implements Style {
 
     /**
      * @param int $indent
+     *
      * @return $this
      */
     public function indent($indent)

@@ -1,15 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
+<?php
+
+namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
 
 use Maatwebsite\Clerk\Word\Document;
 use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 
-class Writer extends AbstractWriter {
-
+class Writer extends AbstractWriter
+{
     /**
-     * Export the workbook
+     * Export the workbook.
+     *
      * @param null|string $filename
-     * @return mixed|void
+     *
      * @throws \Exception
+     * @return mixed|void
      */
     public function export($filename = null)
     {
@@ -23,6 +27,7 @@ class Writer extends AbstractWriter {
 
     /**
      * @param Document $document
+     *
      * @return PHPWord
      */
     protected function convertToDriver(Document $document)

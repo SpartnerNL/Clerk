@@ -1,9 +1,10 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
+
+namespace Maatwebsite\Clerk\Exceptions;
 
 /**
- * Class ExportFailedException
- * @package Maatwebsite\Clerk\Exceptions
+ * Class ExportFailedException.
  */
-class ExportFailedException extends \Exception {
-
+class ExportFailedException extends \Exception
+{
 }

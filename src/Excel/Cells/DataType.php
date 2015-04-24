@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Excel\Cells;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Cells;
 
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
 
-class DataType {
-
+class DataType
+{
     /**
      * @var string
      */
@@ -40,19 +42,23 @@ class DataType {
      */
     public function __construct($type = null)
     {
-        if ( $type )
+        if ($type) {
             $this->setType($type);
+        }
     }
 
     /**
      * @param string $type
+     *
      * @throws InvalidArgumentException
+     *
      * @return $this
      */
     public function setType($type)
     {
-        if ( !in_array($type, $this->getDataTypes()) )
-            throw new InvalidArgumentException("The parameter must belong to the Data Type parameter list");
+        if (!in_array($type, $this->getDataTypes())) {
+            throw new InvalidArgumentException('The parameter must belong to the Data Type parameter list');
+        }
 
         $this->type = $type;
 
@@ -68,7 +74,7 @@ class DataType {
     }
 
     /**
-     * Return the types parameter list
+     * Return the types parameter list.
      *
      * @return array
      */

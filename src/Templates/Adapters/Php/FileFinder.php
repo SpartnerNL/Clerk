@@ -1,15 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Php;
+<?php
 
-use Maatwebsite\Clerk\Templates\Adapters\ExtensionChecker;
+namespace Maatwebsite\Clerk\Templates\Adapters\Php;
+
 use Maatwebsite\Clerk\Exceptions\TemplateNotFoundException;
+use Maatwebsite\Clerk\Templates\Adapters\ExtensionChecker;
 
 /**
- * Class FileFinder
- * @package Maatwebsite\Clerk\Templates\Adapters\Php
+ * Class FileFinder.
  */
-class FileFinder {
-
-    /**
+class FileFinder
+{
+    /*
      * Traits
      */
     use ExtensionChecker;
@@ -30,22 +31,25 @@ class FileFinder {
      */
     public function __construct($path, $extension)
     {
-        $this->path = $path;
+        $this->path      = $path;
         $this->extension = $extension;
     }
 
     /**
-     * Find the file
+     * Find the file.
+     *
      * @param $file
-     * @return string
+     *
      * @throws TemplateNotFoundException
+     * @return string
      */
     public function find($file)
     {
         $path = $this->path . '/' . $this->getFile($file);
 
-        if ( file_exists($path) )
+        if (file_exists($path)) {
             return $path;
+        }
 
         throw new TemplateNotFoundException("Template [{$file}] at path {$path} could not be found");
     }

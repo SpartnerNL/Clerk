@@ -1,22 +1,26 @@
-<?php namespace Maatwebsite\Clerk\Traits;
+<?php
+
+namespace Maatwebsite\Clerk\Traits;
 
 use Closure;
 
 /**
- * Class CallableTrait
- * @package Maatwebsite\Clerk\Traits
+ * Class CallableTrait.
  */
-trait CallableTrait {
-
+trait CallableTrait
+{
     /**
-     * Preform a callback on this workbook instance
+     * Preform a callback on this workbook instance.
+     *
      * @param callable $callback
+     *
      * @return $this
      */
     public function call(Closure $callback = null)
     {
-        if ( is_callable($callback) )
+        if (is_callable($callback)) {
             call_user_func($callback, $this);
+        }
 
         return $this;
     }

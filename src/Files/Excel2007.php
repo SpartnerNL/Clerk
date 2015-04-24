@@ -1,13 +1,14 @@
-<?php namespace Maatwebsite\Clerk\Files;
+<?php
+
+namespace Maatwebsite\Clerk\Files;
 
 use Maatwebsite\Clerk\Ledger;
 
 /**
- * Class Excel2007
- * @package Maatwebsite\Clerk\Files
+ * Class Excel2007.
  */
-class Excel2007 extends Excel {
-
+class Excel2007 extends Excel
+{
     /**
      * @var string
      */
@@ -19,7 +20,8 @@ class Excel2007 extends Excel {
     protected $format = 'Excel2007';
 
     /**
-     * Get the driver
+     * Get the driver.
+     *
      * @return mixed
      */
     protected function getDriver()

@@ -1,12 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Styles;
 
 use Closure;
 
-interface Style {
-
+interface Style
+{
     /**
-     * Preform a callback on this workbook instance
+     * Preform a callback on this workbook instance.
+     *
      * @param callable $callback
+     *
      * @return $this
      */
     public function call(Closure $callback = null);

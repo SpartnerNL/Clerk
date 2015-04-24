@@ -1,17 +1,22 @@
-<?php namespace Maatwebsite\Clerk\Templates;
+<?php
 
-interface Factory {
+namespace Maatwebsite\Clerk\Templates;
 
+interface Factory
+{
     /**
-     * Make the view
-     * @param string      $file
-     * @param array $data
+     * Make the view.
+     *
+     * @param string $file
+     * @param array  $data
+     *
      * @return $this
      */
-    public function make($file, array $data = array());
+    public function make($file, array $data = []);
 
     /**
-     * Render the template
+     * Render the template.
+     *
      * @return string
      */
     public function render();

@@ -1,5 +1,7 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
 
-class TemplateNotFoundException extends \Exception {
+namespace Maatwebsite\Clerk\Exceptions;
 
+class TemplateNotFoundException extends \Exception
+{
 }

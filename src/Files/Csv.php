@@ -1,13 +1,14 @@
-<?php namespace Maatwebsite\Clerk\Files;
+<?php
+
+namespace Maatwebsite\Clerk\Files;
 
 use Maatwebsite\Clerk\Ledger;
 
 /**
- * Class Csv
- * @package Maatwebsite\Clerk\Files
+ * Class Csv.
  */
-class Csv extends Excel {
-
+class Csv extends Excel
+{
     /**
      * @var string
      */

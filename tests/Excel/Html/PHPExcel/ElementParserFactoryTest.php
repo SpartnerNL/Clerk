@@ -4,7 +4,6 @@ use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ElementParserFactory;
 
 class ElementParserFactoryTest extends \PHPUnit_Framework_TestCase
 {
-
     public function tearDown()
     {
         \Mockery::close();
@@ -19,7 +18,6 @@ class ElementParserFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements\ThElement',
             ElementParserFactory::create('th', $this->mockSheet()));
     }
-
 
     protected function mockSheet()
     {

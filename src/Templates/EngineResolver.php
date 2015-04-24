@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Templates;
+<?php
+
+namespace Maatwebsite\Clerk\Templates;
 
 use Maatwebsite\Clerk\Ledger;
 
-class EngineResolver {
-
+class EngineResolver
+{
     /**
      * @var array
      */
@@ -11,7 +13,7 @@ class EngineResolver {
         'blade'  => '.blade',
         'twig'   => '.html',
         'smarty' => '.tpl',
-        'php'    => '.php'
+        'php'    => '.php',
     ];
 
     /**
@@ -25,23 +27,21 @@ class EngineResolver {
     protected $file;
 
     /**
-     * @param      string $file
+     * @param string      $file
      * @param string|null $engine
      */
     public function __construct($file, $engine = null)
     {
         // Check if the user has given a specific engine
-        if ( !$engine || !$this->isRegisteredEngine($engine) )
-        {
+        if (!$engine || !$this->isRegisteredEngine($engine)) {
             $engine = $this->basedOnFileExtension($file);
 
-            if ( !$engine )
-            {
+            if (!$engine) {
                 $engine = $this->getDefaultEngine();
             }
         }
 
-        $this->file = $file;
+        $this->file   = $file;
         $this->engine = $engine;
     }
 
@@ -55,6 +55,7 @@ class EngineResolver {
 
     /**
      * @param string $engine
+     *
      * @return bool
      */
     protected function isRegisteredEngine($engine)
@@ -64,24 +65,22 @@ class EngineResolver {
 
     /**
      * @param string $file
+     *
      * @return bool|int|string
      */
     protected function basedOnFileExtension($file)
     {
-        foreach ($this->getEngines() as $engine => $extension)
-        {
-            if ( is_array($extension) )
-            {
-                foreach ($extension as $ext)
-                {
-                    if ( $this->checkExtension($file, $ext) )
+        foreach ($this->getEngines() as $engine => $extension) {
+            if (is_array($extension)) {
+                foreach ($extension as $ext) {
+                    if ($this->checkExtension($file, $ext)) {
                         return $engine;
+                    }
                 }
-            }
-            else
-            {
-                if ( $this->checkExtension($file, $extension) )
+            } else {
+                if ($this->checkExtension($file, $extension)) {
                     return $engine;
+                }
             }
         }
 
@@ -89,9 +88,11 @@ class EngineResolver {
     }
 
     /**
-     * Check if the extension matches
+     * Check if the extension matches.
+     *
      * @param string $file
      * @param string $extension
+     *
      * @return bool
      */
     protected function checkExtension($file, $extension)
@@ -100,7 +101,8 @@ class EngineResolver {
     }
 
     /**
-     * Get the default engine
+     * Get the default engine.
+     *
      * @return mixed
      */
     protected function getDefaultEngine()

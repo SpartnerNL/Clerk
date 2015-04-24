@@ -1,14 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
 
 /**
- * Class ColspanAttribute
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Html\Attributes
+ * Class ColspanAttribute.
  */
-class ColspanAttribute extends MergeCells {
-
+class ColspanAttribute extends MergeCells
+{
     /**
      * @param $attribute
      * @param $table
+     *
      * @return string
      */
     public function getEndCell($attribute, &$table)

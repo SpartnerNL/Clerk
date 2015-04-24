@@ -1,6 +1,8 @@
-<?php namespace Maatwebsite\Clerk\Writers;
+<?php
 
-interface Exportable {
+namespace Maatwebsite\Clerk\Writers;
 
+interface Exportable
+{
     public function getDriver();
 }

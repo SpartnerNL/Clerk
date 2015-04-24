@@ -1,11 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
+
+namespace Maatwebsite\Clerk\Exceptions;
 
 use Exception;
 
 /**
- * Class DriverNotFoundException
- * @package Maatwebsite\Clerk\Exceptions
+ * Class DriverNotFoundException.
  */
-class DriverNotFoundException extends Exception {
-
+class DriverNotFoundException extends Exception
+{
 }

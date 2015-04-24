@@ -1,11 +1,11 @@
 <?php
 
-use Mockery as m;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers\Writer;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers\CsvWriter;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers\Writer;
+use Mockery as m;
 
-class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase {
-
+class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase
+{
     public function setUp()
     {
         parent::setUp();
@@ -13,12 +13,10 @@ class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase {
         $this->workbook = m::mock('Maatwebsite\Clerk\Excel\Workbook');
     }
 
-
     public function tearDown()
     {
         m::close();
     }
-
 
     public function test_can_init()
     {
@@ -26,7 +24,6 @@ class PHPExcelWriterTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Writer', $writer);
     }
-
 
     public function test_get_content_type()
     {

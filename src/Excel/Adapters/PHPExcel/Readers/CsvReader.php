@@ -1,22 +1,25 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
+<?php
 
-use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
+
 use Maatwebsite\Clerk\Excel\CsvReader as CsvReaderInterface;
+use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
 
 /**
- * Class CsvReader
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Readers
+ * Class CsvReader.
  */
-class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface {
-
+class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface
+{
     /**
      * @var \PHPExcel_Reader_CSV
      */
     protected $reader;
 
     /**
-     * Set CSV delimiter
+     * Set CSV delimiter.
+     *
      * @param $delimiter
+     *
      * @return Reader
      */
     public function setDelimiter($delimiter)
@@ -27,8 +30,10 @@ class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set CSV enclosure
+     * Set CSV enclosure.
+     *
      * @param $enclosure
+     *
      * @return Reader
      */
     public function setEnclosure($enclosure)
@@ -39,8 +44,10 @@ class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set CSV the line endings
+     * Set CSV the line endings.
+     *
      * @param $lineEnding
+     *
      * @return Reader
      */
     public function setLineEnding($lineEnding)

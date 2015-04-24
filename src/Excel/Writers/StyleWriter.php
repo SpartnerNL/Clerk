@@ -1,26 +1,26 @@
-<?php namespace Maatwebsite\Clerk\Excel\Writers;
+<?php
 
-use ReflectionClass;
-use Maatwebsite\Clerk\Excel\Styles\Font;
-use Maatwebsite\Clerk\Excel\Styles\Style;
+namespace Maatwebsite\Clerk\Excel\Writers;
+
 use Maatwebsite\Clerk\Excel\Collections\StyleCollection;
+use Maatwebsite\Clerk\Excel\Styles\Style;
+use ReflectionClass;
 
-class StyleWriter {
-
+class StyleWriter
+{
     /**
      * @param StyleCollection $collection
+     *
      * @return array
      */
     public function convert(StyleCollection $collection)
     {
         $styles = [];
 
-        foreach ($collection as $style)
-        {
+        foreach ($collection as $style) {
             $method = 'convert' . $this->getStyleName($style);
 
-            if ( method_exists($this, $method) )
-            {
+            if (method_exists($this, $method)) {
                 list($name, $value) = $this->{$method}($style);
 
                 $styles[$name] = $value;
@@ -32,6 +32,7 @@ class StyleWriter {
 
     /**
      * @param Style $style
+     *
      * @return string
      */
     protected function getStyleName(Style $style)

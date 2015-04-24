@@ -1,4 +1,6 @@
-<?php namespace Maatwebsite\Clerk\Files;
+<?php
+
+namespace Maatwebsite\Clerk\Files;
 
 use Closure;
 use Maatwebsite\Clerk\Ledger;
@@ -6,11 +8,10 @@ use Maatwebsite\Clerk\Word\Documents\DocumentFactory;
 use Maatwebsite\Clerk\Word\Writers\WriterFactory;
 
 /**
- * Class Excel
- * @package Maatwebsite\Clerk\Files
+ * Class Excel.
  */
-class Word extends File {
-
+class Word extends File
+{
     /**
      * @var string
      */
@@ -36,17 +37,18 @@ class Word extends File {
         // Get the driver
         $driver = $driver ?: $this->getDriver();
 
-        if ( $driver )
-        {
+        if ($driver) {
             $this->document = DocumentFactory::create($driver, $title, $callback);
         }
     }
 
     /**
-     * Create new file
+     * Create new file.
+     *
      * @param string      $filename
      * @param Closure     $callback
      * @param bool|string $driver
+     *
      * @return static
      */
     public static function create($filename, Closure $callback = null, $driver = false)
@@ -55,13 +57,15 @@ class Word extends File {
     }
 
     /**
-     * Create new file
+     * Create new file.
+     *
      * @param string      $file
      * @param Closure     $callback
      * @param bool|string $driver
      * @param null        $format
-     * @return \Maatwebsite\Clerk\Reader
+     *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return \Maatwebsite\Clerk\Reader
      */
     public static function load($file, Closure $callback = null, $driver = false, $format = null)
     {
@@ -69,8 +73,9 @@ class Word extends File {
 
     /**
      * @param $filename
-     * @return mixed|void
+     *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return mixed|void
      */
     public function export($filename = null)
     {
@@ -80,8 +85,8 @@ class Word extends File {
     }
 
     /**
-     * @return \Maatwebsite\Clerk\Writer
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return \Maatwebsite\Clerk\Writer
      */
     protected function initWriter()
     {
@@ -104,7 +109,8 @@ class Word extends File {
     }
 
     /**
-     * Get the driver
+     * Get the driver.
+     *
      * @return mixed
      */
     protected function getDriver()

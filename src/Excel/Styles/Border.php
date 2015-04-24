@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
 
-use Maatwebsite\Clerk\Traits\CallableTrait;
+namespace Maatwebsite\Clerk\Excel\Styles;
+
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
-class Border implements Style {
-
-    /**
+class Border implements Style
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -49,14 +51,16 @@ class Border implements Style {
     const BORDER_THIN             = 'thin';
 
     /**
+     * @param  string                   $style
      * @throws InvalidArgumentException
-     * @param string $style
+     *
      * @return $this
      */
     public function setStyle($style)
     {
-        if ( !in_array($style, $this->getStyles()) )
-            throw new InvalidArgumentException("The parameter must belong to the Style parameter list");
+        if (!in_array($style, $this->getStyles())) {
+            throw new InvalidArgumentException('The parameter must belong to the Style parameter list');
+        }
 
         $this->style = $style;
 
@@ -73,6 +77,7 @@ class Border implements Style {
 
     /**
      * @param string $color
+     *
      * @return $this
      */
     public function setColor($color)

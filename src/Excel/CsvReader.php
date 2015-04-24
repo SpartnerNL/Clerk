@@ -1,28 +1,35 @@
-<?php namespace Maatwebsite\Clerk\Excel;
+<?php
+
+namespace Maatwebsite\Clerk\Excel;
 
 /**
- * Interface CsvReader
- * @package Maatwebsite\Clerk
+ * Interface CsvReader.
  */
-interface CsvReader {
-
+interface CsvReader
+{
     /**
-     * Set CSV delimiter
+     * Set CSV delimiter.
+     *
      * @param $delimiter
+     *
      * @return Reader
      */
     public function setDelimiter($delimiter);
 
     /**
-     * Set CSV enclosure
+     * Set CSV enclosure.
+     *
      * @param $enclosure
+     *
      * @return Reader
      */
     public function setEnclosure($enclosure);
 
     /**
-     * Set CSV the line endings
+     * Set CSV the line endings.
+     *
      * @param $lineEnding
+     *
      * @return Reader
      */
     public function setLineEnding($lineEnding);

@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk;
+<?php
+
+namespace Maatwebsite\Clerk;
 
 use Closure;
 
-class Clerk {
-
+class Clerk
+{
     /**
      * @var File
      */
@@ -13,6 +15,7 @@ class Clerk {
      * @param         $type
      * @param         $name
      * @param Closure $closure
+     *
      * @return Document
      */
     public function write($type, $name, Closure $closure = null)

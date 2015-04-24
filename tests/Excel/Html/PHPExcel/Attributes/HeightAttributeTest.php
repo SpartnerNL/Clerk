@@ -5,13 +5,12 @@ use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 
-class HeightAttributeTest extends \PHPUnit_Framework_TestCase {
-
-
+class HeightAttributeTest extends \PHPUnit_Framework_TestCase
+{
     public function test_if_height_attribute_gets_translated_to_a_row_height()
     {
         $table = new ReferenceTable();
-        $node = new \DOMAttr('height', 20);
+        $node  = new \DOMAttr('height', 20);
         $sheet = $this->mockSheet();
 
         $attribute = new HeightAttribute($sheet);

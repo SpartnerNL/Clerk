@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
 
 use DOMAttr;
-use Maatwebsite\Clerk\Excel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
+use Maatwebsite\Clerk\Excel\Sheet;
 
-abstract class Attribute {
-
+abstract class Attribute
+{
     /**
      * @var Sheet
      */
@@ -14,15 +16,16 @@ abstract class Attribute {
     /**
      * @param Sheet $sheet
      */
-    public function __construct(Sheet &$sheet)
+    public function __construct(Sheet & $sheet)
     {
         $this->sheet = $sheet;
     }
 
     /**
-     * @param DOMAttr     $attribute
+     * @param DOMAttr        $attribute
      * @param ReferenceTable $table
+     *
      * @return mixed
      */
-    abstract public function parse(DOMAttr $attribute, ReferenceTable &$table);
+    abstract public function parse(DOMAttr $attribute, ReferenceTable & $table);
 }

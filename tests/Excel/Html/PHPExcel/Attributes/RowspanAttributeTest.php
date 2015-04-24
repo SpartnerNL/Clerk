@@ -5,9 +5,8 @@ use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 
-class RowspanAttributeTest extends \PHPUnit_Framework_TestCase {
-
-
+class RowspanAttributeTest extends \PHPUnit_Framework_TestCase
+{
     public function test_if_rowspan_attribute_gets_translated_to_a_merged_rows()
     {
         $table = new ReferenceTable();
@@ -20,7 +19,7 @@ class RowspanAttributeTest extends \PHPUnit_Framework_TestCase {
         // Fake as if we are inside a <tr>
         $table->nextRow();
 
-        $node = new \DOMAttr('rowspan', 3);
+        $node  = new \DOMAttr('rowspan', 3);
         $sheet = $this->mockSheet();
 
         $attribute = new RowspanAttribute($sheet);

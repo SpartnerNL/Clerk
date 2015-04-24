@@ -1,16 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+<?php
 
-use Maatwebsite\Clerk\Excel\Styles\Fill;
-use Maatwebsite\Clerk\Excel\Styles\Font;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+
+use Maatwebsite\Clerk\Excel\Styles\Alignment;
 use Maatwebsite\Clerk\Excel\Styles\Border;
 use Maatwebsite\Clerk\Excel\Styles\Borders;
-use Maatwebsite\Clerk\Excel\Styles\Alignment;
+use Maatwebsite\Clerk\Excel\Styles\Fill;
+use Maatwebsite\Clerk\Excel\Styles\Font;
 use Maatwebsite\Clerk\Excel\Writers\StyleWriter as AbstractStyleWriter;
 
-class StyleWriter extends AbstractStyleWriter {
-
+class StyleWriter extends AbstractStyleWriter
+{
     /**
      * @param Font $font
+     *
      * @return array
      */
     protected function convertFont(Font $font)
@@ -24,13 +27,14 @@ class StyleWriter extends AbstractStyleWriter {
                 'italic'    => $font->isItalic(),
                 'color'     => ['rgb' => $font->getColor()],
                 'underline' => $font->getUnderline(),
-                'strike'    => $font->getStrikethrough()
-            ]
+                'strike'    => $font->getStrikethrough(),
+            ],
         ];
     }
 
     /**
      * @param Fill $fill
+     *
      * @return array
      */
     protected function convertFill(Fill $fill)
@@ -40,12 +44,13 @@ class StyleWriter extends AbstractStyleWriter {
             [
                 'type'  => $fill->getType(),
                 'color' => ['rgb' => $fill->getColor()],
-            ]
+            ],
         ];
     }
 
     /**
      * @param Alignment $alignment
+     *
      * @return array
      */
     protected function convertAlignment(Alignment $alignment)
@@ -56,13 +61,14 @@ class StyleWriter extends AbstractStyleWriter {
                 'horizontal' => $alignment->getHorizontal(),
                 'vertical'   => $alignment->getVertical(),
                 'wrap'       => $alignment->getWrapText(),
-                'indent'     => $alignment->getTextIndent()
-            ]
+                'indent'     => $alignment->getTextIndent(),
+            ],
         ];
     }
 
     /**
      * @param Border $border
+     *
      * @return array
      */
     protected function convertBorder(Border $border)
@@ -72,46 +78,43 @@ class StyleWriter extends AbstractStyleWriter {
             [
                 'allborders' => [
                     'style' => $border->getStyle(),
-                    'color' => ['rgb' => $border->getColor()]
-                ]
-            ]
+                    'color' => ['rgb' => $border->getColor()],
+                ],
+            ],
         ];
     }
 
     /**
      * @param Borders $border
+     *
      * @return array
      */
     protected function convertBorders(Borders $border)
     {
         $borders = [];
 
-        if ( $border->getTop() )
-        {
+        if ($border->getTop()) {
             $borders['top'] = [
                 'color' => ['rgb' => $border->getTop()->getColor()],
                 'style' => $border->getTop()->getStyle(),
             ];
         }
 
-        if ( $border->getBottom() )
-        {
+        if ($border->getBottom()) {
             $borders['bottom'] = [
                 'color' => ['rgb' => $border->getBottom()->getColor()],
                 'style' => $border->getBottom()->getStyle(),
             ];
         }
 
-        if ( $border->getLeft() )
-        {
+        if ($border->getLeft()) {
             $borders['left'] = [
                 'color' => ['rgb' => $border->getLeft()->getColor()],
                 'style' => $border->getLeft()->getStyle(),
             ];
         }
 
-        if ( $border->getRight() )
-        {
+        if ($border->getRight()) {
             $borders['right'] = [
                 'color' => ['rgb' => $border->getRight()->getColor()],
                 'style' => $border->getRight()->getStyle(),
@@ -120,7 +123,7 @@ class StyleWriter extends AbstractStyleWriter {
 
         return [
             'borders',
-            $borders
+            $borders,
         ];
     }
 }

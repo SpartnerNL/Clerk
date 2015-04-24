@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk;
+<?php
+
+namespace Maatwebsite\Clerk;
 
 use Closure;
 use Maatwebsite\Excel\Files\File;
 
-class Document {
-
+class Document
+{
     /**
      * @var File
      */
@@ -34,7 +36,8 @@ class Document {
      */
     public function __call($method, $params)
     {
-        if ( method_exists($this->getFile(), $method) )
+        if (method_exists($this->getFile(), $method)) {
             call_user_func_array([$this->file, $method], $params);
+        }
     }
 }

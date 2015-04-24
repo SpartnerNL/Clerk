@@ -1,27 +1,32 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
 
 use DOMDocument;
-use Maatwebsite\Clerk\Excel\Sheet;
-use Maatwebsite\Clerk\Templates\Css\CssInliner;
-use Maatwebsite\Clerk\Exceptions\ExportFailedException;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements\Document;
+use Maatwebsite\Clerk\Excel\Sheet;
+use Maatwebsite\Clerk\Exceptions\ExportFailedException;
+use Maatwebsite\Clerk\Templates\Css\CssInliner;
 
-class HtmlToSheetConverter {
-
+class HtmlToSheetConverter
+{
     /**
-     * Convert html to a sheet
+     * Convert html to a sheet.
+     *
      * @param       $html
      * @param Sheet $sheet
-     * @return Sheet
+     *
      * @throws ExportFailedException
+     * @return Sheet
      */
     public function convert($html, Sheet $sheet)
     {
         $document = new DOMDocument();
 
         // Load the Html into the DOMDocument
-        if ( !$document->loadHTML($this->getNormalizedHtml($html), $this->getXmlReaderOptions()) )
+        if (!$document->loadHTML($this->getNormalizedHtml($html), $this->getXmlReaderOptions())) {
             throw new ExportFailedException('Failed to load the template');
+        }
 
         // Discard white space
         $document->preserveWhiteSpace = false;
@@ -37,6 +42,7 @@ class HtmlToSheetConverter {
 
     /**
      * @param $html
+     *
      * @return bool|mixed|string
      */
     public function getNormalizedHtml($html)
@@ -47,7 +53,8 @@ class HtmlToSheetConverter {
     }
 
     /**
-     * Get the reader options
+     * Get the reader options.
+     *
      * @return int
      */
     protected function getXmlReaderOptions()

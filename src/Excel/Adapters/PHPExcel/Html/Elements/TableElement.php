@@ -1,16 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements;
 
 use DOMNode;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class TableElement extends Element {
-
+class TableElement extends Element
+{
     /**
      * @param DOMNode        $node
      * @param ReferenceTable $table
+     *
      * @return mixed|void
      */
-    public function parse(DOMNode $node, ReferenceTable &$table)
+    public function parse(DOMNode $node, ReferenceTable & $table)
     {
         // Flush the table
         $this->flush($table);
@@ -20,8 +23,9 @@ class TableElement extends Element {
             $table->setStartColumn()
         );
 
-        if ( $table->getLevel() > 1 )
+        if ($table->getLevel() > 1) {
             $table->previousRow();
+        }
 
         // Parse next node
         $this->next($node, $table);
@@ -31,12 +35,9 @@ class TableElement extends Element {
             $table->releaseStartColumn()
         );
 
-        if ( $table->getLevel() > 1 )
-        {
+        if ($table->getLevel() > 1) {
             $table->nextColumn();
-        }
-        else
-        {
+        } else {
             $table->nextRow();
         }
     }

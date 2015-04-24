@@ -1,17 +1,20 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
+<?php
 
-use Maatwebsite\Clerk\Excel\Cell;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
+
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
+use Maatwebsite\Clerk\Excel\Cell;
 
-class BorderBottomStyle extends BorderStyle {
-
+class BorderBottomStyle extends BorderStyle
+{
     /**
      * @param Cell           $cell
      * @param                $value
      * @param ReferenceTable $table
+     *
      * @return mixed
      */
-    public function parse(Cell $cell, $value, ReferenceTable &$table)
+    public function parse(Cell $cell, $value, ReferenceTable & $table)
     {
         list($style, $color) = $this->analyseBorder($value);
 

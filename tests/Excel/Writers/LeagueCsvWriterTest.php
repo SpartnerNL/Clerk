@@ -1,11 +1,10 @@
 <?php
 
-use Mockery as m;
 use Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Writers\CsvWriter;
+use Mockery as m;
 
-class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase {
-
-
+class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase
+{
     public function setUp()
     {
         parent::setUp();
@@ -13,12 +12,10 @@ class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase {
         $this->workbook = m::mock('Maatwebsite\Clerk\Excel\Workbook');
     }
 
-
     public function tearDown()
     {
         m::close();
     }
-
 
     public function test_can_init()
     {
@@ -26,5 +23,4 @@ class LeagueCsvWriterTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Writer', $writer);
     }
-
 }

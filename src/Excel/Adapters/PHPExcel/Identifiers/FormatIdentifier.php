@@ -1,20 +1,20 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers;
 
 use PHPExcel_IOFactory;
 
 /**
- * Class FormatIdentifier
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Identifiers
+ * Class FormatIdentifier.
  */
-class FormatIdentifier {
-
+class FormatIdentifier
+{
     /**
-     * Available formats
+     * Available formats.
      *
      * @var array
-     * @access  protected
      */
-    protected $formats = array(
+    protected $formats = [
         'Excel2007',
         'Excel5',
         'Excel2003XML',
@@ -23,13 +23,16 @@ class FormatIdentifier {
         'Gnumeric',
         'CSV',
         'HTML',
-        'PDF'
-    );
+        'PDF',
+    ];
 
     /**
-     * Get the file format by file
+     * Get the file format by file.
+     *
      * @param string $file
+     *
      * @throws LaravelExcelException
+     *
      * @return string $format
      */
     public function getFormatByFile($file)
@@ -41,22 +44,24 @@ class FormatIdentifier {
         $format = $this->getFormatByExtension($ext);
 
         // Check if the file can be read
-        if ( $this->canRead($format, $file) )
+        if ($this->canRead($format, $file)) {
             return $format;
+        }
 
         // Do a last try to init the file with all available readers
         return $this->lastResort($file, $format, $ext);
     }
 
     /**
-     * Identify file format
+     * Identify file format.
+     *
      * @param string $ext
-     * @return  string $format
+     *
+     * @return string $format
      */
     public function getFormatByExtension($ext)
     {
-        switch ($ext)
-        {
+        switch ($ext) {
             /*
             |--------------------------------------------------------------------------
             | Excel 2007
@@ -131,14 +136,15 @@ class FormatIdentifier {
     }
 
     /**
-     * Get the content type by file format
-     * @param  string $format
+     * Get the content type by file format.
+     *
+     * @param string $format
+     *
      * @return string $contentType
      */
     public function getContentTypeByFormat($format)
     {
-        switch ($format)
-        {
+        switch ($format) {
             /*
             |--------------------------------------------------------------------------
             | Excel 2007
@@ -178,36 +184,39 @@ class FormatIdentifier {
     }
 
     /**
-     * Try every reader we have
-     * @param  string          $file
+     * Try every reader we have.
+     *
+     * @param string           $file
      * @param bool|null|string $wrongFormat
      * @param string           $ext
-     * @return string
+     *
      * @throws LaravelExcelException
+     * @return string
      */
     protected function lastResort($file, $wrongFormat = false, $ext = 'xls')
     {
         // Loop through all available formats
-        foreach ($this->formats as $format)
-        {
+        foreach ($this->formats as $format) {
             // Check if the file could be read
-            if ( $wrongFormat != $format && $this->canRead($format, $file) )
+            if ($wrongFormat != $format && $this->canRead($format, $file)) {
                 return $format;
+            }
         }
         // Give up searching and throw an exception
         throw new LaravelExcelException('[ERROR] Reader could not identify file format for file [' . $file . '] with extension [' . $ext . ']');
     }
 
     /**
-     * Check if we can read the file
+     * Check if we can read the file.
+     *
      * @param string $format
      * @param string $file
-     * @return boolean
+     *
+     * @return bool
      */
     protected function canRead($format, $file)
     {
-        if ( $format )
-        {
+        if ($format) {
             $reader = $this->initReader($format);
 
             return $reader && $reader->canRead($file);
@@ -217,8 +226,10 @@ class FormatIdentifier {
     }
 
     /**
-     * Init the reader based on the format
-     * @param  string $format
+     * Init the reader based on the format.
+     *
+     * @param string $format
+     *
      * @return \PHPExcel_Reader_IReader
      */
     protected function initReader($format)
@@ -227,8 +238,10 @@ class FormatIdentifier {
     }
 
     /**
-     * Get the file extension
-     * @param  string $file
+     * Get the file extension.
+     *
+     * @param string $file
+     *
      * @return string
      */
     protected function getExtension($file)

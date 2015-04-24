@@ -1,21 +1,22 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel;
 
 use Closure;
-use PHPExcel_Worksheet;
-use Maatwebsite\Clerk\Templates\TemplateFactory;
-use Maatwebsite\Clerk\Excel\Cell as CellInterface;
-use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
-use Maatwebsite\Clerk\Excel\Cells\Cell as AbstractCell;
-use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
-use Maatwebsite\Clerk\Excel\Sheets\Sheet as AbstractSheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\HtmlToSheetConverter;
+use Maatwebsite\Clerk\Excel\Cell as CellInterface;
+use Maatwebsite\Clerk\Excel\Cells\Cell as AbstractCell;
+use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
+use Maatwebsite\Clerk\Excel\Sheets\Sheet as AbstractSheet;
+use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
+use Maatwebsite\Clerk\Templates\TemplateFactory;
+use PHPExcel_Worksheet;
 
 /**
- * Class Sheet
- * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ * Class Sheet.
  */
-class Sheet extends AbstractSheet implements SheetInterface {
-
+class Sheet extends AbstractSheet implements SheetInterface
+{
     /**
      * @var PHPExcel_Worksheet
      */
@@ -24,18 +25,18 @@ class Sheet extends AbstractSheet implements SheetInterface {
     /**
      * @var array
      */
-    protected $cells = array();
+    protected $cells = [];
 
     /**
      * @var array
      */
-    protected $mergeCells = array();
+    protected $mergeCells = [];
 
     /**
-     * @param WorkbookInterface   $workbook
-     * @param                     $title
-     * @param Closure             $callback
-     * @param PHPExcel_Worksheet  $driver
+     * @param WorkbookInterface  $workbook
+     * @param                    $title
+     * @param Closure            $callback
+     * @param PHPExcel_Worksheet $driver
      */
     public function __construct(WorkbookInterface $workbook, $title = 'New sheet', Closure $callback = null, PHPExcel_Worksheet $driver = null)
     {
@@ -46,7 +47,8 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Get the sheet title
+     * Get the sheet title.
+     *
      * @return string
      */
     public function getTitle()
@@ -55,8 +57,10 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Set the sheet title
+     * Set the sheet title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -71,8 +75,9 @@ class Sheet extends AbstractSheet implements SheetInterface {
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison
-     * @return $this
+     *
      * @throws \PHPExcel_Exception
+     * @return $this
      */
     public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
     {
@@ -82,13 +87,15 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Load from template
+     * Load from template.
+     *
      * @param       $template
      * @param array $data
      * @param null  $engine
+     *
      * @return $this
      */
-    public function loadTemplate($template, array $data = array(), $engine = null)
+    public function loadTemplate($template, array $data = [], $engine = null)
     {
         // Init factory based on given engine, based on extension or use of default engine
         $factory = TemplateFactory::create($template, $engine);
@@ -106,24 +113,22 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Set height for a certain row
+     * Set height for a certain row.
+     *
      * @param string|array $row
-     * @param integer      $height
+     * @param int          $height
+     *
      * @return $this
      */
     public function setRowHeight($row, $height)
     {
         // if is array of columns
-        if ( is_array($row) )
-        {
+        if (is_array($row)) {
             // Set width for each column
-            foreach ($row as $subRow => $subValue)
-            {
+            foreach ($row as $subRow => $subValue) {
                 $this->setRowHeight($subRow, $subValue);
             }
-        }
-        else
-        {
+        } else {
             // Set column width
             $this->getDriver()
                  ->getRowDimension($row)
@@ -134,24 +139,22 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Set the column width
+     * Set the column width.
+     *
      * @param string|array $column
-     * @param integer      $width
+     * @param int          $width
+     *
      * @return $this
      */
     public function setColumnWidth($column, $width)
     {
         // if is array of columns
-        if ( is_array($column) )
-        {
+        if (is_array($column)) {
             // Set width for each column
-            foreach ($column as $subColumn => $subValue)
-            {
+            foreach ($column as $subColumn => $subValue) {
                 $this->setColumnWidth($subColumn, $subValue);
             }
-        }
-        else
-        {
+        } else {
             // Disable the autosize and set column width
             $this->getDriver()
                  ->getColumnDimension($column)
@@ -165,6 +168,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
     /**
      * @param string $range
      * @param bool   $alignment
+     *
      * @return $this
      */
     public function mergeCells($range = 'A1:A1', $alignment = false)
@@ -183,26 +187,24 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * New cell
-     * @param  array|string       $coordinate
+     * New cell.
+     *
+     * @param array|string        $coordinate
      * @param Closure|string|null $callback
+     *
      * @return $this
      */
     public function cell($coordinate, $callback = null)
     {
-        if ( $this->cellExists($coordinate) )
-        {
+        if ($this->cellExists($coordinate)) {
             $cell = $this->getCellByCoordinate($coordinate);
-        }
-        else
-        {
+        } else {
             $cell = new AbstractCell();
         }
 
         // If the cell already exists the driver (e.g. set with fromArray)
         // TODO: try to get rid of this
-        if ( $content = $this->getDriver()->getCell($coordinate) )
-        {
+        if ($content = $this->getDriver()->getCell($coordinate)) {
             $cell->setValue($content->getValue());
             $cell->setDataType($content->getDataType());
         }
@@ -210,12 +212,9 @@ class Sheet extends AbstractSheet implements SheetInterface {
         // Set coordinates
         $cell->setCoordinate($coordinate);
 
-        if ( is_callable($callback) )
-        {
+        if (is_callable($callback)) {
             $cell->call($callback);
-        }
-        elseif ( !is_null($callback) )
-        {
+        } elseif (!is_null($callback)) {
             $cell->setValue($callback);
         }
 
@@ -225,8 +224,10 @@ class Sheet extends AbstractSheet implements SheetInterface {
     }
 
     /**
-     * Add a cell
+     * Add a cell.
+     *
      * @param CellInterface $cell
+     *
      * @return mixed
      */
     public function addCell(CellInterface $cell)
@@ -244,6 +245,7 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
      * @param $coordinate
+     *
      * @return bool
      */
     public function cellExists($coordinate)
@@ -253,11 +255,13 @@ class Sheet extends AbstractSheet implements SheetInterface {
 
     /**
      * @param $coordinate
+     *
      * @return mixed
      */
     public function getCellByCoordinate($coordinate)
     {
-        if ( $this->cellExists($coordinate) )
+        if ($this->cellExists($coordinate)) {
             return $this->cells[$coordinate];
+        }
     }
 }

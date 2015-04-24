@@ -1,14 +1,15 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+<?php
 
-use PHPExcel_Writer_IWriter;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
+use PHPExcel_Writer_IWriter;
 
 /**
- * Class CsvWriter
- * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ * Class CsvWriter.
  */
-class CsvWriter extends Writer implements WriterInterface {
-
+class CsvWriter extends Writer implements WriterInterface
+{
     /**
      * @return PHPExcel_Writer_IWriter
      */
@@ -18,8 +19,7 @@ class CsvWriter extends Writer implements WriterInterface {
             $this->convertToDriver($this->getExportable())
         );
 
-        if ( $this->getType() == 'CSV' )
-        {
+        if ($this->getType() == 'CSV') {
             $writer->setDelimiter($this->getExportable()->getDelimiter());
             $writer->setEnclosure($this->getExportable()->getEnclosure());
             $writer->setLineEnding($this->getExportable()->getLineEnding());

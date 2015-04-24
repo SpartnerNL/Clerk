@@ -5,9 +5,8 @@ use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 
-class ColspanAttributeTest extends \PHPUnit_Framework_TestCase {
-
-
+class ColspanAttributeTest extends \PHPUnit_Framework_TestCase
+{
     public function test_if_colspan_attribute_gets_translated_to_merged_cells()
     {
         $table = new ReferenceTable();
@@ -20,7 +19,7 @@ class ColspanAttributeTest extends \PHPUnit_Framework_TestCase {
         // Fake as if we are inside a <tr>
         $table->nextRow();
 
-        $node = new \DOMAttr('colspan', 3);
+        $node  = new \DOMAttr('colspan', 3);
         $sheet = $this->mockSheet();
 
         $attribute = new ColspanAttribute($sheet);

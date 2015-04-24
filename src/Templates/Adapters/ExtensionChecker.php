@@ -1,24 +1,24 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Adapters;
 
 /**
- * Class ExtensionChecker
- * @package Maatwebsite\Clerk\Templates\Adapters
+ * Class ExtensionChecker.
  */
-trait ExtensionChecker {
-
+trait ExtensionChecker
+{
     /**
-     * Get file
+     * Get file.
+     *
      * @param $file
+     *
      * @return string|null
      */
     protected function getFile($file)
     {
-        if ( $this->hasExtension($file) )
-        {
+        if ($this->hasExtension($file)) {
             return $file;
-        }
-        else
-        {
+        } else {
             // Append the extension
             return rtrim($file, '.') . '.' . $this->extension;
         }
@@ -26,6 +26,7 @@ trait ExtensionChecker {
 
     /**
      * @param $file
+     *
      * @return bool
      */
     protected function hasExtension($file)

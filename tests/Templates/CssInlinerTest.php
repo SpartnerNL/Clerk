@@ -2,8 +2,8 @@
 
 use Maatwebsite\Clerk\Templates\Css\CssInliner;
 
-class CssInlinerTest extends \PHPUnit_Framework_TestCase {
-
+class CssInlinerTest extends \PHPUnit_Framework_TestCase
+{
     public function test_inline_style_blocks_get_inlined()
     {
         $html = '<style>
@@ -20,7 +20,6 @@ class CssInlinerTest extends \PHPUnit_Framework_TestCase {
 <html><head><style></style></head><body><table style="background: #000000;"></table></body></html>
 ', $inlined);
     }
-
 
     public function test_css_from_style_sheets_links_get_inlined()
     {

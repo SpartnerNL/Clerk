@@ -1,7 +1,9 @@
-<?php namespace Maatwebsite\Clerk\Writers;
+<?php
 
-abstract class Writer {
+namespace Maatwebsite\Clerk\Writers;
 
+abstract class Writer
+{
     /**
      * @var Exportable
      */
@@ -18,19 +20,20 @@ abstract class Writer {
     protected $type;
 
     /**
-     * @param                   $type
-     * @param                   $extension
-     * @param Exportable        $exportable
+     * @param            $type
+     * @param            $extension
+     * @param Exportable $exportable
      */
     public function __construct($type, $extension, Exportable $exportable)
     {
-        $this->extension = $extension;
-        $this->type = $type;
+        $this->extension  = $extension;
+        $this->type       = $type;
         $this->exportable = $exportable;
     }
 
     /**
      * @param null $filename
+     *
      * @return mixed
      */
     abstract public function export($filename = null);
@@ -60,7 +63,8 @@ abstract class Writer {
     }
 
     /**
-     * Get title
+     * Get title.
+     *
      * @return string
      */
     public function getTitle()
@@ -70,16 +74,17 @@ abstract class Writer {
 
     /**
      * @param string|null $filename
+     *
      * @return string
      */
     protected function getFilename($filename = null)
     {
-        if ( !$filename )
+        if (!$filename) {
             return $this->getTitle();
+        }
 
         // Strip of file extensions
-        if ( strpos($filename, '.') !== false )
-        {
+        if (strpos($filename, '.') !== false) {
             return preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
         }
 
@@ -88,14 +93,16 @@ abstract class Writer {
 
     /**
      * @param $headers
+     *
      * @throws \Exception
      */
     protected function sendHeaders($headers)
     {
-        if ( headers_sent() ) throw new \Exception('Headers already sent');
+        if (headers_sent()) {
+            throw new \Exception('Headers already sent');
+        }
 
-        foreach ($headers as $header => $value)
-        {
+        foreach ($headers as $header => $value) {
             header($header . ': ' . $value);
         }
     }

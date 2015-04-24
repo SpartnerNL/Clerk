@@ -1,55 +1,54 @@
-<?php namespace Maatwebsite\Clerk;
+<?php
+
+namespace Maatwebsite\Clerk;
 
 use ArrayAccess;
 
 /**
- * Class Ledger
- * @package Maatwebsite\Clerk
- * Based on Laravel 5 Config Repository
+ * Class Ledger.
  */
-class Ledger implements ArrayAccess {
-
+class Ledger implements ArrayAccess
+{
     /**
      * All of the configuration items.
      *
      * @var array
      */
-    protected $items = array(
+    protected $items = [
 
-        'drivers'   => array(
+        'drivers'   => [
             'csv'       => 'LeagueCsv',
             'excel2003' => 'PHPExcel',
             'excel2007' => 'PHPExcel',
             'word2003'  => 'PHPWord',
             'word2007'  => 'PHPWord',
-        ),
-
-        'csv'       => array(
+        ],
+        'csv'       => [
             'delimiter'   => ',',
             'enclosure'   => '"',
             'line_ending' => "\r\n",
-            'encoding'    => 'UTF-8'
-        ),
-
-        'templates' => array(
+            'encoding'    => 'UTF-8',
+        ],
+        'templates' => [
             'default' => 'php',
-            'engines' => array(
+            'engines' => [
                 'blade'  => '.blade',
                 'twig'   => '.html',
                 'smarty' => '.tpl',
-                'php'    => '.php'
-            ),
+                'php'    => '.php',
+            ],
             'path'    => 'templates',
             'cache'   => 'template/.cache',
             'compile' => 'templates/.compiled',
-            'config'  => 'templates/config'
-        )
-    );
+            'config'  => 'templates/config',
+        ],
+    ];
 
     /**
      * Determine if the given configuration value exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function hasConfig($key)
@@ -60,8 +59,9 @@ class Ledger implements ArrayAccess {
     /**
      * Get the specified configuration value.
      *
-     * @param  string $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function getConfig($key, $default = null)
@@ -72,21 +72,16 @@ class Ledger implements ArrayAccess {
     /**
      * Set a given configuration value.
      *
-     * @param  array|string $key
-     * @param  mixed        $value
-     * @return void
+     * @param array|string $key
+     * @param mixed        $value
      */
     public function setConfig($key, $value = null)
     {
-        if ( is_array($key) )
-        {
-            foreach ($key as $innerKey => $innerValue)
-            {
+        if (is_array($key)) {
+            foreach ($key as $innerKey => $innerValue) {
                 array_set($this->items, $innerKey, $innerValue);
             }
-        }
-        else
-        {
+        } else {
             array_set($this->items, $key, $value);
         }
     }
@@ -104,7 +99,8 @@ class Ledger implements ArrayAccess {
     /**
      * Determine if the given configuration option exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -115,7 +111,8 @@ class Ledger implements ArrayAccess {
     /**
      * Get a configuration option.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -126,9 +123,8 @@ class Ledger implements ArrayAccess {
     /**
      * Set a configuration option.
      *
-     * @param  string $key
-     * @param  mixed  $value
-     * @return void
+     * @param string $key
+     * @param mixed  $value
      */
     public function offsetSet($key, $value)
     {
@@ -138,8 +134,7 @@ class Ledger implements ArrayAccess {
     /**
      * Unset a configuration option.
      *
-     * @param  string $key
-     * @return void
+     * @param string $key
      */
     public function offsetUnset($key)
     {
@@ -153,8 +148,9 @@ class Ledger implements ArrayAccess {
     {
         static $instance = null;
 
-        if ( null === $instance )
+        if (null === $instance) {
             $instance = new static();
+        }
 
         return $instance;
     }
@@ -162,6 +158,7 @@ class Ledger implements ArrayAccess {
     /**
      * @param $method
      * @param $params
+     *
      * @return mixed
      */
     public static function __callStatic($method, $params)

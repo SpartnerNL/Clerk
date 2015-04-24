@@ -2,8 +2,8 @@
 
 use Maatwebsite\Clerk\Excel\Workbooks\WorkbookFactory;
 
-class WorkbookFactoryTest extends \PHPUnit_Framework_TestCase {
-
+class WorkbookFactoryTest extends \PHPUnit_Framework_TestCase
+{
     public function test_factory_returns_workbook()
     {
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Workbook', WorkbookFactory::create('PHPExcel', 'title'));
@@ -11,7 +11,6 @@ class WorkbookFactoryTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Workbook', WorkbookFactory::create('LeagueCsv', 'title'));
     }
-
 
     public function test_factory_returns_exception_when_trying_to_use_nonexisting_driver()
     {

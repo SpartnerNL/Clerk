@@ -1,21 +1,22 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
 
 use Closure;
+use Maatwebsite\Clerk\Adapter;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;
+use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 use PHPExcel;
 use PHPExcel_IOFactory;
-use Maatwebsite\Clerk\Adapter;
-use Maatwebsite\Clerk\Traits\CallableTrait;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
-use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;
 
 /**
- * Class Reader
- * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ * Class Reader.
  */
-class Reader extends Adapter implements ReaderInterface {
-
-    /**
+class Reader extends Adapter implements ReaderInterface
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -49,7 +50,8 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set the writer
+     * Set the writer.
+     *
      * @param $type
      */
     protected function setWriter($type)
@@ -58,7 +60,8 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Settings
+     * Settings.
+     *
      * @return ParserSettings
      */
     public function settings()
@@ -67,11 +70,13 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Get all sheets/rows
+     * Get all sheets/rows.
+     *
      * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function get($columns = array())
+    public function get($columns = [])
     {
         // Load the file
         $this->driver = $this->reader->load($this->file);
@@ -83,8 +88,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Take x rows
-     * @param  int $amount
+     * Take x rows.
+     *
+     * @param int $amount
+     *
      * @return $this
      */
     public function take($amount)
@@ -95,8 +102,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Skip x rows
-     * @param  int $amount
+     * Skip x rows.
+     *
+     * @param int $amount
+     *
      * @return $this
      */
     public function skip($amount)
@@ -107,9 +116,11 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Limit the results by x
-     * @param  int $take
-     * @param  int $skip
+     * Limit the results by x.
+     *
+     * @param int $take
+     * @param int $skip
+     *
      * @return $this
      */
     public function limit($take, $skip = 0)
@@ -124,11 +135,13 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Select certain columns
-     * @param  array $columns
+     * Select certain columns.
+     *
+     * @param array $columns
+     *
      * @return $this
      */
-    public function select($columns = array())
+    public function select($columns = [])
     {
         $this->settings()->setColumns($columns);
 
@@ -136,31 +149,36 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Return all sheets/rows
-     * @param  array $columns
+     * Return all sheets/rows.
+     *
+     * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function all($columns = array())
+    public function all($columns = [])
     {
         return $this->get($columns);
     }
 
     /**
-     * Get first row/sheet only
-     * @param  array $columns
+     * Get first row/sheet only.
+     *
+     * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function first($columns = array())
+    public function first($columns = [])
     {
         return $this->take(1)->get($columns)->first();
     }
 
     /**
-     * Parse the file in chunks
+     * Parse the file in chunks.
+     *
      * @param int $size
      * @param     $callback
+     *
      * @throws \Exception
-     * @return void
      */
     public function chunk($size = 10, $callback = null)
     {
@@ -168,8 +186,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Each
-     * @param  Closure $callback
+     * Each.
+     *
+     * @param Closure $callback
+     *
      * @return \Illuminate\Support\Collection
      */
     public function each(Closure $callback)
@@ -179,20 +199,24 @@ class Reader extends Adapter implements ReaderInterface {
 
     /**
      *  Parse the file to an array.
-     * @param  array $columns
+     *
+     * @param array $columns
+     *
      * @return array
      */
-    public function toArray($columns = array())
+    public function toArray($columns = [])
     {
         return (array) $this->get($columns)->toArray();
     }
 
     /**
-     * Select sheets by their indices
+     * Select sheets by their indices.
+     *
      * @param array $sheets
+     *
      * @return Reader
      */
-    public function selectSheets($sheets = array())
+    public function selectSheets($sheets = [])
     {
         $this->settings()->setSheetIndices($sheets);
 
@@ -200,8 +224,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Ignore empty cells
+     * Ignore empty cells.
+     *
      * @param $value
+     *
      * @return ParserSettings
      */
     public function ignoreEmpty($value)
@@ -210,8 +236,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set the date format
+     * Set the date format.
+     *
      * @param $format
+     *
      * @return mixed
      */
     public function setDateFormat($format)
@@ -220,18 +248,22 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set date columns
+     * Set date columns.
+     *
      * @param array $columns
+     *
      * @return ParserSettings
      */
-    public function setDateColumns($columns = array())
+    public function setDateColumns($columns = [])
     {
         return $this->settings()->setDateColumns($columns);
     }
 
     /**
-     * Workbook needs date formatting
+     * Workbook needs date formatting.
+     *
      * @param $state
+     *
      * @return ParserSettings
      */
     public function needsDateFormatting($state)
@@ -240,8 +272,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set the heading row
+     * Set the heading row.
+     *
      * @param $row
+     *
      * @return ParserSettings
      */
     public function setHeadingRow($row)
@@ -250,8 +284,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Has heading row
+     * Has heading row.
+     *
      * @param $state
+     *
      * @return ParserSettings
      */
     public function hasHeading($state)
@@ -260,8 +296,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set the heading type
+     * Set the heading type.
+     *
      * @param $type
+     *
      * @return ParserSettings
      */
     public function setHeadingType($type)
@@ -270,8 +308,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Set separator
+     * Set separator.
+     *
      * @param $separator
+     *
      * @return ParserSettings
      */
     public function setSeparator($separator)
@@ -280,8 +320,10 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Calculate cell values
+     * Calculate cell values.
+     *
      * @param $state
+     *
      * @return ParserSettings
      */
     public function calculate($state)
@@ -290,15 +332,16 @@ class Reader extends Adapter implements ReaderInterface {
     }
 
     /**
-     * Get the current filename
+     * Get the current filename.
+     *
      * @return mixed
      */
     public function getFileName()
     {
-        $filename = $this->file;
-        $segments = explode('/', $filename);
-        $file = end($segments);
-        list($name,) = explode('.', $file);
+        $filename   = $this->file;
+        $segments   = explode('/', $filename);
+        $file       = end($segments);
+        list($name) = explode('.', $file);
 
         return $name;
     }
@@ -322,15 +365,18 @@ class Reader extends Adapter implements ReaderInterface {
     /**
      * @param $method
      * @param $params
+     *
      * @return mixed
      */
     public function __call($method, $params)
     {
-        if ( method_exists($this->settings(), $method) )
+        if (method_exists($this->settings(), $method)) {
             return call_user_func_array([$this->settings(), $method], $params);
+        }
 
-        if ( method_exists($this->getReader(), $method) )
+        if (method_exists($this->getReader(), $method)) {
             return call_user_func_array([$this->getReader(), $method], $params);
+        }
 
         parent::__call($method, $params);
     }

@@ -1,17 +1,18 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel;
+<?php
 
-use PHPExcel_Cell;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel;
+
 use Carbon\Carbon;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+use PHPExcel_Cell;
 use PHPExcel_Shared_Date;
 use PHPExcel_Style_NumberFormat;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
 /**
- * Class Cell
- * @package Maatwebsite\Clerk\Adapters\PHPExcel
+ * Class Cell.
  */
-class Cell {
-
+class Cell
+{
     /**
      * @var PHPExcel_Cell
      */
@@ -23,7 +24,7 @@ class Cell {
     protected $settings;
 
     /**
-     * @var string|integer
+     * @var string|int
      */
     protected $index;
 
@@ -34,9 +35,9 @@ class Cell {
      */
     public function __construct(PHPExcel_Cell $cell, $index, ParserSettings $settings)
     {
-        $this->cell = $cell;
+        $this->cell     = $cell;
         $this->settings = $settings;
-        $this->index = $index;
+        $this->index    = $index;
     }
 
     /**
@@ -44,22 +45,18 @@ class Cell {
      */
     public function getValue()
     {
-        if ( $this->cellIsDate() )
-        {
+        if ($this->cellIsDate()) {
             return $this->getDateValue();
-        }
-        elseif ( $this->needsCalculatedValue() )
-        {
+        } elseif ($this->needsCalculatedValue()) {
             return $this->getCalculatedValue();
-        }
-        else
-        {
+        } else {
             return $this->getCellValue();
         }
     }
 
     /**
-     * Get cell
+     * Get cell.
+     *
      * @return PHPExcel_Cell
      */
     public function getCell()
@@ -67,9 +64,9 @@ class Cell {
         return $this->cell;
     }
 
-
     /**
-     * Get calculated cell value
+     * Get calculated cell value.
+     *
      * @return string
      */
     public function getCalculatedValue()
@@ -78,7 +75,8 @@ class Cell {
     }
 
     /**
-     * Get cell value
+     * Get cell value.
+     *
      * @return string
      */
     public function getCellValue()
@@ -87,33 +85,31 @@ class Cell {
     }
 
     /**
-     * Parse the date
+     * Parse the date.
+     *
      * @return Carbon|string
      */
     public function getDateValue()
     {
         // If the date needs formatting
-        if ( $this->settings->getNeedsDateFormatting() )
-        {
+        if ($this->settings->getNeedsDateFormatting()) {
             // Parse the date with carbon
             return $this->parseDateAsCarbon();
-        }
-        else
-        {
+        } else {
             // Parse the date as a normal string
             return $this->parseDateAsString();
         }
     }
 
     /**
-     * Parse and return carbon object or formatted time string
+     * Parse and return carbon object or formatted time string.
+     *
      * @return Carbon
      */
     protected function parseDateAsCarbon()
     {
         // If has a date
-        if ( $cellContent = $this->cell->getFormattedValue() )
-        {
+        if ($cellContent = $this->cell->getFormattedValue()) {
             // Convert excel time to php date object
             $date = PHPExcel_Shared_Date::ExcelToPHPObject($cellContent)->format('Y-m-d H:i:s');
 
@@ -124,11 +120,12 @@ class Cell {
             return $this->settings->getDateFormat() ? $date->format($this->settings->getDateFormat()) : $date;
         }
 
-        return null;
+        return;
     }
 
     /**
-     * Return date string
+     * Return date string.
+     *
      * @return string
      */
     protected function parseDateAsString()
@@ -144,24 +141,23 @@ class Cell {
     }
 
     /**
-     * Check if the cell is a date
+     * Check if the cell is a date.
+     *
      * @return bool
      */
     protected function cellIsDate()
     {
         // For date formatting for certain given columns
-        if ( $this->settings->getDateColumns() )
-        {
+        if ($this->settings->getDateColumns()) {
             return in_array($this->index, $this->settings->getDateColumns());
-        }
-        else
-        {
+        } else {
             return PHPExcel_Shared_Date::isDateTime($this->cell);
         }
     }
 
     /**
-     * Check if cell needs calculating
+     * Check if cell needs calculating.
+     *
      * @return bool
      */
     protected function needsCalculatedValue()
@@ -170,14 +166,16 @@ class Cell {
     }
 
     /**
-     * Dynamic calls
+     * Dynamic calls.
+     *
      * @param $method
      * @param $params
      */
     public function __call($method, $params)
     {
-        if ( method_exists($this->getCell(), $method) )
+        if (method_exists($this->getCell(), $method)) {
             call_user_func_array([$this->getCell(), $method], $params);
+        }
 
         throw new \BadMethodCallException("[{$method}] does not exist on the Cell object");
     }

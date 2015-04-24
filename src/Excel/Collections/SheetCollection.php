@@ -1,9 +1,10 @@
-<?php namespace Maatwebsite\Clerk\Excel\Collections;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Collections;
 
 /**
- * Class SheetCollection
- * @package Maatwebsite\Clerk\Collections
+ * Class SheetCollection.
  */
-class SheetCollection extends ExcelCollection {
-
+class SheetCollection extends ExcelCollection
+{
 }

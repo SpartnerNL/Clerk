@@ -1,13 +1,15 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Smarty;
+<?php
 
-use Smarty;
+namespace Maatwebsite\Clerk\Templates\Adapters\Smarty;
+
 use Maatwebsite\Clerk\Ledger;
-use Maatwebsite\Clerk\Templates\Factory;
 use Maatwebsite\Clerk\Templates\Adapters\ExtensionChecker;
+use Maatwebsite\Clerk\Templates\Factory;
+use Smarty;
 
-class SmartyFactory implements Factory {
-
-    /**
+class SmartyFactory implements Factory
+{
+    /*
      * Traits
      */
     use ExtensionChecker;
@@ -28,7 +30,7 @@ class SmartyFactory implements Factory {
     protected $extension = 'tpl';
 
     /**
-     * Construct
+     * Construct.
      */
     public function __construct()
     {
@@ -40,12 +42,14 @@ class SmartyFactory implements Factory {
     }
 
     /**
-     * Make the view
+     * Make the view.
+     *
      * @param string $file
      * @param array  $data
+     *
      * @return $this
      */
-    public function make($file, array $data = array())
+    public function make($file, array $data = [])
     {
         $this->file = $file;
 
@@ -56,7 +60,8 @@ class SmartyFactory implements Factory {
     }
 
     /**
-     * Render the template
+     * Render the template.
+     *
      * @return string
      */
     public function render()

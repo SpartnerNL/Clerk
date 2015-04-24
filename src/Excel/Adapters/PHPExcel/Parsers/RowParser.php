@@ -1,17 +1,18 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+<?php
 
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Cell;
+use Maatwebsite\Clerk\Excel\Collections\CellCollection;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 use PHPExcel_Cell;
 use PHPExcel_Worksheet_Row;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Cell;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
-use Maatwebsite\Clerk\Excel\Collections\CellCollection;
 
 /**
- * Class RowParser
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ * Class RowParser.
  */
-class RowParser {
-
+class RowParser
+{
     /**
      * @var ParserSettings
      */
@@ -26,14 +27,15 @@ class RowParser {
      * @param ParserSettings $settings
      * @param array          $heading
      */
-    public function __construct(ParserSettings $settings, array $heading = array())
+    public function __construct(ParserSettings $settings, array $heading = [])
     {
         $this->settings = $settings;
-        $this->heading = $heading;
+        $this->heading  = $heading;
     }
 
     /**
      * @param PHPExcel_Worksheet_Row $row
+     *
      * @return CellCollection
      */
     public function parse(PHPExcel_Worksheet_Row $row)
@@ -41,10 +43,9 @@ class RowParser {
         $iterator = $row->getCellIterator();
         $iterator->setIterateOnlyExistingCells($this->settings->getIgnoreEmpty());
 
-        $cells = array();
+        $cells = [];
 
-        foreach ($iterator as $index => $cell)
-        {
+        foreach ($iterator as $index => $cell) {
             $index = ($this->settings->getHasHeading() && isset($this->heading[$index])) ? $this->heading[$index] : $this->getIndexFromColumn($cell);
 
             $cells[$index] = new Cell($cell, $index, $this->settings);
@@ -54,8 +55,10 @@ class RowParser {
     }
 
     /**
-     * Get index from column
+     * Get index from column.
+     *
      * @param $cell
+     *
      * @return mixed
      */
     protected function getIndexFromColumn($cell)

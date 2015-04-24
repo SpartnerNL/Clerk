@@ -1,25 +1,30 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
+<?php
 
-use Maatwebsite\Clerk\Excel\Sheet;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
+
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles\Style;
+use Maatwebsite\Clerk\Excel\Sheet;
 
-class StyleParserFactory {
-
+class StyleParserFactory
+{
     /**
      * @param string $style
      * @param Sheet  $sheet
+     *
      * @return Style|null
      */
     public static function create($style, Sheet $sheet)
     {
         $class = self::getClass($style);
 
-        if ( class_exists($class) )
+        if (class_exists($class)) {
             return new $class($sheet);
+        }
     }
 
     /**
      * @param string $style
+     *
      * @return string
      */
     protected static function getClass($style)

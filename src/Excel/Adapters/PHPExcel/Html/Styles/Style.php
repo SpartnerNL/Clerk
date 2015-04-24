@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
+<?php
 
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
+
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Cell;
 use Maatwebsite\Clerk\Excel\Sheet;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-abstract class Style {
-
+abstract class Style
+{
     /**
      * @var Sheet
      */
@@ -14,7 +16,7 @@ abstract class Style {
     /**
      * @param Sheet $sheet
      */
-    public function __construct(Sheet &$sheet)
+    public function __construct(Sheet & $sheet)
     {
         $this->sheet = $sheet;
     }
@@ -23,7 +25,8 @@ abstract class Style {
      * @param Cell           $cell
      * @param                $value
      * @param ReferenceTable $table
+     *
      * @return mixed
      */
-    abstract public function parse(Cell $cell, $value, ReferenceTable &$table);
+    abstract public function parse(Cell $cell, $value, ReferenceTable & $table);
 }

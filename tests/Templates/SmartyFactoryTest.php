@@ -3,9 +3,8 @@
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Adapters\Smarty\SmartyFactory;
 
-class SmartyFactoryTest extends \PHPUnit_Framework_TestCase {
-
-
+class SmartyFactoryTest extends \PHPUnit_Framework_TestCase
+{
     public function setUp()
     {
         Ledger::set('templates.path', __DIR__ . '/files');
@@ -13,7 +12,6 @@ class SmartyFactoryTest extends \PHPUnit_Framework_TestCase {
         Ledger::set('templates.compile', __DIR__ . '/files/.cache');
         Ledger::set('templates.config', __DIR__ . '/files/.cache');
     }
-
 
     public function test_render_a_template()
     {

@@ -1,14 +1,17 @@
-<?php namespace Maatwebsite\Clerk\Templates;
+<?php
+
+namespace Maatwebsite\Clerk\Templates;
 
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
-class TemplateFactory {
-
+class TemplateFactory
+{
     /**
      * @param string      $template
      * @param string|null $engine
-     * @return mixed
+     *
      * @throws DriverNotFoundException
+     * @return mixed
      */
     public static function create($template, $engine = null)
     {
@@ -18,14 +21,16 @@ class TemplateFactory {
         // Get factory class
         $class = self::getFactoryClass($engine);
 
-        if ( class_exists($class) )
+        if (class_exists($class)) {
             return new $class();
+        }
 
         throw new DriverNotFoundException("Template factory [{$engine}] was not found");
     }
 
     /**
      * @param string $engine
+     *
      * @return string
      */
     protected static function getFactoryClass($engine)

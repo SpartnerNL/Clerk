@@ -1,20 +1,18 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements\TableElement;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class TableElementTest extends \PHPUnit_Framework_TestCase {
-
-
+class TableElementTest extends \PHPUnit_Framework_TestCase
+{
     public function tearDown()
     {
         \Mockery::close();
     }
 
-
     public function test_table_gets_parsed()
     {
-        $dom = new \DOMElement('table', '');
+        $dom   = new \DOMElement('table', '');
         $table = new ReferenceTable();
         $sheet = $this->mockSheet();
 
@@ -25,7 +23,6 @@ class TableElementTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals(1, $table->getRow());
     }
-
 
     /**
      * @return \Maatwebsite\Clerk\Sheet

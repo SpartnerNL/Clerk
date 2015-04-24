@@ -1,14 +1,15 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
 
 use Illuminate\Support\Str;
 use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
 /**
- * Class HeadingParser
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ * Class HeadingParser.
  */
-class HeadingParser {
-
+class HeadingParser
+{
     /**
      * @var ParserSettings
      */
@@ -24,16 +25,19 @@ class HeadingParser {
 
     /**
      * @param \PHPExcel_Worksheet $sheet
+     *
      * @return array
      */
     public function parse(\PHPExcel_Worksheet $sheet)
     {
-        return $this->settings->getHasHeading() ? $this->getHeading($sheet) : array();
+        return $this->settings->getHasHeading() ? $this->getHeading($sheet) : [];
     }
 
     /**
-     * Get the heading
+     * Get the heading.
+     *
      * @param \PHPExcel_Worksheet $worksheet
+     *
      * @return array
      */
     protected function getHeading($worksheet)
@@ -42,21 +46,21 @@ class HeadingParser {
         $row = $worksheet->getRowIterator($this->settings->getHeadingRow())->current();
 
         // Set empty labels array
-        $heading = array();
+        $heading = [];
 
         // Loop through the cells
-        foreach ($row->getCellIterator() as $cell)
-        {
+        foreach ($row->getCellIterator() as $cell) {
             $heading[] = $this->getIndex($cell);
         }
 
         return $heading;
     }
 
-
     /**
-     * Get index
+     * Get index.
+     *
      * @param  $cell
+     *
      * @return string
      */
     protected function getIndex($cell)
@@ -67,8 +71,7 @@ class HeadingParser {
         // Get value
         $value = $this->getOriginalIndex($cell);
 
-        switch ($config)
-        {
+        switch ($config) {
             case 'slugged':
                 return $this->getSluggedIndex($value, $this->settings->getAscii());
 
@@ -87,9 +90,11 @@ class HeadingParser {
     }
 
     /**
-     * Get slugged index
-     * @param  string $value
-     * @param bool    $ascii
+     * Get slugged index.
+     *
+     * @param string $value
+     * @param bool   $ascii
+     *
      * @return string
      */
     protected function getSluggedIndex($value, $ascii = false)
@@ -98,11 +103,12 @@ class HeadingParser {
         $separator = $this->settings->getSeparator();
 
         // Convert to ascii when needed
-        if ( $ascii )
+        if ($ascii) {
             $value = $this->getAsciiIndex($value);
+        }
 
         // Convert all dashes/underscores into separator
-        $flip = $separator == '-' ? '_' : '-';
+        $flip  = $separator == '-' ? '_' : '-';
         $value = preg_replace('![' . preg_quote($flip) . ']+!u', $separator, $value);
 
         // Remove all characters that are not the separator, letters, numbers, or whitespace.
@@ -115,8 +121,10 @@ class HeadingParser {
     }
 
     /**
-     * Get ASCII index
-     * @param  string $value
+     * Get ASCII index.
+     *
+     * @param string $value
+     *
      * @return string
      */
     protected function getAsciiIndex($value)
@@ -125,8 +133,10 @@ class HeadingParser {
     }
 
     /**
-     * Hahsed index
-     * @param  string $value
+     * Hahsed index.
+     *
+     * @param string $value
+     *
      * @return string
      */
     protected function getHashedIndex($value)
@@ -135,19 +145,24 @@ class HeadingParser {
     }
 
     /**
-     * Get translated index
-     * @param  string $value
+     * Get translated index.
+     *
+     * @param string $value
+     *
      * @return string
      */
     protected function getTranslatedIndex($value)
     {
-        if ( function_exists('trans') )
+        if (function_exists('trans')) {
             return trans($value);
+        }
     }
 
     /**
-     * Get orignal indice
+     * Get orignal indice.
+     *
      * @param $cell
+     *
      * @return string
      */
     protected function getOriginalIndex($cell)

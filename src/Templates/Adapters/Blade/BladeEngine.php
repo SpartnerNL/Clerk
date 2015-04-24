@@ -1,46 +1,51 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Blade;
+<?php
 
+namespace Maatwebsite\Clerk\Templates\Adapters\Blade;
+
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\Engines\CompilerEngine;
+use Illuminate\View\Engines\EngineResolver;
+use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\View\Engines\PhpEngine;
-use Illuminate\View\Engines\EngineResolver;
-use Illuminate\View\Engines\CompilerEngine;
-use Illuminate\View\Compilers\BladeCompiler;
 
-class BladeEngine {
-
+class BladeEngine
+{
     /**
      * @var Filesystem
      */
     protected $files;
 
     /**
-     * Array containing paths where to look for blade files
+     * Array containing paths where to look for blade files.
+     *
      * @var array
      */
     public $viewPaths;
 
     /**
-     * Location where to store cached views
+     * Location where to store cached views.
+     *
      * @var string
      */
     public $cachePath;
 
     /**
-     * Initialize class
+     * Initialize class.
+     *
      * @param array  $viewPaths
      * @param string $cachePath
      */
-    function __construct($viewPaths = array(), $cachePath)
+    public function __construct($viewPaths = [], $cachePath)
     {
-        $this->files = new FileSystem;
+        $this->files     = new FileSystem();
         $this->viewPaths = (array) $viewPaths;
         $this->cachePath = $cachePath;
     }
 
     /**
-     * Get the factory
+     * Get the factory.
      */
     public function getFactory()
     {
@@ -65,17 +70,15 @@ class BladeEngine {
      */
     public function getEngineResolver()
     {
-        $resolver = new EngineResolver;
+        $resolver = new EngineResolver();
 
         // Add PhpEngine
-        $resolver->register('php', function ()
-        {
-            return new PhpEngine;
+        $resolver->register('php', function () {
+            return new PhpEngine();
         });
 
         // Add Blade compiler engine
-        $resolver->register('blade', function ()
-        {
+        $resolver->register('blade', function () {
             $compiler = new BladeCompiler(
                 $this->files,
                 $this->cachePath

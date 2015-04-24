@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Templates\Css;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Css;
 
 use DOMDocument;
 use SimpleXMLElement;
 
-class StylesheetExtractor {
-
+class StylesheetExtractor
+{
     /**
      * @var string
      */
@@ -34,9 +36,8 @@ class StylesheetExtractor {
     {
         $links = [];
 
-        foreach ($this->findByStylesheetTag() as $node)
-        {
-            $link = $this->getCleanStylesheetLink($node);
+        foreach ($this->findByStylesheetTag() as $node) {
+            $link         = $this->getCleanStylesheetLink($node);
             $links[$link] = $this->getCssFromLink($link);
         }
 
@@ -44,7 +45,8 @@ class StylesheetExtractor {
     }
 
     /**
-     * Find the stylesheet path
+     * Find the stylesheet path.
+     *
      * @return \SimpleXMLElement[]
      */
     protected function findByStylesheetTag()
@@ -53,8 +55,10 @@ class StylesheetExtractor {
     }
 
     /**
-     * Get clean stylesheet link
+     * Get clean stylesheet link.
+     *
      * @param  $node
+     *
      * @return string
      */
     protected function getCleanStylesheetLink($node)
@@ -66,8 +70,10 @@ class StylesheetExtractor {
     }
 
     /**
-     * Get css from link
-     * @param  string $link
+     * Get css from link.
+     *
+     * @param string $link
+     *
      * @return string
      */
     protected function getCssFromLink($link)

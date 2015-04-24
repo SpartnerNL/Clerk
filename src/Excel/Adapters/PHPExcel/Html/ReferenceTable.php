@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html;
 
 use DOMNode;
 
-class ReferenceTable {
-
+class ReferenceTable
+{
     /**
      * @var int
      */
@@ -51,25 +53,24 @@ class ReferenceTable {
     }
 
     /**
-     * Increment the row
+     * Increment the row.
+     *
      * @param int $amount
      */
     public function nextRow($amount = 1)
     {
-        for ($i = 0; $i < $amount; $i++)
-        {
+        for ($i = 0; $i < $amount; $i++) {
             $this->row++;
         }
     }
 
     /**
-     * Increment the row
+     * Increment the row.
      */
     public function previousRow()
     {
         $this->row--;
     }
-
 
     /**
      * @return mixed
@@ -88,19 +89,19 @@ class ReferenceTable {
     }
 
     /**
-     * Increment the column
+     * Increment the column.
+     *
      * @param int $amount
      */
     public function nextColumn($amount = 1)
     {
-        for ($i = 0; $i < $amount; $i++)
-        {
+        for ($i = 0; $i < $amount; $i++) {
             $this->column++;
         }
     }
 
     /**
-     * Increment the column
+     * Increment the column.
      */
     public function previousColumn()
     {
@@ -132,7 +133,7 @@ class ReferenceTable {
     }
 
     /**
-     * Reset the content
+     * Reset the content.
      */
     public function resetContent()
     {
@@ -156,7 +157,7 @@ class ReferenceTable {
     }
 
     /**
-     * Increment the table level
+     * Increment the table level.
      */
     public function incrementLevel()
     {
@@ -164,7 +165,7 @@ class ReferenceTable {
     }
 
     /**
-     * Increment the table level
+     * Increment the table level.
      */
     public function decrementLevel()
     {
@@ -214,7 +215,8 @@ class ReferenceTable {
     }
 
     /**
-     * Release the start column
+     * Release the start column.
+     *
      * @return mixed
      */
     public function releaseStartColumn()

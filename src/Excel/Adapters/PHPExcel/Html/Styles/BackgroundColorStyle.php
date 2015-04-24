@@ -1,5 +1,7 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
+<?php
 
-class BackgroundColorStyle extends BackgroundStyle {
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Styles;
 
+class BackgroundColorStyle extends BackgroundStyle
+{
 }

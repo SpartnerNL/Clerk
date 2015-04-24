@@ -1,16 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Excel;
+<?php
+
+namespace Maatwebsite\Clerk\Excel;
 
 /**
- * Interface Writer
- * @package Maatwebsite\Clerk
+ * Interface Writer.
  */
-interface Writer {
-
+interface Writer
+{
     /**
-     * Export the workbook
+     * Export the workbook.
+     *
      * @param null|string $filename
-     * @return mixed|void
+     *
      * @throws \Exception
+     * @return mixed|void
      */
     public function export($filename = null);
 }

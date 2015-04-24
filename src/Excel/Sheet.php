@@ -1,37 +1,45 @@
-<?php namespace Maatwebsite\Clerk\Excel;
+<?php
+
+namespace Maatwebsite\Clerk\Excel;
 
 use Closure;
 
 /**
- * Interface Sheet
- * @package Maatwebsite\Clerk
+ * Interface Sheet.
  */
-interface Sheet {
-
+interface Sheet
+{
     /**
-     * Get the sheet title
+     * Get the sheet title.
+     *
      * @return string
      */
     public function getTitle();
 
     /**
-     * Set the sheet title
+     * Set the sheet title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title);
 
     /**
-     * New cell
+     * New cell.
+     *
      * @param array|string        $cell
      * @param Closure|string|null $callback
+     *
      * @return mixed
      */
     public function cell($cell, $callback = null);
 
     /**
-     * Add a cell
+     * Add a cell.
+     *
      * @param Cell $cell
+     *
      * @return mixed
      */
     public function addCell(Cell $cell);
@@ -46,31 +54,38 @@ interface Sheet {
      * @param null   $nullValue
      * @param string $startCell
      * @param bool   $strictNullComparison
+     *
      * @return $this
      */
     public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false);
 
     /**
-     * Load from template
+     * Load from template.
+     *
      * @param       $template
      * @param array $data
      * @param null  $engine
+     *
      * @return mixed
      */
-    public function loadTemplate($template, array $data = array(), $engine = null);
+    public function loadTemplate($template, array $data = [], $engine = null);
 
     /**
-     * Set height for a certain row
+     * Set height for a certain row.
+     *
      * @param $row
      * @param $height
+     *
      * @return $this
      */
     public function setRowHeight($row, $height);
 
     /**
-     * Set the column width
+     * Set the column width.
+     *
      * @param $column
      * @param $width
+     *
      * @return mixed
      */
     public function setColumnWidth($column, $width);
@@ -78,6 +93,7 @@ interface Sheet {
     /**
      * @param string $range
      * @param bool   $alignment
+     *
      * @return $this
      */
     public function mergeCells($range = 'A1:A1', $alignment = false);
@@ -89,6 +105,7 @@ interface Sheet {
 
     /**
      * @param callable $callback
+     *
      * @return Font
      */
     public function font(Closure $callback = null);
@@ -96,6 +113,7 @@ interface Sheet {
     /**
      * @param string|callable $callback
      * @param string|null     $type
+     *
      * @return Fill
      */
     public function fill($callback = null, $type = null);
@@ -103,6 +121,7 @@ interface Sheet {
     /**
      * @param string|callable $callback
      * @param string|null     $type
+     *
      * @return Fill
      */
     public function background($callback = null, $type = null);
@@ -110,12 +129,14 @@ interface Sheet {
     /**
      * @param string|callable|null $callback
      * @param string|null          $style
+     *
      * @return Border
      */
     public function border($callback = null, $style = null);
 
     /**
      * @param callable|null $callback
+     *
      * @return Border
      */
     public function borders(Closure $callback = null);
@@ -123,12 +144,14 @@ interface Sheet {
     /**
      * @param string|callable|null $callback
      * @param string|null          $vertical
+     *
      * @return Alignment
      */
     public function align($callback = null, $vertical = null);
 
     /**
      * @param $vertical
+     *
      * @return mixed
      */
     public function valign($vertical);

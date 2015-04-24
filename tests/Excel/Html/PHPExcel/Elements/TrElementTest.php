@@ -1,16 +1,14 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Elements\TrElement;
+use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class TrElementTest extends \PHPUnit_Framework_TestCase {
-
-
+class TrElementTest extends \PHPUnit_Framework_TestCase
+{
     public function tearDown()
     {
         \Mockery::close();
     }
-
 
     public function test_table_gets_parsed()
     {
@@ -32,7 +30,6 @@ class TrElementTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals(1, $table->getRow());
     }
-
 
     /**
      * @return \Maatwebsite\Clerk\Sheet

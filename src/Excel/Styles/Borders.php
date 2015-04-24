@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Styles;
 
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
-class Borders implements Style {
-
-    /**
+class Borders implements Style
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -32,6 +34,7 @@ class Borders implements Style {
     /**
      * @param null $callback
      * @param null $style
+     *
      * @return Border
      */
     public function top($callback = null, $style = null)
@@ -52,6 +55,7 @@ class Borders implements Style {
     /**
      * @param null $callback
      * @param null $style
+     *
      * @return Border
      */
     public function bottom($callback = null, $style = null)
@@ -72,6 +76,7 @@ class Borders implements Style {
     /**
      * @param null $callback
      * @param null $style
+     *
      * @return Border
      */
     public function left($callback = null, $style = null)
@@ -92,6 +97,7 @@ class Borders implements Style {
     /**
      * @param null $callback
      * @param null $style
+     *
      * @return Border
      */
     public function right($callback = null, $style = null)
@@ -125,23 +131,22 @@ class Borders implements Style {
     /**
      * @param $callback
      * @param $style
+     *
      * @return Border
      */
     protected function makeBorder($callback, $style)
     {
         $border = new Border();
 
-        if ( is_callable($callback) )
-        {
+        if (is_callable($callback)) {
             $border->call($callback);
-        }
-        elseif ( !is_null($callback) )
-        {
+        } elseif (!is_null($callback)) {
             $border->setColor($callback);
         }
 
-        if ( $style )
+        if ($style) {
             $border->setStyle($style);
+        }
 
         return $border;
     }

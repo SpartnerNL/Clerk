@@ -3,8 +3,8 @@
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 use Maatwebsite\Clerk\Excel\Writers\WriterFactory;
 
-class WriterFactoryTest extends \PHPUnit_Framework_TestCase {
-
+class WriterFactoryTest extends \PHPUnit_Framework_TestCase
+{
     public function test_factory_returns_writer()
     {
         $workbook = new Workbook('mock');
@@ -16,7 +16,6 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers\CsvWriter', WriterFactory::create('PHPExcel', 'Csv', 'csv', $workbook));
     }
 
-
     public function test_factory_returns_exception_when_trying_to_use_nonexisting_driver()
     {
         $workbook = new Workbook('mock');
@@ -25,7 +24,6 @@ class WriterFactoryTest extends \PHPUnit_Framework_TestCase {
         $this->setExpectedException('Maatwebsite\Clerk\Exceptions\DriverNotFoundException');
         WriterFactory::create('TEST', 'title', 'csv', $workbook);
     }
-
 
     public function test_factory_returns_exception_when_trying_to_use_it_without_sheets()
     {

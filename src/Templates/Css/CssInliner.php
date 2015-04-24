@@ -1,16 +1,18 @@
-<?php namespace Maatwebsite\Clerk\Templates\Css;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Css;
 
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
-class CssInliner {
-
+class CssInliner
+{
     /**
      * @var CssToInlineStyles
      */
     protected $inliner;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -22,14 +24,14 @@ class CssInliner {
 
     /**
      * @param $html
+     *
      * @return string
      */
     public function transformCssToInlineStyles($html)
     {
         $this->inliner->setHTML($html);
 
-        foreach ($this->getStylesheets($html) as $css)
-        {
+        foreach ($this->getStylesheets($html) as $css) {
             $this->inliner->setCSS($css);
         }
 
@@ -38,6 +40,7 @@ class CssInliner {
 
     /**
      * @param $html
+     *
      * @return mixed
      */
     protected function getStylesheets($html)

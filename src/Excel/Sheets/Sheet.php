@@ -1,14 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Sheets;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Sheets;
 
 use Closure;
 use Maatwebsite\Clerk\Adapter;
-use Maatwebsite\Clerk\Traits\CallableTrait;
 use Maatwebsite\Clerk\Excel\Styles\Styleable;
 use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
-abstract class Sheet extends Adapter implements Styleable {
-
-    /**
+abstract class Sheet extends Adapter implements Styleable
+{
+    /*
      * Traits
      */
     use CallableTrait, StyleableTrait;
@@ -37,8 +39,10 @@ abstract class Sheet extends Adapter implements Styleable {
     }
 
     /**
-     * Set the sheet title
+     * Set the sheet title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     abstract public function setTitle($title);

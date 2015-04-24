@@ -1,19 +1,21 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Readers;
 
 use Closure;
 use Maatwebsite\Clerk\Adapter;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
-use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
 use Maatwebsite\Clerk\Excel\CsvReader as CsvReaderInterface;
+use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
 /**
- * Class CsvReader
- * @package Maatwebsite\Clerk\Adapters\LeagueCsv
+ * Class CsvReader.
  */
-class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
-
+class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface
+{
     /**
-     * Settings
+     * Settings.
+     *
      * @return ParserSettings
      */
     public function settings()
@@ -22,18 +24,22 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Get all sheets/rows
+     * Get all sheets/rows.
+     *
      * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function get($columns = array())
+    public function get($columns = [])
     {
         // TODO: Implement get() method.
     }
 
     /**
-     * Take x rows
-     * @param  integer $amount
+     * Take x rows.
+     *
+     * @param int $amount
+     *
      * @return \Illuminate\Support\Collection
      */
     public function take($amount)
@@ -42,8 +48,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Skip x rows
-     * @param  integer $amount
+     * Skip x rows.
+     *
+     * @param int $amount
+     *
      * @return \Illuminate\Support\Collection
      */
     public function skip($amount)
@@ -52,9 +60,11 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Limit the results by x
-     * @param  integer $take
-     * @param  integer $skip
+     * Limit the results by x.
+     *
+     * @param int $take
+     * @param int $skip
+     *
      * @return \Illuminate\Support\Collection
      */
     public function limit($take, $skip = 0)
@@ -63,41 +73,48 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Select certain columns
-     * @param  array $columns
+     * Select certain columns.
+     *
+     * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function select($columns = array())
+    public function select($columns = [])
     {
         // TODO: Implement select() method.
     }
 
     /**
-     * Return all sheets/rows
-     * @param  array $columns
+     * Return all sheets/rows.
+     *
+     * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function all($columns = array())
+    public function all($columns = [])
     {
         // TODO: Implement all() method.
     }
 
     /**
-     * Get first row/sheet only
-     * @param  array $columns
+     * Get first row/sheet only.
+     *
+     * @param array $columns
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function first($columns = array())
+    public function first($columns = [])
     {
         // TODO: Implement first() method.
     }
 
     /**
-     * Parse the file in chunks
+     * Parse the file in chunks.
+     *
      * @param int $size
      * @param     $callback
+     *
      * @throws \Exception
-     * @return void
      */
     public function chunk($size = 10, $callback = null)
     {
@@ -105,8 +122,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Each
-     * @param  Closure $callback
+     * Each.
+     *
+     * @param Closure $callback
+     *
      * @return \Illuminate\Support\Collection
      */
     public function each(Closure $callback)
@@ -116,16 +135,19 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
 
     /**
      *  Parse the file to an array.
-     * @param  array $columns
+     *
+     * @param array $columns
+     *
      * @return array
      */
-    public function toArray($columns = array())
+    public function toArray($columns = [])
     {
         // TODO: Implement toArray() method.
     }
 
     /**
-     * Get the current filename
+     * Get the current filename.
+     *
      * @return string
      */
     public function getFileName()
@@ -134,18 +156,22 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Select sheets by their indices
+     * Select sheets by their indices.
+     *
      * @param array $sheets
+     *
      * @return mixed
      */
-    public function selectSheets($sheets = array())
+    public function selectSheets($sheets = [])
     {
         // TODO: Implement selectSheets() method.
     }
 
     /**
-     * Ignore empty cells
+     * Ignore empty cells.
+     *
      * @param $value
+     *
      * @return mixed
      */
     public function ignoreEmpty($value)
@@ -154,8 +180,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set the date format
+     * Set the date format.
+     *
      * @param $format
+     *
      * @return mixed
      */
     public function setDateFormat($format)
@@ -164,18 +192,22 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set date columns
+     * Set date columns.
+     *
      * @param array $columns
+     *
      * @return mixed
      */
-    public function setDateColumns($columns = array())
+    public function setDateColumns($columns = [])
     {
         // TODO: Implement setDateColumns() method.
     }
 
     /**
-     * Workbook needs date formatting
+     * Workbook needs date formatting.
+     *
      * @param $state
+     *
      * @return mixed
      */
     public function needsDateFormatting($state)
@@ -184,8 +216,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set the heading row
+     * Set the heading row.
+     *
      * @param $row
+     *
      * @return mixed
      */
     public function setHeadingRow($row)
@@ -194,8 +228,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Has heading row
+     * Has heading row.
+     *
      * @param $state
+     *
      * @return mixed
      */
     public function hasHeading($state)
@@ -204,8 +240,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set the heading type
+     * Set the heading type.
+     *
      * @param $type
+     *
      * @return mixed
      */
     public function setHeadingType($type)
@@ -214,8 +252,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set separator
+     * Set separator.
+     *
      * @param $separator
+     *
      * @return mixed
      */
     public function setSeparator($separator)
@@ -224,8 +264,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Calculate cell values
+     * Calculate cell values.
+     *
      * @param $state
+     *
      * @return mixed
      */
     public function calculate($state)
@@ -234,8 +276,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set the delimiter
+     * Set the delimiter.
+     *
      * @param $delimiter
+     *
      * @return $this
      */
     public function setDelimiter($delimiter)
@@ -246,8 +290,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set line ending
+     * Set line ending.
+     *
      * @param $lineEnding
+     *
      * @return $this
      */
     public function setLineEnding($lineEnding)
@@ -258,8 +304,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set enclosure
+     * Set enclosure.
+     *
      * @param $enclosure
+     *
      * @return $this
      */
     public function setEnclosure($enclosure)
@@ -270,8 +318,10 @@ class CsvReader extends Adapter implements ReaderInterface, CsvReaderInterface {
     }
 
     /**
-     * Set encoding
+     * Set encoding.
+     *
      * @param $encoding
+     *
      * @return $this
      */
     public function setEncoding($encoding)

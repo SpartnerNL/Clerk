@@ -1,34 +1,37 @@
-<?php namespace Maatwebsite\Clerk\Excel\Workbooks;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Workbooks;
 
 use Closure;
-use Maatwebsite\Clerk\Excel\Workbooks;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
 /**
- * Class WorkbookFactory
- * @package Maatwebsite\Clerk\Factories
+ * Class WorkbookFactory.
  */
-class WorkbookFactory {
-
+class WorkbookFactory
+{
     /**
      * @param          $driver
      * @param          $title
      * @param callable $callback
-     * @return Workbook
+     *
      * @throws DriverNotFoundException
+     * @return Workbook
      */
     public static function create($driver, $title, Closure $callback = null)
     {
         $class = self::getClassByType($driver);
 
-        if ( class_exists($class) )
+        if (class_exists($class)) {
             return new $class($title, $callback);
+        }
 
         throw new DriverNotFoundException("Workbook driver [{$driver}] was not found");
     }
 
     /**
      * @param $driver
+     *
      * @return string
      */
     protected static function getClassByType($driver)

@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Excel\Cells;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Cells;
 
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
 
-class Format {
-
+class Format
+{
     /**
      * @var string
      */
@@ -80,12 +82,13 @@ class Format {
      */
     public function __construct($format = null)
     {
-        if ( $format )
+        if ($format) {
             $this->setFormat($format);
+        }
     }
 
     /**
-     * Set format
+     * Set format.
      *
      * @param string $format
      *
@@ -95,8 +98,9 @@ class Format {
      */
     public function setFormat($format)
     {
-        if ( !in_array($format, $this->getFormats()) )
-            throw new InvalidArgumentException("The parameter must belong to the Format parameter list");
+        if (!in_array($format, $this->getFormats())) {
+            throw new InvalidArgumentException('The parameter must belong to the Format parameter list');
+        }
 
         $this->format = $format;
 
@@ -104,7 +108,7 @@ class Format {
     }
 
     /**
-     * Get format
+     * Get format.
      *
      * @return string
      */
@@ -114,7 +118,7 @@ class Format {
     }
 
     /**
-     * Return the formats parameter list
+     * Return the formats parameter list.
      *
      * @return array
      */

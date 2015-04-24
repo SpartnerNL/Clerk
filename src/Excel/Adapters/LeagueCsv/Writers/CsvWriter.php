@@ -1,18 +1,20 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Writers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Writers;
 
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
 use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 
 /**
- * Class CsvWriter
- * @package Maatwebsite\Clerk\Adapters\LeagueCsv
+ * Class CsvWriter.
  */
-class CsvWriter extends AbstractWriter implements WriterInterface {
-
+class CsvWriter extends AbstractWriter implements WriterInterface
+{
     /**
      * @param null $filename
-     * @return mixed
+     *
      * @throws \Exception
+     * @return mixed
      */
     public function export($filename = null)
     {
@@ -26,7 +28,8 @@ class CsvWriter extends AbstractWriter implements WriterInterface {
     }
 
     /**
-     * Get delimiter
+     * Get delimiter.
+     *
      * @return string
      */
     public function getDelimiter()
@@ -35,7 +38,8 @@ class CsvWriter extends AbstractWriter implements WriterInterface {
     }
 
     /**
-     * Get enclosure
+     * Get enclosure.
+     *
      * @return string
      */
     public function getEnclosure()
@@ -44,7 +48,8 @@ class CsvWriter extends AbstractWriter implements WriterInterface {
     }
 
     /**
-     * Get line ending
+     * Get line ending.
+     *
      * @return string
      */
     public function getLineEnding()

@@ -1,11 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Excel\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Readers;
 
 /**
- * Class ParserSettings
- * @package Maatwebsite\Clerk\Excel\Readers
+ * Class ParserSettings.
  */
-class ParserSettings {
-
+class ParserSettings
+{
     /**
      * @var array
      */
@@ -39,7 +40,7 @@ class ParserSettings {
     /**
      * @var array
      */
-    protected $dateColumns = array();
+    protected $dateColumns = [];
 
     /**
      * @var bool
@@ -91,6 +92,7 @@ class ParserSettings {
 
     /**
      * @param array $sheetIndices
+     *
      * @return $this
      */
     public function setSheetIndices($sheetIndices)
@@ -110,6 +112,7 @@ class ParserSettings {
 
     /**
      * @param array $columns
+     *
      * @return $this
      */
     public function setColumns($columns)
@@ -129,6 +132,7 @@ class ParserSettings {
 
     /**
      * @param int $startRow
+     *
      * @return $this
      */
     public function setStartRow($startRow)
@@ -147,13 +151,15 @@ class ParserSettings {
     }
 
     /**
-     * @param integer $maxRows
+     * @param int $maxRows
+     *
      * @return $this
      */
     public function setMaxRows($maxRows)
     {
-        if ( $this->getHasHeading() )
+        if ($this->getHasHeading()) {
             $maxRows++;
+        }
 
         $this->maxRows = $maxRows;
 
@@ -161,7 +167,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIgnoreEmpty()
     {
@@ -169,7 +175,8 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $ignoreEmpty
+     * @param bool $ignoreEmpty
+     *
      * @return $this
      */
     public function setIgnoreEmpty($ignoreEmpty)
@@ -205,6 +212,7 @@ class ParserSettings {
 
     /**
      * @param int $headingRow
+     *
      * @return $this
      */
     public function setHeadingRow($headingRow)
@@ -215,7 +223,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getHasHeading()
     {
@@ -223,7 +231,8 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $hasHeading
+     * @param bool $hasHeading
+     *
      * @return $this
      */
     public function setHasHeading($hasHeading)
@@ -243,6 +252,7 @@ class ParserSettings {
 
     /**
      * @param string $headingType
+     *
      * @return $this
      */
     public function setHeadingType($headingType)
@@ -253,7 +263,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getAscii()
     {
@@ -261,7 +271,8 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $ascii
+     * @param bool $ascii
+     *
      * @return $this
      */
     public function setAscii($ascii)
@@ -281,6 +292,7 @@ class ParserSettings {
 
     /**
      * @param string $separator
+     *
      * @return $this
      */
     public function setSeparator($separator)
@@ -291,7 +303,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getCalculatedCellValues()
     {
@@ -299,7 +311,8 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $calculatedCellValues
+     * @param bool $calculatedCellValues
+     *
      * @return $this
      */
     public function setCalculatedCellValues($calculatedCellValues)
@@ -319,6 +332,7 @@ class ParserSettings {
 
     /**
      * @param int $skipAmount
+     *
      * @return $this
      */
     public function setSkipAmount($skipAmount)
@@ -338,6 +352,7 @@ class ParserSettings {
 
     /**
      * @param array $dateColumns
+     *
      * @return $this
      */
     public function setDateColumns($dateColumns)
@@ -348,7 +363,7 @@ class ParserSettings {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getNeedsDateFormatting()
     {
@@ -356,7 +371,8 @@ class ParserSettings {
     }
 
     /**
-     * @param boolean $needsDateFormatting
+     * @param bool $needsDateFormatting
+     *
      * @return $this
      */
     public function setNeedsDateFormatting($needsDateFormatting)

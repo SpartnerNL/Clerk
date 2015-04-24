@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+<?php
 
-use PHPExcel_Worksheet;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Writers;
+
 use Maatwebsite\Clerk\Excel\Cell;
+use PHPExcel_Worksheet;
 
-class CellWriter {
-
+class CellWriter
+{
     /**
      * @var PHPExcel_Worksheet
      */
@@ -25,7 +27,7 @@ class CellWriter {
     {
         $coordinate = $cell->getCoordinate()->get();
 
-        /**
+        /*
          * CELL VALUE
          */
         $this->sheet->getCell($coordinate)->setValueExplicit(
@@ -33,18 +35,17 @@ class CellWriter {
             (string) $cell->getDataType()
         );
 
-        /**
+        /*
          * NUMBER FORMAT
          */
         $this->sheet->getStyle($coordinate)
                     ->getNumberFormat()
                     ->setFormatCode((string) $cell->getFormat());
 
-        /**
+        /*
          * CELL STYLES
          */
-        if ( $cell->hasStyles() )
-        {
+        if ($cell->hasStyles()) {
             $styles = (new StyleWriter())->convert(
                 $cell->getStyles()
             );

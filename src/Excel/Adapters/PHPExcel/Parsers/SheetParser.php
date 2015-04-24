@@ -1,16 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+<?php
 
-use PHPExcel_Worksheet;
-use Illuminate\Support\Str;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+
 use Maatwebsite\Clerk\Excel\Collections\RowCollection;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+use PHPExcel_Worksheet;
 
 /**
- * Class SheetParser
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ * Class SheetParser.
  */
-class SheetParser {
-
+class SheetParser
+{
     /**
      * @var ParserSettings
      */
@@ -26,6 +26,7 @@ class SheetParser {
 
     /**
      * @param PHPExcel_Worksheet $sheet
+     *
      * @return RowCollection
      */
     public function parse(PHPExcel_Worksheet $sheet)
@@ -44,11 +45,11 @@ class SheetParser {
         // Row parser
         $parser = new RowParser($this->settings, $heading);
 
-        foreach ($sheet->getRowIterator($this->getStartRow()) as $index => $row)
-        {
+        foreach ($sheet->getRowIterator($this->getStartRow()) as $index => $row) {
             // Limit the results when needed
-            if ( $this->hasReachedLimit($index) )
+            if ($this->hasReachedLimit($index)) {
                 break;
+            }
 
             $collection->push(
                 $parser->parse($row)
@@ -59,7 +60,8 @@ class SheetParser {
     }
 
     /**
-     * Get the start row
+     * Get the start row.
+     *
      * @return mixed
      */
     protected function getStartRow()
@@ -67,8 +69,7 @@ class SheetParser {
         $startRow = $this->settings->getStartRow();
 
         // If the reader has a heading, skip the first row
-        if ( $this->settings->getHasHeading() )
-        {
+        if ($this->settings->getHasHeading()) {
             $startRow = $this->settings->getHeadingRow();
             $startRow++;
         }
@@ -77,15 +78,18 @@ class SheetParser {
         $skip = $this->settings->getSkipAmount();
 
         // If we want to skip rows, add the amount of rows
-        if ( $skip > 0 )
+        if ($skip > 0) {
             $startRow = $startRow + $skip;
+        }
 
         return $startRow;
     }
 
     /**
-     * Check if we didn't read the limit yet
+     * Check if we didn't read the limit yet.
+     *
      * @param $index
+     *
      * @return bool
      */
     protected function hasReachedLimit($index)

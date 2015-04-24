@@ -1,9 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Styles;
 
 use Closure;
 
-interface Styleable {
-
+interface Styleable
+{
     /**
      * @return bool
      */
@@ -11,6 +13,7 @@ interface Styleable {
 
     /**
      * @param Style $style
+     *
      * @return $this
      */
     public function setStyle(Style $style);
@@ -22,6 +25,7 @@ interface Styleable {
 
     /**
      * @param callable $callback
+     *
      * @return Font
      */
     public function font(Closure $callback = null);
@@ -29,6 +33,7 @@ interface Styleable {
     /**
      * @param string|callable $callback
      * @param string|null     $type
+     *
      * @return Fill
      */
     public function fill($callback = null, $type = null);
@@ -36,6 +41,7 @@ interface Styleable {
     /**
      * @param string|callable $callback
      * @param string|null     $type
+     *
      * @return Fill
      */
     public function background($callback = null, $type = null);
@@ -43,12 +49,14 @@ interface Styleable {
     /**
      * @param string|callable|null $callback
      * @param string|null          $style
+     *
      * @return Border
      */
     public function border($callback = null, $style = null);
 
     /**
      * @param callable|null $callback
+     *
      * @return Border
      */
     public function borders(Closure $callback = null);
@@ -56,12 +64,14 @@ interface Styleable {
     /**
      * @param string|callable|null $callback
      * @param string|null          $vertical
+     *
      * @return Alignment
      */
     public function align($callback = null, $vertical = null);
 
     /**
      * @param $vertical
+     *
      * @return mixed
      */
     public function valign($vertical);

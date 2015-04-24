@@ -1,5 +1,7 @@
-<?php namespace Maatwebsite\Clerk\Word;
+<?php
 
-interface Reader {
+namespace Maatwebsite\Clerk\Word;
 
+interface Reader
+{
 }

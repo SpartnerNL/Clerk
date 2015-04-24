@@ -2,15 +2,13 @@
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers\Reader;
 
-class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
-
-
+class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase
+{
     public function test_can_init()
     {
         $reader = $this->getReader();
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Reader', $reader);
     }
-
 
     public function test_can_get_and_set_settings()
     {
@@ -22,7 +20,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $reader->settings()->getStartRow());
     }
 
-
     public function test_take()
     {
         $reader = $this->getReader();
@@ -33,7 +30,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(11, $reader->settings()->getMaxRows());
     }
 
-
     public function test_skip()
     {
         $reader = $this->getReader();
@@ -41,7 +37,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->skip(10);
         $this->assertEquals(10, $reader->settings()->getStartRow());
     }
-
 
     public function test_limit()
     {
@@ -53,7 +48,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(11, $reader->settings()->getMaxRows());
     }
 
-
     public function test_select()
     {
         $reader = $this->getReader();
@@ -61,7 +55,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->select(['name']);
         $this->assertEquals(['name'], $reader->settings()->getColumns());
     }
-
 
     public function test_get_with_columns()
     {
@@ -71,13 +64,11 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(['name'], $reader->settings()->getColumns());
     }
 
-
     public function test_get()
     {
         $reader = $this->getReader();
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Collections\SheetCollection', $reader->get());
     }
-
 
     public function test_all()
     {
@@ -85,20 +76,17 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Collections\SheetCollection', $reader->all());
     }
 
-
     public function test_first()
     {
         $reader = $this->getReader();
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Collections\RowCollection', $reader->first());
     }
 
-
     public function test_to_array()
     {
         $reader = $this->getReader();
         $this->assertTrue(is_array($reader->toArray()));
     }
-
 
     public function test_select_sheets()
     {
@@ -107,7 +95,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->selectSheets([1]);
         $this->assertEquals([1], $reader->settings()->getSheetIndices());
     }
-
 
     public function test_ignore_empty()
     {
@@ -120,7 +107,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($reader->settings()->getIgnoreEmpty());
     }
 
-
     public function test_set_date_format()
     {
         $reader = $this->getReader();
@@ -129,7 +115,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('d-m-Y', $reader->settings()->getDateFormat());
     }
 
-
     public function test_set_date_columns()
     {
         $reader = $this->getReader();
@@ -137,7 +122,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->setDateColumns(['dob']);
         $this->assertEquals(['dob'], $reader->settings()->getDateColumns());
     }
-
 
     public function test_needs_date_formatting()
     {
@@ -150,7 +134,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($reader->settings()->getNeedsDateFormatting());
     }
 
-
     public function test_set_heading_row()
     {
         $reader = $this->getReader();
@@ -158,7 +141,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->setHeadingRow(10);
         $this->assertEquals(10, $reader->settings()->getHeadingRow());
     }
-
 
     public function test_has_heading()
     {
@@ -171,7 +153,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($reader->settings()->getHasHeading());
     }
 
-
     public function test_set_heading_type()
     {
         $reader = $this->getReader();
@@ -180,7 +161,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('slugged', $reader->settings()->getHeadingType());
     }
 
-
     public function test_set_separator()
     {
         $reader = $this->getReader();
@@ -188,7 +168,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->setSeparator('-');
         $this->assertEquals('-', $reader->settings()->getSeparator());
     }
-
 
     public function test_calculate()
     {
@@ -201,7 +180,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($reader->settings()->getCalculatedCellValues());
     }
 
-
     public function test_set_delimiter()
     {
         $reader = new Reader('CSV', __DIR__ . '/files/test.xls');
@@ -210,7 +188,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(';', $reader->getReader()->getDelimiter());
     }
 
-
     public function test_set_enclosure()
     {
         $reader = new Reader('CSV', __DIR__ . '/files/test.xls');
@@ -218,7 +195,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase {
         $reader->setEnclosure(';');
         $this->assertEquals(';', $reader->getReader()->getEnclosure());
     }
-
 
     public function test_set_line_ending()
     {

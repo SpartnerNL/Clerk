@@ -1,12 +1,14 @@
-<?php namespace Maatwebsite\Clerk\Word\Documents;
+<?php
+
+namespace Maatwebsite\Clerk\Word\Documents;
 
 use Closure;
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
-abstract class Document extends Adapter {
-
-    /**
+abstract class Document extends Adapter
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -14,11 +16,11 @@ abstract class Document extends Adapter {
     /**
      * @var array
      */
-    protected $sections = array();
+    protected $sections = [];
 
     /**
-     * @param          $title
-     * @param Closure  $callback
+     * @param         $title
+     * @param Closure $callback
      */
     public function __construct($title, Closure $callback = null)
     {
@@ -30,9 +32,11 @@ abstract class Document extends Adapter {
     }
 
     /**
-     * Set title
+     * Set title.
+     *
      * @param string $title
+     *
      * @return $this
      */
-    public abstract function setTitle($title);
+    abstract public function setTitle($title);
 }

@@ -2,19 +2,17 @@
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
-
+class ReferenceTableTest extends \PHPUnit_Framework_TestCase
+{
     /**
      * @var ReferenceTable
      */
     protected $table;
 
-
     public function setUp()
     {
         $this->table = new ReferenceTable();
     }
-
 
     public function test_next_row()
     {
@@ -25,7 +23,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->table->getRow());
     }
 
-
     public function test_next_column()
     {
         $this->table->nextColumn();
@@ -34,7 +31,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $this->table->nextColumn();
         $this->assertEquals('C', $this->table->getColumn());
     }
-
 
     public function test_increment_level()
     {
@@ -45,7 +41,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->table->getLevel());
     }
 
-
     public function test_remember_data()
     {
         $this->table->setContent('cell content');
@@ -54,7 +49,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $data = $this->table->getData();
         $this->assertEquals('cell content', $data[$this->table->getRow()][$this->table->getColumn()]);
     }
-
 
     public function test_set_start_column()
     {
@@ -69,7 +63,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertCount(2, $this->table->getNested());
     }
 
-
     public function test_release_start_column()
     {
         $this->table->setStartColumn();
@@ -80,7 +73,6 @@ class ReferenceTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(0, $this->table->getLevel());
         $this->assertCount(0, $this->table->getNested());
     }
-
 
     public function test_append_content_by_node()
     {

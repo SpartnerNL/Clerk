@@ -1,18 +1,18 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv;
 
 use Closure;
-use SplTempFileObject;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Excel\Workbooks\Workbook as AbstractWorkbook;
+use SplTempFileObject;
 
 /**
- * Class Workbook
- * @package Maatwebsite\Clerk\Adapters\LeagueCsv
+ * Class Workbook.
  */
 class Workbook extends AbstractWorkbook implements WorkbookInterface
 {
-
     /**
      * @var
      */
@@ -31,7 +31,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
     {
         // Set PHPExcel instance
-        $this->driver = $driver ?: LeagueWriter::createFromFileObject(new SplTempFileObject);
+        $this->driver = $driver ?: LeagueWriter::createFromFileObject(new SplTempFileObject());
 
         parent::__construct($title, $callback);
     }
@@ -45,8 +45,10 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Set title
+     * Set title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -58,6 +60,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
 
     /**
      * @param $description
+     *
      * @return WorkbookInterface
      */
     public function setDescription($description)
@@ -75,6 +78,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
 
     /**
      * @param $company
+     *
      * @return WorkbookInterface
      */
     public function setCompany($company)
@@ -92,6 +96,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
 
     /**
      * @param $subject
+     *
      * @return WorkbookInterface
      */
     public function setSubject($subject)
@@ -108,8 +113,10 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Set the delimiter
+     * Set the delimiter.
+     *
      * @param $delimiter
+     *
      * @return $this
      */
     public function setDelimiter($delimiter)
@@ -120,8 +127,10 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Set line ending
+     * Set line ending.
+     *
      * @param $lineEnding
+     *
      * @return $this
      */
     public function setLineEnding($lineEnding)
@@ -132,8 +141,10 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Set enclosure
+     * Set enclosure.
+     *
      * @param $enclosure
+     *
      * @return $this
      */
     public function setEnclosure($enclosure)
@@ -144,8 +155,10 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Set encoding
+     * Set encoding.
+     *
      * @param $encoding
+     *
      * @return $this
      */
     public function setEncoding($encoding)
@@ -156,9 +169,11 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Init a new sheet
-     * @param          $title
-     * @param Closure  $callback
+     * Init a new sheet.
+     *
+     * @param         $title
+     * @param Closure $callback
+     *
      * @return Sheet
      */
     public function sheet($title, Closure $callback = null)
@@ -181,7 +196,8 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Get delimiter
+     * Get delimiter.
+     *
      * @return string
      */
     public function getDelimiter()
@@ -190,7 +206,8 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Get enclosure
+     * Get enclosure.
+     *
      * @return string
      */
     public function getEnclosure()
@@ -199,7 +216,8 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     }
 
     /**
-     * Get line ending
+     * Get line ending.
+     *
      * @return string
      */
     public function getLineEnding()

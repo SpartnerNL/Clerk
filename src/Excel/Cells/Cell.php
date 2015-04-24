@@ -1,13 +1,15 @@
-<?php namespace Maatwebsite\Clerk\Excel\Cells;
+<?php
 
+namespace Maatwebsite\Clerk\Excel\Cells;
+
+use Maatwebsite\Clerk\Excel\Cell as CellInterface;
 use Maatwebsite\Clerk\Excel\Styles\Styleable;
 use Maatwebsite\Clerk\Excel\Styles\StyleableTrait;
 use Maatwebsite\Clerk\Traits\CallableTrait;
-use Maatwebsite\Clerk\Excel\Cell as CellInterface;
 
-class Cell implements CellInterface, Styleable {
-
-    /**
+class Cell implements CellInterface, Styleable
+{
+    /*
      * Traits
      */
     use CallableTrait, StyleableTrait;
@@ -38,11 +40,13 @@ class Cell implements CellInterface, Styleable {
      */
     public function __construct($value = null, $coordinate = null)
     {
-        if ( $value )
+        if ($value) {
             $this->setValue($value);
+        }
 
-        if ( $coordinate )
+        if ($coordinate) {
             $this->setCoordinate($coordinate);
+        }
     }
 
     /**
@@ -95,6 +99,7 @@ class Cell implements CellInterface, Styleable {
 
     /**
      * @param string $format
+     *
      * @return $this
      */
     public function format($format)
@@ -113,14 +118,17 @@ class Cell implements CellInterface, Styleable {
     }
 
     /**
-     * Format as string
+     * Format as string.
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function asString($value = null)
     {
-        if ( $value )
+        if ($value) {
             $this->setValue($value);
+        }
 
         $this->setDataType(DataType::STRING);
         $this->format(Format::TEXT);

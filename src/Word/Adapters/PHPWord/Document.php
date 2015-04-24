@@ -1,21 +1,23 @@
-<?php namespace Maatwebsite\Clerk\Word\Adapters\PHPWord;
+<?php
+
+namespace Maatwebsite\Clerk\Word\Adapters\PHPWord;
 
 use Closure;
-use PhpOffice\PhpWord\PhpWord;
 use Maatwebsite\Clerk\Word\Document as DocumentInterface;
 use Maatwebsite\Clerk\Word\Documents\Document as AbstractDocument;
+use PhpOffice\PhpWord\PhpWord;
 
-class Document extends AbstractDocument implements DocumentInterface {
-
+class Document extends AbstractDocument implements DocumentInterface
+{
     /*
     * @var PHPWord
     */
     protected $driver;
 
     /**
-     * @param          $title
-     * @param Closure  $callback
-     * @param PhpWord  $driver
+     * @param         $title
+     * @param Closure $callback
+     * @param PhpWord $driver
      */
     public function __construct($title, Closure $callback = null, PHPWord $driver = null)
     {
@@ -26,8 +28,10 @@ class Document extends AbstractDocument implements DocumentInterface {
     }
 
     /**
-     * Set title
+     * Set title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -46,9 +50,11 @@ class Document extends AbstractDocument implements DocumentInterface {
     }
 
     /**
-     * Init a new section
-     * @param          $text
-     * @param Closure  $callback
+     * Init a new section.
+     *
+     * @param         $text
+     * @param Closure $callback
+     *
      * @return Section
      */
     public function section($text, Closure $callback = null)

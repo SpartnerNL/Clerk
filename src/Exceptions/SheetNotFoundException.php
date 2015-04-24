@@ -1,11 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
+
+namespace Maatwebsite\Clerk\Exceptions;
 
 use Exception;
 
 /**
- * Class SheetNotFoundException
- * @package Maatwebsite\Clerk\Exceptions
+ * Class SheetNotFoundException.
  */
-class SheetNotFoundException extends Exception {
-
+class SheetNotFoundException extends Exception
+{
 }

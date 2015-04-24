@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Styles;
 
 use Closure;
 use Maatwebsite\Clerk\Excel\Collections\StyleCollection;
 
-trait StyleableTrait {
-
+trait StyleableTrait
+{
     /**
      * @var StyleCollection
      */
@@ -12,14 +14,16 @@ trait StyleableTrait {
 
     /**
      * @param Closure $callback
+     *
      * @return Font
      */
     public function font(Closure $callback = null)
     {
         $font = new Font();
 
-        if ( is_callable($callback) )
+        if (is_callable($callback)) {
             $font->call($callback);
+        }
 
         $this->setStyle($font);
 
@@ -28,7 +32,8 @@ trait StyleableTrait {
 
     /**
      * @param string|Closure $callback
-     * @param string|null     $type
+     * @param string|null    $type
+     *
      * @return Fill
      */
     public function background($callback = null, $type = null)
@@ -38,24 +43,23 @@ trait StyleableTrait {
 
     /**
      * @param string|Closure|null $callback
-     * @param string|null          $type
+     * @param string|null         $type
+     *
      * @return Fill
      */
     public function fill($callback = null, $type = null)
     {
         $font = new Fill();
 
-        if ( is_callable($callback) )
-        {
+        if (is_callable($callback)) {
             $font->call($callback);
-        }
-        elseif ( !is_null($callback) )
-        {
+        } elseif (!is_null($callback)) {
             $font->with($callback);
         }
 
-        if ( $type )
+        if ($type) {
             $font->setType($type);
+        }
 
         $this->setStyle($font);
 
@@ -64,24 +68,23 @@ trait StyleableTrait {
 
     /**
      * @param string|Closure|null $callback
-     * @param string|null          $style
+     * @param string|null         $style
+     *
      * @return Border
      */
     public function border($callback = null, $style = null)
     {
         $border = new Border();
 
-        if ( is_callable($callback) )
-        {
+        if (is_callable($callback)) {
             $border->call($callback);
-        }
-        elseif ( !is_null($callback) )
-        {
+        } elseif (!is_null($callback)) {
             $border->setColor($callback);
         }
 
-        if ( $style )
+        if ($style) {
             $border->setStyle($style);
+        }
 
         $this->setStyle($border);
 
@@ -90,14 +93,16 @@ trait StyleableTrait {
 
     /**
      * @param Closure|null $callback
+     *
      * @return Borders
      */
     public function borders(Closure $callback = null)
     {
         $borders = new Borders();
 
-        if ( is_callable($callback) )
+        if (is_callable($callback)) {
             $borders->call($callback);
+        }
 
         $this->setStyle($borders);
 
@@ -106,24 +111,23 @@ trait StyleableTrait {
 
     /**
      * @param string|Closure|null $callback
-     * @param string|null          $vertical
+     * @param string|null         $vertical
+     *
      * @return Alignment
      */
     public function align($callback = null, $vertical = null)
     {
         $alignment = new Alignment();
 
-        if ( is_callable($callback) )
-        {
+        if (is_callable($callback)) {
             $alignment->call($callback);
-        }
-        elseif ( !is_null($callback) )
-        {
+        } elseif (!is_null($callback)) {
             $alignment->horizontal($callback);
         }
 
-        if ( $vertical )
+        if ($vertical) {
             $alignment->vertical($vertical);
+        }
 
         $this->setStyle($alignment);
 
@@ -132,6 +136,7 @@ trait StyleableTrait {
 
     /**
      * @param $vertical
+     *
      * @return Alignment
      */
     public function valign($vertical)
@@ -141,12 +146,12 @@ trait StyleableTrait {
 
     /**
      * @param Style $style
+     *
      * @return $this
      */
     public function setStyle(Style $style)
     {
-        if ( !$this->styles instanceof StyleCollection )
-        {
+        if (!$this->styles instanceof StyleCollection) {
             $this->styles = new StyleCollection();
         }
 

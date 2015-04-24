@@ -1,14 +1,14 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Php;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Adapters\Php;
 
 use Exception;
 
 /**
- * Class PhpEngine
- * @package Maatwebsite\Clerk\Templates\Adapters\Php
- * Based on Laravel's PhpEngine
+ * Class PhpEngine.
  */
-class PhpEngine {
-
+class PhpEngine
+{
     /**
      * @var FileFinder
      */
@@ -23,12 +23,14 @@ class PhpEngine {
     }
 
     /**
-     * Compile a template with the PhpEngine
-     * @param  string $__file
-     * @param  array  $__data
+     * Compile a template with the PhpEngine.
+     *
+     * @param string $__file
+     * @param array  $__data
+     *
      * @return string
      */
-    public function compile($__file, array $__data = array())
+    public function compile($__file, array $__data = [])
     {
         // Find the file path
         $__path = $this->finder->find($__file);
@@ -42,12 +44,9 @@ class PhpEngine {
         // We'll evaluate the contents of the view inside a try/catch block so we can
         // flush out any stray output that might get out before an error occurs or
         // an exception is thrown. This prevents any partial views from leaking.
-        try
-        {
+        try {
             include $__path;
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $this->handleViewException($e, $obLevel);
         }
 
@@ -57,16 +56,14 @@ class PhpEngine {
     /**
      * Handle a view exception.
      *
-     * @param  \Exception $e
-     * @param  int        $obLevel
-     * @return void
+     * @param \Exception $e
+     * @param int        $obLevel
      *
      * @throws $e
      */
     protected function handleViewException($e, $obLevel)
     {
-        while (ob_get_level() > $obLevel)
-        {
+        while (ob_get_level() > $obLevel) {
             ob_end_clean();
         }
 

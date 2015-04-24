@@ -1,11 +1,13 @@
-<?php namespace Maatwebsite\Clerk\Excel\Styles;
+<?php
 
-use Maatwebsite\Clerk\Traits\CallableTrait;
+namespace Maatwebsite\Clerk\Excel\Styles;
+
 use Maatwebsite\Clerk\Exceptions\InvalidArgumentException;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
-class Fill implements Style {
-
-    /**
+class Fill implements Style
+{
+    /*
      * Traits
      */
     use CallableTrait;
@@ -64,6 +66,7 @@ class Fill implements Style {
 
     /**
      * @param string $color
+     *
      * @return Fill
      */
     public function with($color)
@@ -73,6 +76,7 @@ class Fill implements Style {
 
     /**
      * @param $color
+     *
      * @return $this
      */
     public function setColor($color)
@@ -83,7 +87,7 @@ class Fill implements Style {
     }
 
     /**
-     * Get color
+     * Get color.
      *
      * @return string
      */
@@ -93,19 +97,18 @@ class Fill implements Style {
     }
 
     /**
-     * Set type
+     * Set type.
      *
+     *
+     * @param  string                   $type
      * @throws InvalidArgumentException If underline doesn't belong the underline parameter list
-     *
-     * @param string $type
      *
      * @return Fill
      */
     public function setType($type)
     {
-        if ( !in_array($type, $this->getTypes()) )
-        {
-            throw new \InvalidArgumentException("The parameter must belong to the Type parameter list");
+        if (!in_array($type, $this->getTypes())) {
+            throw new \InvalidArgumentException('The parameter must belong to the Type parameter list');
         }
         $this->type = $type;
 
@@ -113,7 +116,7 @@ class Fill implements Style {
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */

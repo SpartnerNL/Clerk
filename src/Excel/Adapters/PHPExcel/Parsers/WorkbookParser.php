@@ -1,15 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+<?php
 
-use PHPExcel;
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
+
 use Maatwebsite\Clerk\Excel\Collections\SheetCollection;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
+use PHPExcel;
 
 /**
- * Class WorkbookParser
- * @package Maatwebsite\Clerk\Adapters\PHPExcel\Parsers
+ * Class WorkbookParser.
  */
-class WorkbookParser {
-
+class WorkbookParser
+{
     /**
      * @var ParserSettings
      */
@@ -24,8 +25,10 @@ class WorkbookParser {
     }
 
     /**
-     * Parse the workbook
+     * Parse the workbook.
+     *
      * @param PHPExcel $workbook
+     *
      * @return SheetCollection
      */
     public function parse(PHPExcel $workbook)
@@ -42,10 +45,8 @@ class WorkbookParser {
         $parser = new SheetParser($this->settings);
 
         // Loop through all worksheets
-        foreach ($workbook->getWorksheetIterator() as $index => $worksheet)
-        {
-            if ( $this->isSelected($index) )
-            {
+        foreach ($workbook->getWorksheetIterator() as $index => $worksheet) {
+            if ($this->isSelected($index)) {
                 // Push the sheet onto the workbook
                 $collection->push(
                     $parser->parse($worksheet)
@@ -57,8 +58,10 @@ class WorkbookParser {
     }
 
     /**
-     * Check if sheet is selected
+     * Check if sheet is selected.
+     *
      * @param $index
+     *
      * @return bool
      */
     protected function isSelected($index)

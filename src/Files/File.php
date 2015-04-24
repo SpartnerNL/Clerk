@@ -1,18 +1,20 @@
-<?php namespace Maatwebsite\Clerk\Files;
+<?php
+
+namespace Maatwebsite\Clerk\Files;
 
 /**
- * Class File
- * @package Maatwebsite\Clerk\Files
+ * Class File.
  */
-abstract class File {
-
+abstract class File
+{
     /**
      * @var string
      */
     protected $format;
 
     /**
-     * File extension
+     * File extension.
+     *
      * @var string
      */
     protected $extension;

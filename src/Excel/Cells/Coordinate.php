@@ -1,14 +1,16 @@
-<?php namespace Maatwebsite\Clerk\Excel\Cells;
+<?php
 
-class Coordinate {
+namespace Maatwebsite\Clerk\Excel\Cells;
 
+class Coordinate
+{
     /**
      * @var string|null
      */
     protected $column;
 
     /**
-     * @var integer|null
+     * @var int|null
      */
     protected $row;
 
@@ -18,8 +20,8 @@ class Coordinate {
     protected static $regex = '/^([$]?[A-Z]{1,3})([$]?\d{1,7})$/';
 
     /**
-     * @param string|null  $column
-     * @param integer|null $row
+     * @param string|null $column
+     * @param int|null    $row
      */
     public function __construct($column = null, $row = null)
     {
@@ -29,14 +31,14 @@ class Coordinate {
 
     /**
      * @param $coordinate
+     *
      * @return static
      */
     public static function fromString($coordinate)
     {
         $instance = new static();
 
-        if ( $coordinate )
-        {
+        if ($coordinate) {
             preg_match(self::$regex, $coordinate, $matches);
             array_shift($matches);
             list($column, $row) = $matches;
@@ -47,7 +49,6 @@ class Coordinate {
 
         return $instance;
     }
-
 
     /**
      * @return null|string
@@ -82,7 +83,8 @@ class Coordinate {
     }
 
     /**
-     * Get the coordinate
+     * Get the coordinate.
+     *
      * @return string
      */
     public function get()

@@ -1,10 +1,10 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Cell;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
-class CellTest extends \PHPUnit_Framework_TestCase {
-
+class CellTest extends \PHPUnit_Framework_TestCase
+{
     public function test_init_cell()
     {
         $cell = $this->mockCell();
@@ -13,7 +13,6 @@ class CellTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('\PHPExcel_Cell', $cell->getCell());
     }
 
-
     public function test_getting_value()
     {
         $cell = $this->mockCell();
@@ -21,14 +20,12 @@ class CellTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('text', (string) $cell);
     }
 
-
     public function test_getting_calculated_value()
     {
         $cell = $this->mockCell('=1+1');
         $this->assertEquals('2', $cell->getCalculatedValue());
         $this->assertEquals('2', (string) $cell);
     }
-
 
     public function test_getting_date_value()
     {
@@ -47,9 +44,9 @@ class CellTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('22-08-2008', $cell->getDateValue());
     }
 
-
     /**
      * @param string $text
+     *
      * @return Cell
      */
     protected function mockCell($text = 'text', $settings = false)
@@ -63,7 +60,7 @@ class CellTest extends \PHPUnit_Framework_TestCase {
         $cell = $worksheet->setCellValue('A1', $pValue = $text, $returnCell = true);
 
         $settings = $settings ?: new ParserSettings();
-        $cell = new Cell($cell, 1, $settings);
+        $cell     = new Cell($cell, 1, $settings);
 
         return $cell;
     }

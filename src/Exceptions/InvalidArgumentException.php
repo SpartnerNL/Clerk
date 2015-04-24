@@ -1,9 +1,10 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
+
+namespace Maatwebsite\Clerk\Exceptions;
 
 /**
- * Class InvalidArgumentException
- * @package Maatwebsite\Clerk\Exceptions
+ * Class InvalidArgumentException.
  */
-class InvalidArgumentException extends \InvalidArgumentException {
-
+class InvalidArgumentException extends \InvalidArgumentException
+{
 }

@@ -1,16 +1,19 @@
-<?php namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\Attributes;
 
 use DOMAttr;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\ReferenceTable;
 
-abstract class MergeCells extends Attribute {
-
+abstract class MergeCells extends Attribute
+{
     /**
-     * @param DOMAttr     $attribute
+     * @param DOMAttr        $attribute
      * @param ReferenceTable $table
+     *
      * @return mixed
      */
-    public function parse(DOMAttr $attribute, ReferenceTable &$table)
+    public function parse(DOMAttr $attribute, ReferenceTable & $table)
     {
         $range = $this->getStartCell($table) . ':' . $this->getEndCell($attribute, $table);
 
@@ -19,6 +22,7 @@ abstract class MergeCells extends Attribute {
 
     /**
      * @param $table
+     *
      * @return string
      */
     protected function getStartCell(&$table)
@@ -29,6 +33,7 @@ abstract class MergeCells extends Attribute {
     /**
      * @param $attribute
      * @param $table
+     *
      * @return string
      */
     abstract public function getEndCell($attribute, &$table);

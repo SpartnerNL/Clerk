@@ -3,9 +3,8 @@
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Adapters\Blade\BladeEngine;
 
-class BladeEngineTest extends \PHPUnit_Framework_TestCase {
-
-
+class BladeEngineTest extends \PHPUnit_Framework_TestCase
+{
     public function test_render_a_template()
     {
         $engine = (new BladeEngine(

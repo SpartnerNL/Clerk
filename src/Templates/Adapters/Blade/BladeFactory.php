@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Blade;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Adapters\Blade;
 
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Factory;
 
-class BladeFactory implements Factory {
-
+class BladeFactory implements Factory
+{
     /**
      * @var \Illuminate\View\Factory
      */
@@ -29,12 +31,14 @@ class BladeFactory implements Factory {
     }
 
     /**
-     * Make the view
+     * Make the view.
+     *
      * @param       $file
      * @param array $data
+     *
      * @return $this
      */
-    public function make($file, array $data = array())
+    public function make($file, array $data = [])
     {
         $this->view = $this->factory->make(
             $this->getFile($file),
@@ -45,7 +49,8 @@ class BladeFactory implements Factory {
     }
 
     /**
-     * Render the template
+     * Render the template.
+     *
      * @return string
      */
     public function render()
@@ -54,8 +59,10 @@ class BladeFactory implements Factory {
     }
 
     /**
-     * Get the template file
+     * Get the template file.
+     *
      * @param string $file
+     *
      * @return string
      */
     protected function getFile($file)
@@ -72,15 +79,15 @@ class BladeFactory implements Factory {
     }
 
     /**
-     * Resolve the factory
+     * Resolve the factory.
+     *
      * @return mixed
      */
     protected function resolveFactory()
     {
         // Mostly when using the blade factory Laravel is used,
         // so we can try to get the Laravel View factory from the ioC container
-        if ( function_exists('app') && method_exists(app(), 'bound') && app()->bound('view') )
-        {
+        if (function_exists('app') && method_exists(app(), 'bound') && app()->bound('view')) {
             return app('view');
         }
 

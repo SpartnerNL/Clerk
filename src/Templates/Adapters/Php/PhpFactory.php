@@ -1,10 +1,12 @@
-<?php namespace Maatwebsite\Clerk\Templates\Adapters\Php;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Adapters\Php;
 
 use Maatwebsite\Clerk\Ledger;
 use Maatwebsite\Clerk\Templates\Factory;
 
-class PhpFactory implements Factory {
-
+class PhpFactory implements Factory
+{
     /**
      * @var string
      */
@@ -16,12 +18,14 @@ class PhpFactory implements Factory {
     protected $results;
 
     /**
-     * Make the view
+     * Make the view.
+     *
      * @param string $file
      * @param array  $data
+     *
      * @return $this
      */
-    public function make($file, array $data = array())
+    public function make($file, array $data = [])
     {
         // Find the template file
         $finder = new FileFinder(
@@ -36,7 +40,8 @@ class PhpFactory implements Factory {
     }
 
     /**
-     * Render the template
+     * Render the template.
+     *
      * @return string
      */
     public function render()

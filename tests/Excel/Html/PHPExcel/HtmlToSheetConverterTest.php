@@ -2,14 +2,12 @@
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\HtmlToSheetConverter;
 
-class HtmlToSheetConverterTest extends \PHPUnit_Framework_TestCase {
-
-
+class HtmlToSheetConverterTest extends \PHPUnit_Framework_TestCase
+{
     public function tearDown()
     {
         \Mockery::close();
     }
-
 
     public function test_convert_html_to_sheet()
     {
@@ -18,7 +16,6 @@ class HtmlToSheetConverterTest extends \PHPUnit_Framework_TestCase {
         $sheet = $converter->convert('<table><tr><td>Patrick</td></tr></table>', $this->mockSheet());
         $this->assertInstanceOf('Maatwebsite\Clerk\Excel\Sheet', $sheet);
     }
-
 
     public function mockSheet()
     {

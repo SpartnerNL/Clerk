@@ -1,15 +1,14 @@
 <?php
 
-use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\HeadingParser;
+use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
 
-class HeadingParserTest extends \PHPUnit_Framework_TestCase {
-
-
+class HeadingParserTest extends \PHPUnit_Framework_TestCase
+{
     public function test_parse_with_heading_with_default_settings()
     {
         $settings = new ParserSettings();
-        $parser = new HeadingParser($settings);
+        $parser   = new HeadingParser($settings);
 
         $parsed = $parser->parse($this->mockSheet());
 
@@ -18,7 +17,6 @@ class HeadingParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains('name', $parsed);
         $this->assertContains('date_of_birth', $parsed);
     }
-
 
     public function test_parse_with_heading_with_ascii()
     {
@@ -35,7 +33,6 @@ class HeadingParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains('Date of Birth', $parsed);
     }
 
-
     public function test_parse_with_heading_with_hashed()
     {
         $settings = new ParserSettings();
@@ -50,7 +47,6 @@ class HeadingParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains(md5('Name'), $parsed);
         $this->assertContains(md5('Date of Birth'), $parsed);
     }
-
 
     public function test_parse_with_heading_with_original()
     {
@@ -67,7 +63,6 @@ class HeadingParserTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains('Date of Birth', $parsed);
     }
 
-
     /**
      * @return \PHPExcel_Worksheet
      */
@@ -81,7 +76,7 @@ class HeadingParserTest extends \PHPUnit_Framework_TestCase {
 
         $sheet->fromArray([
             ['Name', 'Date of Birth'],
-            ['a2', 'b2']
+            ['a2', 'b2'],
         ]);
 
         return $sheet;
