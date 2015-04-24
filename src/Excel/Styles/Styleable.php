@@ -62,17 +62,16 @@ interface Styleable
     public function borders(Closure $callback = null);
 
     /**
-     * @param string|callable|null $callback
-     * @param string|null          $vertical
+     * @param string|callable $horizontal
      *
      * @return Alignment
      */
-    public function align($callback = null, $vertical = null);
+    public function align($horizontal);
 
     /**
-     * @param $vertical
+     * @param string|callable $vertical
      *
-     * @return mixed
+     * @return Alignment
      */
     public function valign($vertical);
 }

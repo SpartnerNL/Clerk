@@ -7,10 +7,41 @@ use Maatwebsite\Clerk\Excel\Collections\StyleCollection;
 
 trait StyleableTrait
 {
+
     /**
      * @var StyleCollection
      */
     protected $styles;
+
+    /**
+     * @var Font
+     */
+    protected $font;
+
+    /**
+     * @var Fill
+     */
+    protected $fill;
+
+    /**
+     * @var Border
+     */
+    protected $border;
+
+    /**
+     * @var Borders
+     */
+    protected $borders;
+
+    /**
+     * @var Alignment
+     */
+    protected $alignment;
+
+    /**
+     * @var Alignment
+     */
+    protected $valignment;
 
     /**
      * @param Closure $callback
@@ -19,7 +50,7 @@ trait StyleableTrait
      */
     public function font(Closure $callback = null)
     {
-        $font = new Font();
+        $font = $this->font ?: new Font();
 
         if (is_callable($callback)) {
             $font->call($callback);
@@ -27,7 +58,7 @@ trait StyleableTrait
 
         $this->setStyle($font);
 
-        return $font;
+        return $this->font = $font;
     }
 
     /**
@@ -49,21 +80,21 @@ trait StyleableTrait
      */
     public function fill($callback = null, $type = null)
     {
-        $font = new Fill();
+        $fill = $this->fill ?: new Fill();
 
         if (is_callable($callback)) {
-            $font->call($callback);
+            $fill->call($callback);
         } elseif (!is_null($callback)) {
-            $font->with($callback);
+            $fill->with($callback);
         }
 
         if ($type) {
-            $font->setType($type);
+            $fill->setType($type);
         }
 
-        $this->setStyle($font);
+        $this->setStyle($fill);
 
-        return $font;
+        return $this->fill = $fill;
     }
 
     /**
@@ -74,7 +105,7 @@ trait StyleableTrait
      */
     public function border($callback = null, $style = null)
     {
-        $border = new Border();
+        $border = $this->border ?: new Border();
 
         if (is_callable($callback)) {
             $border->call($callback);
@@ -88,7 +119,7 @@ trait StyleableTrait
 
         $this->setStyle($border);
 
-        return $border;
+        return $this->border = $border;
     }
 
     /**
@@ -98,7 +129,7 @@ trait StyleableTrait
      */
     public function borders(Closure $callback = null)
     {
-        $borders = new Borders();
+        $borders = $this->borders ?: new Borders();
 
         if (is_callable($callback)) {
             $borders->call($callback);
@@ -106,42 +137,47 @@ trait StyleableTrait
 
         $this->setStyle($borders);
 
-        return $borders;
+        return $this->borders = $borders;
     }
 
     /**
-     * @param string|Closure|null $callback
-     * @param string|null         $vertical
+     * @param string|Closure $horizontal
      *
      * @return Alignment
      */
-    public function align($callback = null, $vertical = null)
+    public function align($horizontal)
     {
-        $alignment = new Alignment();
+        $alignment = $this->alignment ?: new Alignment();
 
-        if (is_callable($callback)) {
-            $alignment->call($callback);
-        } elseif (!is_null($callback)) {
-            $alignment->horizontal($callback);
-        }
-
-        if ($vertical) {
-            $alignment->vertical($vertical);
+        if (is_callable($horizontal)) {
+            $alignment->call($horizontal);
+        } else {
+            $alignment->horizontal($horizontal);
         }
 
         $this->setStyle($alignment);
 
-        return $alignment;
+        return $this->alignment = $alignment;
     }
 
     /**
-     * @param $vertical
+     * @param string|Closure $vertical
      *
      * @return Alignment
      */
     public function valign($vertical)
     {
-        return $this->align(null, $vertical);
+        $alignment = $this->valignment ?: new Alignment();
+
+        if (is_callable($vertical)) {
+            $alignment->call($vertical);
+        } else {
+            $alignment->vertical($vertical);
+        }
+
+        $this->setStyle($alignment);
+
+        return $this->valignment = $alignment;
     }
 
     /**

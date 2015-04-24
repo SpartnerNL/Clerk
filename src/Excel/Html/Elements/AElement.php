@@ -15,18 +15,14 @@ class AElement extends Element
      */
     public function parse(DOMNode $node, ReferenceTable & $table)
     {
-        foreach ($node->attributes as $attribute) {
-            if ($attribute->name == 'href') {
-                $this->sheet->getDriver()->getCell($table->getCoordinate())
-                            ->getHyperlink()
-                            ->setUrl($attribute->value);
+        $this->sheet->getCell($table->getCoordinate())
+                    ->getHyperlink()
+                    ->setUrl($node->getAttribute('href'));
 
-                // Underline and make it blue
-                $this->sheet->cell($table->getCoordinate(), function ($cell) {
-                    $cell->font()->underline()->color('0000ff');
-                });
-            }
-        }
+        // Underline and make it blue
+        $this->sheet->cell($table->getCoordinate(), function ($cell) {
+            $cell->font()->underline()->color('0000ff');
+        });
 
         // Add whitespace
         $table->appendContent(' ');
