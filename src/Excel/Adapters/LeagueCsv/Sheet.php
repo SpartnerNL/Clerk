@@ -4,8 +4,6 @@ namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv;
 
 use Closure;
 use League\Csv\Writer as LeagueWriter;
-use Maatwebsite\Clerk\Excel\Cell as CellInterface;
-use Maatwebsite\Clerk\Excel\Cells\Cell as AbstractCell;
 use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Excel\Sheets\Sheet as AbstractSheet;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
@@ -68,21 +66,6 @@ class Sheet extends AbstractSheet implements SheetInterface
     }
 
     /**
-     * @param array  $source
-     * @param null   $nullValue
-     * @param string $startCell
-     * @param bool   $strictNullComparison
-     *
-     * @return SheetInterface
-     */
-    public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
-    {
-        $this->driver->insertAll($source);
-
-        return $this;
-    }
-
-    /**
      * Set height for a certain row.
      *
      * @param $row
@@ -129,77 +112,5 @@ class Sheet extends AbstractSheet implements SheetInterface
     public function getMergeCells()
     {
         throw new FeaturedNotSupportedException();
-    }
-
-    /**
-     * New cell.
-     *
-     * @param array|string        $coordinate
-     * @param Closure|string|null $callback
-     *
-     * @return $this
-     */
-    public function cell($coordinate, $callback = null)
-    {
-        if ($this->cellExists($coordinate)) {
-            $cell = $this->getCellByCoordinate($coordinate);
-        } else {
-            $cell = new AbstractCell();
-        }
-
-        // Set coordinates
-        $cell->setCoordinate($coordinate);
-
-        if (is_callable($callback)) {
-            $cell->call($callback);
-        } elseif (!is_null($callback)) {
-            $cell->setValue($callback);
-        }
-
-        $this->addCell($cell);
-
-        return $cell;
-    }
-
-    /**
-     * Add a cell.
-     *
-     * @param CellInterface $cell
-     *
-     * @return mixed
-     */
-    public function addCell(CellInterface $cell)
-    {
-        $this->cells[$cell->getCoordinate()->get()] = $cell;
-    }
-
-    /**
-     * @return CellInterface[]
-     */
-    public function getCells()
-    {
-        return $this->cells;
-    }
-
-    /**
-     * @param $coordinate
-     *
-     * @return bool
-     */
-    public function cellExists($coordinate)
-    {
-        return in_array($coordinate, array_keys($this->getCells()));
-    }
-
-    /**
-     * @param $coordinate
-     *
-     * @return mixed
-     */
-    public function getCellByCoordinate($coordinate)
-    {
-        if ($this->cellExists($coordinate)) {
-            return $this->cells[$coordinate];
-        }
     }
 }

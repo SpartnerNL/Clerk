@@ -19,7 +19,7 @@ class HtmlToSheetConverter
      * @throws ExportFailedException
      * @return Sheet
      */
-    public function convert($html, Sheet &$sheet)
+    public function convert($html, Sheet $sheet)
     {
         $document = new DOMDocument();
 
