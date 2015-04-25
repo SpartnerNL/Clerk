@@ -102,7 +102,7 @@ class Borders implements Style
      */
     public function right($callback = null, $style = null)
     {
-        $border = $this->makeBorder($callback, $style);
+        $border =  $this->makeBorder($callback, $style);
 
         return $this->right = $border;
     }
@@ -134,7 +134,7 @@ class Borders implements Style
      *
      * @return Border
      */
-    protected function makeBorder($callback, $style)
+    protected function makeBorder($callback, $style = null)
     {
         $border = new Border();
 

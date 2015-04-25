@@ -10,7 +10,7 @@ class TrElementTest extends \PHPUnit_Framework_TestCase
         \Mockery::close();
     }
 
-    public function test_table_gets_parsed()
+    public function test_tr_element_gets_parsed()
     {
         $dom = new \DOMElement('tr', '');
 

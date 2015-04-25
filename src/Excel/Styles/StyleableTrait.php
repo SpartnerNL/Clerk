@@ -145,13 +145,13 @@ trait StyleableTrait
      *
      * @return Alignment
      */
-    public function align($horizontal)
+    public function align($horizontal = null)
     {
         $alignment = $this->alignment ?: new Alignment();
 
         if (is_callable($horizontal)) {
             $alignment->call($horizontal);
-        } else {
+        } elseif($horizontal) {
             $alignment->horizontal($horizontal);
         }
 
@@ -165,13 +165,13 @@ trait StyleableTrait
      *
      * @return Alignment
      */
-    public function valign($vertical)
+    public function valign($vertical  = null)
     {
         $alignment = $this->valignment ?: new Alignment();
 
         if (is_callable($vertical)) {
             $alignment->call($vertical);
-        } else {
+        } elseif($vertical) {
             $alignment->vertical($vertical);
         }
 

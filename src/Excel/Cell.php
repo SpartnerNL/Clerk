@@ -7,6 +7,7 @@ use Maatwebsite\Clerk\Excel\Cells\Coordinate;
 use Maatwebsite\Clerk\Excel\Styles\Alignment;
 use Maatwebsite\Clerk\Excel\Styles\Border;
 use Maatwebsite\Clerk\Excel\Styles\Font;
+use Maatwebsite\Clerk\Excel\Styles\Styleable;
 
 interface Cell
 {
@@ -60,56 +61,4 @@ interface Cell
      * @return mixed
      */
     public function format($format);
-
-    /**
-     * @param callable $callback
-     *
-     * @return Font
-     */
-    public function font(Closure $callback = null);
-
-    /**
-     * @param string|callable $callback
-     * @param string|null     $type
-     *
-     * @return Fill
-     */
-    public function fill($callback = null, $type = null);
-
-    /**
-     * @param string|callable $callback
-     * @param string|null     $type
-     *
-     * @return Fill
-     */
-    public function background($callback = null, $type = null);
-
-    /**
-     * @param string|callable|null $callback
-     * @param string|null          $style
-     *
-     * @return Border
-     */
-    public function border($callback = null, $style = null);
-
-    /**
-     * @param callable|null $callback
-     *
-     * @return Border
-     */
-    public function borders(Closure $callback = null);
-
-    /**
-     * @param string|callable $horizontal
-     *
-     * @return Alignment
-     */
-    public function align($horizontal);
-
-    /**
-     * @param string|callable $vertical
-     *
-     * @return Alignment
-     */
-    public function valign($vertical);
 }

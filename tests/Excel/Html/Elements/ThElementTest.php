@@ -3,16 +3,16 @@
 use Maatwebsite\Clerk\Excel\Html\Elements\TdElement;
 use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 
-class TdElementTest extends \PHPUnit_Framework_TestCase
+class ThElementTest extends \PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
         \Mockery::close();
     }
 
-    public function test_td_element_gets_parsed()
+    public function test_th_element_gets_parsed()
     {
-        $dom = new \DOMElement('td', 'Patrick');
+        $dom = new \DOMElement('th', 'Name');
 
         $table = new ReferenceTable();
 
@@ -45,7 +45,7 @@ class TdElementTest extends \PHPUnit_Framework_TestCase
         $sheet = \Mockery::mock('Maatwebsite\Clerk\Excel\Sheet');
 
         // the cell value should be set.
-        $sheet->shouldReceive('cell')->with('A1', 'Patrick')->once();
+        $sheet->shouldReceive('cell')->with('A1', 'Name')->once();
 
         return $sheet;
     }

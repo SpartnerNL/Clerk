@@ -24,6 +24,6 @@ class WrapTextStyle extends Style
             $state = false;
         }
 
-        $cell->align()->wrapText($state);
+        $cell->align()->wrap($state);
     }
 }

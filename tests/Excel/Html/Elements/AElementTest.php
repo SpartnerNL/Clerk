@@ -12,7 +12,7 @@ class AElementTest extends \PHPUnit_Framework_TestCase
         \Mockery::close();
     }
 
-    public function test_table_gets_parsed()
+    public function test_a_element_gets_parsed()
     {
         $doc = new DOMDocument();
         $dom = $doc->createElement('a');

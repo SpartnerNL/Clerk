@@ -77,14 +77,12 @@ interface Workbook extends Exportable
 
     /**
      * Get the sheet collection.
-     *
      * @return Sheet[]
      */
     public function getSheets();
 
     /**
      * Get the sheet count.
-     *
      * @return int
      */
     public function getSheetCount();
@@ -159,56 +157,4 @@ interface Workbook extends Exportable
      * @return $this
      */
     public function setEncoding($encoding);
-
-    /**
-     * @param callable $callback
-     *
-     * @return Font
-     */
-    public function font(Closure $callback = null);
-
-    /**
-     * @param string|callable $callback
-     * @param string|null     $type
-     *
-     * @return Fill
-     */
-    public function fill($callback = null, $type = null);
-
-    /**
-     * @param string|callable $callback
-     * @param string|null     $type
-     *
-     * @return Fill
-     */
-    public function background($callback = null, $type = null);
-
-    /**
-     * @param string|callable|null $callback
-     * @param string|null          $style
-     *
-     * @return Border
-     */
-    public function border($callback = null, $style = null);
-
-    /**
-     * @param callable|null $callback
-     *
-     * @return Border
-     */
-    public function borders(Closure $callback = null);
-
-    /**
-     * @param string|callable $horizontal
-     *
-     * @return Alignment
-     */
-    public function align($horizontal);
-
-    /**
-     * @param string|callable $vertical
-     *
-     * @return Alignment
-     */
-    public function valign($vertical);
 }
