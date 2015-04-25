@@ -30,7 +30,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
     {
-        // Set PHPExcel instance
+        // Set driver instance
         $this->driver = $driver ?: LeagueWriter::createFromFileObject(new SplTempFileObject());
 
         parent::__construct($title, $callback);
@@ -61,55 +61,58 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     /**
      * @param $description
      *
-     * @return WorkbookInterface
+     * @throws FeaturedNotSupportedException
      */
     public function setDescription($description)
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
-     * @return string
+     * @throws FeaturedNotSupportedException
      */
     public function getDescription()
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
      * @param $company
      *
-     * @return WorkbookInterface
+     * @throws FeaturedNotSupportedException
+     * @return $this|void
      */
     public function setCompany($company)
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
-     * @return string
+     * @throws FeaturedNotSupportedException
      */
     public function getCompany()
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
      * @param $subject
      *
+     * @throws FeaturedNotSupportedException
      * @return WorkbookInterface
      */
     public function setSubject($subject)
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
+     * @throws FeaturedNotSupportedException
      * @return string
      */
     public function getSubject()
     {
-        //
+        throw new FeaturedNotSupportedException();
     }
 
     /**
@@ -197,31 +200,28 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
 
     /**
      * Get delimiter.
-     *
      * @return string
      */
     public function getDelimiter()
     {
-        // TODO: Implement getDelimiter() method.
+        return $this->getDriver()->getDelimiter();
     }
 
     /**
      * Get enclosure.
-     *
      * @return string
      */
     public function getEnclosure()
     {
-        // TODO: Implement getEnclosure() method.
+        return $this->getDriver()->getEnclosure();
     }
 
     /**
      * Get line ending.
-     *
      * @return string
      */
     public function getLineEnding()
     {
-        // TODO: Implement getLineEnding() method.
+        return $this->getDriver()->getLineEnding();
     }
 }

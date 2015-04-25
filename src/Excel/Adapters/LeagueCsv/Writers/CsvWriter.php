@@ -2,6 +2,7 @@
 
 namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv\Writers;
 
+use Maatwebsite\Clerk\Excel\Workbook;
 use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
 use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 
@@ -20,7 +21,9 @@ class CsvWriter extends AbstractWriter implements WriterInterface
     {
         $filename = $this->getFilename($filename);
 
-        $workbook = $this->getExportable()->getDriver();
+        $source = $this->convertCellsToArray($this->getExportable());
+
+        $workbook = $this->getExportable()->getDriver()->insertAll($source);
 
         $workbook->output($filename . '.' . $this->getExtension());
 
@@ -28,32 +31,32 @@ class CsvWriter extends AbstractWriter implements WriterInterface
     }
 
     /**
-     * Get delimiter.
+     * Convert cells to array
+     * @param Workbook $workbook
      *
-     * @return string
+     * @return array
      */
-    public function getDelimiter()
+    protected function convertCellsToArray(Workbook $workbook)
     {
-        // TODO: Implement getDelimiter() method.
-    }
+        $source = [];
+        $r      = 0;
+        $row    = 1;
+        foreach ($workbook->getSheets() as $sheet) {
+            foreach ($sheet->getCells() as $cell) {
 
-    /**
-     * Get enclosure.
-     *
-     * @return string
-     */
-    public function getEnclosure()
-    {
-        // TODO: Implement getEnclosure() method.
-    }
+                // Go to next row when needed
+                if ($cell->getCoordinate()->getRow() != $row) {
+                    $r++;
+                }
 
-    /**
-     * Get line ending.
-     *
-     * @return string
-     */
-    public function getLineEnding()
-    {
-        // TODO: Implement getLineEnding() method.
+                // Set value
+                $source[$r][] = $cell->getValue();
+
+                // Save last row
+                $row = $cell->getCoordinate()->getRow();
+            }
+        }
+
+        return $source;
     }
 }

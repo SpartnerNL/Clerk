@@ -4,10 +4,12 @@ namespace Maatwebsite\Clerk\Excel\Adapters\LeagueCsv;
 
 use Closure;
 use League\Csv\Writer as LeagueWriter;
-use Maatwebsite\Clerk\Excel\Cell;
+use Maatwebsite\Clerk\Excel\Cell as CellInterface;
+use Maatwebsite\Clerk\Excel\Cells\Cell as AbstractCell;
 use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Excel\Sheets\Sheet as AbstractSheet;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
+use Maatwebsite\Clerk\Exceptions\FeaturedNotSupportedException;
 
 /**
  * Class Sheet.
@@ -20,13 +22,22 @@ class Sheet extends AbstractSheet implements SheetInterface
     protected $driver;
 
     /**
+     * @var array
+     */
+    protected $cells = [];
+
+    /**
      * @param WorkbookInterface $workbook
      * @param                   $title
      * @param Closure           $callback
      * @param LeagueWriter      $driver
      */
-    public function __construct(WorkbookInterface $workbook, $title = null, Closure $callback = null, LeagueWriter $driver = null)
-    {
+    public function __construct(
+        WorkbookInterface $workbook,
+        $title = null,
+        Closure $callback = null,
+        LeagueWriter $driver = null
+    ) {
         // Set PHPExcel worksheet
         $this->driver = $driver ?: $workbook->getDriver();
 
@@ -35,7 +46,6 @@ class Sheet extends AbstractSheet implements SheetInterface
 
     /**
      * Get the sheet title.
-     *
      * @return string
      */
     public function getTitle()
@@ -73,30 +83,17 @@ class Sheet extends AbstractSheet implements SheetInterface
     }
 
     /**
-     * Load from template.
-     *
-     * @param       $template
-     * @param array $data
-     * @param null  $engine
-     *
-     * @return mixed
-     */
-    public function loadTemplate($template, array $data = [], $engine = null)
-    {
-        // TODO: Implement loadTemplate() method.
-    }
-
-    /**
      * Set height for a certain row.
      *
      * @param $row
      * @param $height
      *
+     * @throws FeaturedNotSupportedException
      * @return $this
      */
     public function setRowHeight($row, $height)
     {
-        return $this;
+        throw new FeaturedNotSupportedException();
     }
 
     /**
@@ -105,62 +102,104 @@ class Sheet extends AbstractSheet implements SheetInterface
      * @param $column
      * @param $width
      *
+     * @throws FeaturedNotSupportedException
      * @return mixed
      */
     public function setColumnWidth($column, $width)
     {
-        return $this;
+        throw new FeaturedNotSupportedException();
     }
 
     /**
      * @param string $range
      * @param bool   $alignment
      *
+     * @throws FeaturedNotSupportedException
      * @return $this
      */
     public function mergeCells($range = 'A1:A1', $alignment = false)
     {
-        return $this;
+        throw new FeaturedNotSupportedException();
+    }
+
+    /**
+     * @throws FeaturedNotSupportedException
+     * @return array
+     */
+    public function getMergeCells()
+    {
+        throw new FeaturedNotSupportedException();
     }
 
     /**
      * New cell.
      *
-     * @param array|string        $cell
+     * @param array|string        $coordinate
      * @param Closure|string|null $callback
      *
-     * @return mixed
+     * @return $this
      */
-    public function cell($cell, $callback = null)
+    public function cell($coordinate, $callback = null)
     {
-        // TODO: Implement cell() method.
+        if ($this->cellExists($coordinate)) {
+            $cell = $this->getCellByCoordinate($coordinate);
+        } else {
+            $cell = new AbstractCell();
+        }
+
+        // Set coordinates
+        $cell->setCoordinate($coordinate);
+
+        if (is_callable($callback)) {
+            $cell->call($callback);
+        } elseif (!is_null($callback)) {
+            $cell->setValue($callback);
+        }
+
+        $this->addCell($cell);
+
+        return $cell;
     }
 
     /**
      * Add a cell.
      *
-     * @param Cell $cell
+     * @param CellInterface $cell
      *
      * @return mixed
      */
-    public function addCell(Cell $cell)
+    public function addCell(CellInterface $cell)
     {
-        // TODO: Implement addCell() method.
+        $this->cells[$cell->getCoordinate()->get()] = $cell;
     }
 
     /**
-     * @return Cell[]
+     * @return CellInterface[]
      */
     public function getCells()
     {
-        // TODO: Implement getCells() method.
+        return $this->cells;
     }
 
     /**
-     * @return array
+     * @param $coordinate
+     *
+     * @return bool
      */
-    public function getMergeCells()
+    public function cellExists($coordinate)
     {
-        // TODO: Implement getMergeCells() method.
+        return in_array($coordinate, array_keys($this->getCells()));
+    }
+
+    /**
+     * @param $coordinate
+     *
+     * @return mixed
+     */
+    public function getCellByCoordinate($coordinate)
+    {
+        if ($this->cellExists($coordinate)) {
+            return $this->cells[$coordinate];
+        }
     }
 }

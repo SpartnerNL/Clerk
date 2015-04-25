@@ -3,13 +3,11 @@
 namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel;
 
 use Closure;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Html\HtmlToSheetConverter;
 use Maatwebsite\Clerk\Excel\Cell as CellInterface;
 use Maatwebsite\Clerk\Excel\Cells\Cell as AbstractCell;
 use Maatwebsite\Clerk\Excel\Sheet as SheetInterface;
 use Maatwebsite\Clerk\Excel\Sheets\Sheet as AbstractSheet;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
-use Maatwebsite\Clerk\Templates\TemplateFactory;
 use PHPExcel_Worksheet;
 
 /**
@@ -82,32 +80,6 @@ class Sheet extends AbstractSheet implements SheetInterface
     public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
     {
         $this->driver->fromArray($source, $nullValue, $startCell, $strictNullComparison);
-
-        return $this;
-    }
-
-    /**
-     * Load from template.
-     *
-     * @param       $template
-     * @param array $data
-     * @param null  $engine
-     *
-     * @return $this
-     */
-    public function loadTemplate($template, array $data = [], $engine = null)
-    {
-        // Init factory based on given engine, based on extension or use of default engine
-        $factory = TemplateFactory::create($template, $engine);
-
-        // Render the template
-        $html = $factory->make($template, $data)->render();
-
-        // Convert the html to a sheet
-        (new HtmlToSheetConverter())->convert(
-            $html,
-            $this
-        );
 
         return $this;
     }
