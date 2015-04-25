@@ -34,7 +34,7 @@ class Excel extends File
      * @param Closure     $callback
      * @param bool|string $driver
      */
-    public function __construct($title, Closure $callback = null, $driver = false)
+    public function __construct($title = null, Closure $callback = null, $driver = false)
     {
         // Get the driver
         $driver = $driver ?: $this->getDriver();
@@ -72,7 +72,7 @@ class Excel extends File
     public static function load($file, Closure $callback = null, $driver = false, $format = null)
     {
         // Passing in empty strings, will prevent a workbook from being initialized
-        $instance = (new static('', null, ''));
+        $instance = new static();
         $driver   = $driver ?: $instance->getDriver();
         $format   = $format ?: $instance->getFormat();
 
@@ -115,7 +115,6 @@ class Excel extends File
 
     /**
      * Get the driver.
-     *
      * @return mixed
      */
     protected function getDriver()

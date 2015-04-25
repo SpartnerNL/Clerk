@@ -11,7 +11,7 @@ class ColorStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_color()
     {
         $value = '333333';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

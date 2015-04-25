@@ -2,7 +2,6 @@
 
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
-use Maatwebsite\Clerk\Excel\Html\Attributes\AlignAttribute;
 use Maatwebsite\Clerk\Excel\Html\Attributes\StyleAttribute;
 use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
 

@@ -7,7 +7,6 @@ use Maatwebsite\Clerk\Excel\Collections\StyleCollection;
 
 trait StyleableTrait
 {
-
     /**
      * @var StyleCollection
      */
@@ -151,7 +150,7 @@ trait StyleableTrait
 
         if (is_callable($horizontal)) {
             $alignment->call($horizontal);
-        } elseif($horizontal) {
+        } elseif ($horizontal) {
             $alignment->horizontal($horizontal);
         }
 
@@ -171,7 +170,7 @@ trait StyleableTrait
 
         if (is_callable($vertical)) {
             $alignment->call($vertical);
-        } elseif($vertical) {
+        } elseif ($vertical) {
             $alignment->vertical($vertical);
         }
 

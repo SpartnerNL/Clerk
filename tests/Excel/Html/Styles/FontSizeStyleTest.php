@@ -11,7 +11,7 @@ class FontSizeStyleTest extends \PHPUnit_Framework_TestCase
     public function test_bold()
     {
         $value = '16';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

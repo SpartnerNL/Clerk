@@ -11,7 +11,7 @@ class BorderStyleTest extends \PHPUnit_Framework_TestCase
     public function test_border_style()
     {
         $value = '1px thick 000000';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

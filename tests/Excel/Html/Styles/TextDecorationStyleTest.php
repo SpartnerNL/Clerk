@@ -4,7 +4,6 @@ use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Sheet;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Workbook;
 use Maatwebsite\Clerk\Excel\Cells\Cell;
 use Maatwebsite\Clerk\Excel\Html\ReferenceTable;
-use Maatwebsite\Clerk\Excel\Html\Styles\TextAlignStyle;
 use Maatwebsite\Clerk\Excel\Html\Styles\TextDecorationStyle;
 
 class TextDecorationStyleTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +11,7 @@ class TextDecorationStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_underline()
     {
         $value = 'underline';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 
@@ -25,7 +24,7 @@ class TextDecorationStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_strikethrough()
     {
         $value = 'line-through';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

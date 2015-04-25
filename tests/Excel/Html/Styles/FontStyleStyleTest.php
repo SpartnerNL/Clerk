@@ -11,7 +11,7 @@ class FontStyleStyleTest extends \PHPUnit_Framework_TestCase
     public function test_italic()
     {
         $value = 'italic';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

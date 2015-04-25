@@ -11,7 +11,7 @@ class VerticalAlignStyleTest extends \PHPUnit_Framework_TestCase
     public function test_vertical_align_center()
     {
         $value = 'center';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

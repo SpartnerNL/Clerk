@@ -11,7 +11,7 @@ class BackgroundStyleTest extends \PHPUnit_Framework_TestCase
     public function test_background_color_style()
     {
         $value = '000000';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 
@@ -24,7 +24,7 @@ class BackgroundStyleTest extends \PHPUnit_Framework_TestCase
     public function test_background_color_style_with_hash()
     {
         $value = '#000000';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

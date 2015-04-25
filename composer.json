@@ -20,7 +20,7 @@
   "require": {
     "php": ">=5.4.0",
     "nesbot/carbon": "~1.0",
-    "league/csv": "~7.0.0",
+    "league/csv": "~7.1.0@dev",
     "phpoffice/phpexcel": "~1.8.0",
     "phpoffice/phpword": "~0.12.0",
     "patchwork/utf8": "~1.2.1",

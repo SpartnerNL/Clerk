@@ -14,7 +14,6 @@ abstract class File
 
     /**
      * File extension.
-     *
      * @var string
      */
     protected $extension;

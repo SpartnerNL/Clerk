@@ -11,7 +11,7 @@ class WrapTextStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_indent()
     {
         $value = 'true';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

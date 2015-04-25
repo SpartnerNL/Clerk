@@ -11,7 +11,7 @@ class FontFamilyStyleTest extends \PHPUnit_Framework_TestCase
     public function test_font_family()
     {
         $value = 'verdana';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

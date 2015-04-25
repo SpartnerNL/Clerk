@@ -67,12 +67,6 @@ class Sheet extends AbstractSheet implements SheetInterface
      */
     public function fromArray(array $source, $nullValue = null, $startCell = 'A1', $strictNullComparison = false)
     {
-        if ($nullValue == null && $strictNullComparison == false) {
-            $this->driver->setNullHandlingMode('NULL_AS_EMPTY');
-        } elseif ($nullValue == 0 || $strictNullComparison) {
-            $this->driver->setNullHandlingMode('NULL_HANDLING_DISABLED');
-        }
-
         $this->driver->insertAll($source);
 
         return $this;

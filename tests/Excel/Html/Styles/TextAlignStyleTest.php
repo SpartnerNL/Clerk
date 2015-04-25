@@ -11,7 +11,7 @@ class TextAlignStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_align_center()
     {
         $value = 'center';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

@@ -11,7 +11,7 @@ class FontWeightStyleTest extends \PHPUnit_Framework_TestCase
     public function test_bold()
     {
         $value = 'bold';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 

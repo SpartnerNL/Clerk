@@ -11,7 +11,7 @@ class TextIndentStyleTest extends \PHPUnit_Framework_TestCase
     public function test_text_indent()
     {
         $value = '20px';
-        $cell = $this->mockCell();
+        $cell  = $this->mockCell();
         $sheet = $this->mockSheet();
         $table = new ReferenceTable();
 
