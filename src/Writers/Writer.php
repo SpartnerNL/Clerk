@@ -39,6 +39,14 @@ abstract class Writer
     abstract public function export($filename = null);
 
     /**
+     * @param      $path
+     * @param null $filename
+     *
+     * @return mixed
+     */
+    abstract public function store($path, $filename = null);
+
+    /**
      * @return Exportable
      */
     public function getExportable()

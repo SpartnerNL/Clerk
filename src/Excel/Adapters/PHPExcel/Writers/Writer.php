@@ -44,6 +44,17 @@ class Writer extends AbstractWriter implements WriterInterface
     }
 
     /**
+     * @param      $path
+     * @param null $filename
+     *
+     * @return mixed
+     */
+    public function store($path, $filename = null)
+    {
+        // TODO: Implement store() method.
+    }
+
+    /**
      * @param WorkbookInterface $workbook
      *
      * @return \PHPExcel

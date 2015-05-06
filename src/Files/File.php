@@ -7,6 +7,7 @@ namespace Maatwebsite\Clerk\Files;
  */
 abstract class File
 {
+
     /**
      * @var string
      */
@@ -41,6 +42,38 @@ abstract class File
     {
         return $this->workbook;
     }
+
+    /**
+     * @param $filename
+     *
+     * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return mixed|void
+     */
+    public function export($filename = null)
+    {
+        $writer = $this->initWriter();
+
+        return $writer->export($filename);
+    }
+
+    /**
+     * @param      $path
+     * @param null $filename
+     *
+     * @return mixed|void
+     */
+    public function store($path, $filename = null)
+    {
+        $writer = $this->initWriter();
+
+        return $writer->store($path, $filename = null);
+    }
+
+    /**
+     * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
+     * @return \Maatwebsite\Clerk\Writer
+     */
+    abstract public function initWriter();
 
     /**
      * @return mixed

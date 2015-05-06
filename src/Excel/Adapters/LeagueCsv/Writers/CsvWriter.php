@@ -31,6 +31,17 @@ class CsvWriter extends AbstractWriter implements WriterInterface
     }
 
     /**
+     * @param      $path
+     * @param null $filename
+     *
+     * @return mixed
+     */
+    public function store($path, $filename = null)
+    {
+        // TODO: Implement store() method.
+    }
+
+    /**
      * Convert cells to array
      * @param Workbook $workbook
      *

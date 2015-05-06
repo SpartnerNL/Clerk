@@ -22,13 +22,37 @@ class Writer extends AbstractWriter
             $this->getExportable()
         );
 
-        return $document->save($filename . '.' . $this->getExtension(), $this->getType(), true);
+        return $document->save(
+            $filename . '.' . $this->getExtension(),
+            $this->getType(),
+            true
+        );
+    }
+
+    /**
+     * @param      $path
+     * @param null $filename
+     *
+     * @return mixed
+     */
+    public function store($path, $filename = null)
+    {
+        $filename = $this->getFilename($filename);
+        $document = $this->convertToDriver(
+            $this->getExportable()
+        );
+
+        return $document->save(
+            $path . '/' . $filename . '.' . $this->getExtension(),
+            $this->getType(),
+            false
+        );
     }
 
     /**
      * @param Document $document
      *
-     * @return PHPWord
+     * @return \PhpOffice\PhpWord\PhpWord
      */
     protected function convertToDriver(Document $document)
     {

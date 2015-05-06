@@ -12,6 +12,7 @@ use Maatwebsite\Clerk\Word\Writers\WriterFactory;
  */
 class Word extends File
 {
+
     /**
      * @var string
      */
@@ -72,23 +73,10 @@ class Word extends File
     }
 
     /**
-     * @param $filename
-     *
-     * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
-     * @return mixed|void
-     */
-    public function export($filename = null)
-    {
-        $writer = $this->initWriter();
-
-        return $writer->export($filename);
-    }
-
-    /**
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Writer
      */
-    protected function initWriter()
+    public function initWriter()
     {
         $writer = WriterFactory::create(
             $this->getDriver(),
@@ -110,7 +98,6 @@ class Word extends File
 
     /**
      * Get the driver.
-     *
      * @return mixed
      */
     protected function getDriver()
