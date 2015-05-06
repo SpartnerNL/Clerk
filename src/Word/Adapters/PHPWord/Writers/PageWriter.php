@@ -15,15 +15,15 @@ class PageWriter
     public function write(Section $section, Page $page)
     {
         foreach ($page->getText() as $text) {
-            $section->addText($text);
+            $section->addText($text->getText());
         }
 
         if ($page->getHeader()) {
-            $section->addHeader()->addText($page->getHeader());
+            $section->addHeader()->addText($page->getHeader()->getText());
         }
 
         if ($page->getFooter()) {
-            $section->addFooter()->addText($page->getFooter());
+            $section->addFooter()->addText($page->getFooter()->getText());
         }
 
         return $section;

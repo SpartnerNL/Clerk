@@ -2,6 +2,7 @@
 
 namespace Maatwebsite\Clerk\Word\Pages;
 
+use Closure;
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
@@ -18,58 +19,73 @@ abstract class Page extends Adapter
     protected $driver;
 
     /**
-     * @var array
+     * @var array|Text[]
      */
     protected $text = [];
 
     /**
-     * @var string
+     * @var Header
      */
     protected $header;
 
     /**
-     * @var string
+     * @var Footer
      */
     protected $footer;
 
     /**
-     * @param $text
+     * @param          $text
+     * @param callable $callback
      *
      * @return $this
      */
-    public function addText($text)
+    public function addText($text, Closure $callback = null)
     {
+        $text = new Text($text);
+
+        $text->call($callback);
+
         $this->text[] = $text;
 
         return $this;
     }
 
     /**
-     * @param $header
+     * @param          $header
+     * @param callable $callback
      *
      * @return $this
      */
-    public function setHeader($header)
+    public function setHeader($header, Closure $callback = null)
     {
-        $this->header = $header;
+        $this->header = new Header(
+            new Text($header)
+        );
+
+        $this->header->call($callback);
 
         return $this;
     }
 
     /**
-     * @param $footer
+     * @param          $footer
+     * @param callable $callback
      *
      * @return $this
      */
-    public function setFooter($footer)
+    public function setFooter($footer, Closure $callback = null)
     {
-        $this->footer = $footer;
+        $this->footer = new Footer(
+            new Text($footer)
+        );
+
+        $this->footer->call($callback);
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return array|Text[]
      */
     public function getText()
     {
@@ -77,7 +93,7 @@ abstract class Page extends Adapter
     }
 
     /**
-     * @return mixed
+     * @return Header
      */
     public function getHeader()
     {
@@ -85,7 +101,7 @@ abstract class Page extends Adapter
     }
 
     /**
-     * @return mixed
+     * @return Footer
      */
     public function getFooter()
     {
