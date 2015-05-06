@@ -20,7 +20,7 @@ class Word extends File
     /**
      * @var string
      */
-    protected $format = 'Word2007';
+    protected $format = 'Word';
 
     /**
      * @var \Maatwebsite\Clerk\Word\Document

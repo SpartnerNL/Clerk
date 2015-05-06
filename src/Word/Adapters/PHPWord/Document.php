@@ -9,6 +9,7 @@ use PhpOffice\PhpWord\PhpWord;
 
 class Document extends AbstractDocument implements DocumentInterface
 {
+
     /*
     * @var PHPWord
     */
@@ -50,29 +51,26 @@ class Document extends AbstractDocument implements DocumentInterface
     }
 
     /**
-     * Init a new section.
+     * Init a new page.
      *
      * @param         $text
      * @param Closure $callback
      *
-     * @return Section
+     * @return Page
      */
-    public function section($text, Closure $callback = null)
+    public function page($text = null, Closure $callback = null)
     {
-        // Init a new section
-        $section = new Section(
-            $text,
+        // Init a new page
+        $page = new Page(
+            !is_callable($text) ? $text : null,
             $this
         );
 
-        // Preform callback on the section
-        $section->call($callback);
+        // Preform callback on the page
+        $page->call(
+            !is_callable($text) ? $callback : $text
+        );
 
-        return $section;
-    }
-
-    public function save($file, $format = 'Excel2007', $download = true)
-    {
-        // TODO: Implement save() method.
+        return $page;
     }
 }

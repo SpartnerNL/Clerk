@@ -2,6 +2,6 @@
 
 namespace Maatwebsite\Clerk\Word;
 
-interface Section
+interface Page
 {
 }

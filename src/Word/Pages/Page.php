@@ -1,11 +1,11 @@
 <?php
 
-namespace Maatwebsite\Clerk\Word\Sections;
+namespace Maatwebsite\Clerk\Word\Pages;
 
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
-abstract class Section extends Adapter
+abstract class Page extends Adapter
 {
     /*
      * Traits

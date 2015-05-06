@@ -17,7 +17,7 @@ class Word2007 extends Word
     /**
      * @var string
      */
-    protected $format = 'Excel5';
+    protected $format = 'Word2007';
 
     /**
      * Get the driver.

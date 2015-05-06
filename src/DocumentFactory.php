@@ -34,6 +34,6 @@ class DocumentFactory
      */
     protected static function getClassByType($type)
     {
-        return 'Maatwebsite\\Clerk\\Files\\' . $type;
+        return 'Maatwebsite\\Clerk\\Files\\' . ucfirst($type);
     }
 }
