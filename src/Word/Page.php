@@ -12,6 +12,13 @@ interface Page
     public function addText($text);
 
     /**
+     * @param $text
+     *
+     * @return $this
+     */
+    public function addHtml($text);
+
+    /**
      * @param $header
      *
      * @return $this

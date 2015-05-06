@@ -51,6 +51,23 @@ abstract class Page extends Adapter
     }
 
     /**
+     * @param          $text
+     * @param callable $callback
+     *
+     * @return $this
+     */
+    public function addHtml($text, Closure $callback = null)
+    {
+        $text = new HtmlText($text);
+
+        $text->call($callback);
+
+        $this->text[] = $text;
+
+        return $this;
+    }
+
+    /**
      * @param          $header
      * @param callable $callback
      *

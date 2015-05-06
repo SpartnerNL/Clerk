@@ -1,7 +1,9 @@
 <?php namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
 
 use Maatwebsite\Clerk\Word\Page;
+use Maatwebsite\Clerk\Word\Pages\HtmlText;
 use PhpOffice\PhpWord\Element\Section;
+use PhpOffice\PhpWord\Shared\Html;
 
 class PageWriter
 {
@@ -15,7 +17,11 @@ class PageWriter
     public function write(Section $section, Page $page)
     {
         foreach ($page->getText() as $text) {
-            $section->addText($text->getText());
+            if ($text instanceof HtmlText) {
+               Html::addHtml($section, $text->getText());
+            } else {
+                $section->addText($text->getText());
+            }
         }
 
         if ($page->getHeader()) {
