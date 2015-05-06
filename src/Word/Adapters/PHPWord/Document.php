@@ -16,6 +16,11 @@ class Document extends AbstractDocument implements DocumentInterface
     protected $driver;
 
     /**
+     * @var array
+     */
+    protected $pages = [];
+
+    /**
      * @param         $title
      * @param Closure $callback
      * @param PhpWord $driver
@@ -70,6 +75,8 @@ class Document extends AbstractDocument implements DocumentInterface
         $page->call(
             !is_callable($text) ? $callback : $text
         );
+
+        $this->addPage($page);
 
         return $page;
     }

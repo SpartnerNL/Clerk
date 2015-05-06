@@ -5,6 +5,7 @@ namespace Maatwebsite\Clerk\Word\Documents;
 use Closure;
 use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Traits\CallableTrait;
+use Maatwebsite\Clerk\Word\Page;
 
 abstract class Document extends Adapter
 {
@@ -14,9 +15,9 @@ abstract class Document extends Adapter
     use CallableTrait;
 
     /**
-     * @var array
+     * @var array|Page[]
      */
-    protected $sections = [];
+    protected $pages = [];
 
     /**
      * @param         $title
@@ -29,6 +30,22 @@ abstract class Document extends Adapter
 
         // Make a callback on the workbook
         $this->call($callback);
+    }
+
+    /**
+     * @param Page $page
+     */
+    public function addPage(Page $page)
+    {
+        $this->pages[] = $page;
+    }
+
+    /**
+     * @return array|Page[]
+     */
+    public function getPages()
+    {
+        return $this->pages;
     }
 
     /**

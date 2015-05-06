@@ -32,6 +32,13 @@ class Writer extends AbstractWriter
      */
     protected function convertToDriver(Document $document)
     {
-        return $document->getDriver();
+        $driver = $document->getDriver();
+
+        foreach ($document->getPages() as $page) {
+            $section = $document->getDriver()->addSection();
+            (new PageWriter())->write($section, $page);
+        }
+
+        return $driver;
     }
 }
