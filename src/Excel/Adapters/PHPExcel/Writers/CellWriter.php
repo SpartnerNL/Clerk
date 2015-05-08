@@ -30,10 +30,17 @@ class CellWriter
         /*
          * CELL VALUE
          */
-        $this->sheet->getCell($coordinate)->setValueExplicit(
-            $cell->getValue(),
-            (string) $cell->getDataType()
-        );
+
+        if ($cell->getDataType()) {
+            $this->sheet->getCell($coordinate)->setValueExplicit(
+                $cell->getValue(),
+                (string) $cell->getDataType()
+            );
+        } else {
+            $this->sheet->getCell($coordinate)->setValue(
+                $cell->getValue()
+            );
+        }
 
         /*
          * NUMBER FORMAT

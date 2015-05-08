@@ -9,6 +9,8 @@ use Maatwebsite\Clerk\Excel\Writer as WriterInterface;
 use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 use PHPExcel_IOFactory;
 use PHPExcel_Writer_IWriter;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class Writer.
@@ -25,10 +27,15 @@ class Writer extends AbstractWriter implements WriterInterface
      */
     public function export($filename = null)
     {
-        $writer   = $this->createWriter();
+        $writer = $this->createWriter();
         $filename = $this->getFilename($filename);
 
-        $this->sendHeaders([
+        ob_start();
+        $writer->save('php://output');
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        $response = new Response($output, 200, [
             'Content-Type'        => $this->getContentType($this->getType()),
             'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->getExtension() . '"',
             'Expires'             => 'Mon, 26 Jul 1997 05:00:00 GMT', // Date in the past
@@ -37,10 +44,7 @@ class Writer extends AbstractWriter implements WriterInterface
             'Pragma'              => 'public',
         ]);
 
-        $writer->save('php://output');
-
-        // End the script to prevent corrupted xlsx files
-        exit;
+        return $response->send();
     }
 
     /**
