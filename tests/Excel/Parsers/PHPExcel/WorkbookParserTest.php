@@ -8,7 +8,7 @@ class WorkbookParserTest extends \PHPUnit_Framework_TestCase
     public function test_parse()
     {
         $settings = new ParserSettings();
-        $parser   = new WorkbookParser($settings);
+        $parser = new WorkbookParser($settings);
 
         $parsed = $parser->parse($this->mockWorkbook());
 
@@ -40,8 +40,58 @@ class WorkbookParserTest extends \PHPUnit_Framework_TestCase
         $workbook->disconnectWorksheets();
 
         $workbook->getProperties()->setTitle('mocked');
-        $workbook->addSheet(new \PHPExcel_Worksheet($workbook));
-        $workbook->addSheet(new \PHPExcel_Worksheet($workbook));
+
+        $sheet = new \PHPExcel_Worksheet($workbook);
+        $sheet->fromArray([
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ]
+        ]);
+        $workbook->addSheet($sheet);
+
+        $sheet = new \PHPExcel_Worksheet($workbook);
+        $sheet->fromArray([
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ],
+            [
+                'test',
+                'test',
+                'test'
+            ]
+        ]);
+        $workbook->addSheet($sheet);
+
+        $workbook->setActiveSheetIndex(0);
 
         return $workbook;
     }
