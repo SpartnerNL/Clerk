@@ -27,11 +27,9 @@
     "patchwork/utf8": "~1.2.1",
     "symfony/http-foundation": "~2.6|~2.7@dev",
     "illuminate/support": "~4.0|~5.0",
-    "tijsverkoyen/css-to-inline-styles": "~1.5",
-    "h4cc/wkhtmltopdf-amd64": "0.12.x",
-    "h4cc/wkhtmltoimage-amd64": "0.12.x"
+    "tijsverkoyen/css-to-inline-styles": "~1.5"
   },
-  "suggets": {
+  "suggests": {
     "illuminate/view": "If you want to use Blade as templating engine",
     "twig/twig": "If you want to use Twig as templating engine",
     "smarty/smarty": "If you want to use Smarty as templating engine"
