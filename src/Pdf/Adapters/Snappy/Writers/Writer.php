@@ -20,11 +20,11 @@ class Writer extends AbstractWriter
     public function export($filename = null)
     {
         $filename = $this->getFilename($filename);
-        $document = $this->convertToDriver(
-            $this->getExportable()
+        $output = $this->getExportable()->getDriver()->getOutputFromHtml(
+            $this->convertToHtml($this->getExportable())
         );
 
-        $response = new Response($document, 200, array(
+        $response = new Response($output, 200, array(
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->getExtension() . '"'
         ));
@@ -43,12 +43,13 @@ class Writer extends AbstractWriter
     public function stream($filename = null)
     {
         $filename = $this->getFilename($filename);
-        $document = $this->convertToDriver(
-            $this->getExportable()
-        );
 
-        $response = new StreamedResponse(function () use ($document) {
-            echo $document;
+        $output = $this->getExportable()->getDriver()->getOutputFromHtml(
+            $this->convertToHtml($this->getExportable())
+        );;
+
+        $response = new StreamedResponse(function () use ($output) {
+            echo $output;
         }, 200, array(
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'inline; filename="' . $filename . '.' . $this->getExtension() . '"'
@@ -65,6 +66,14 @@ class Writer extends AbstractWriter
      */
     public function store($path, $filename = null)
     {
+        $filename = $this->getFilename($filename);
+
+        $file = $path . '/' . $filename . '.' . $this->getExtension();
+
+        $this->getExportable()->getDriver()->generateFromHtml(
+            $this->convertToHtml($this->getExportable()),
+            $file
+        );
     }
 
     /**
@@ -72,15 +81,15 @@ class Writer extends AbstractWriter
      *
      * @return \Knp\Snappy\Pdf;
      */
-    protected function convertToDriver(Document $document)
+    protected function convertToHtml(Document $document)
     {
-        $driver = $document->getDriver();
+        $html = '';
+        foreach ($document->getPages() as $page) {
+            foreach ($page->getText() as $text) {
+                $html .= $text->getText();
+            }
+        }
 
-        //foreach ($document->getPages() as $page) {
-        //    $section = $document->getDriver()->addSection();
-        //    (new PageWriter())->write($section, $page);
-        //}
-
-        return $driver->getOutputFromHtml('TEST');
+        return $html;
     }
 }
