@@ -42,18 +42,4 @@ class CsvReader extends Reader implements ReaderInterface, CsvReaderInterface
 
         return $this;
     }
-
-    /**
-     * Set CSV the line endings.
-     *
-     * @param $lineEnding
-     *
-     * @return Reader
-     */
-    public function setLineEnding($lineEnding)
-    {
-        $this->reader->setLineEnding($lineEnding);
-
-        return $this;
-    }
 }

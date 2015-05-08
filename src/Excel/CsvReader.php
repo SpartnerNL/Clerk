@@ -24,13 +24,4 @@ interface CsvReader
      * @return Reader
      */
     public function setEnclosure($enclosure);
-
-    /**
-     * Set CSV the line endings.
-     *
-     * @param $lineEnding
-     *
-     * @return Reader
-     */
-    public function setLineEnding($lineEnding);
 }
