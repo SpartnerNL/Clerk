@@ -25,7 +25,7 @@
     "phpoffice/phpexcel": "~1.8.0",
     "phpoffice/phpword": "~0.12.0",
     "patchwork/utf8": "~1.2.1",
-    "symfony/http-foundation": "2.6.*",
+    "symfony/http-foundation": "~2.6|~2.7@dev",
     "illuminate/support": "~4.0|~5.0",
     "tijsverkoyen/css-to-inline-styles": "~1.5",
     "h4cc/wkhtmltopdf-amd64": "0.12.x",
