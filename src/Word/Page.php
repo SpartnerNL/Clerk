@@ -19,6 +19,17 @@ interface Page
     public function addHtml($text);
 
     /**
+     * Load from template.
+     *
+     * @param       $template
+     * @param array $data
+     * @param null  $engine
+     *
+     * @return mixed
+     */
+    public function loadTemplate($template, array $data = [], $engine = null);
+
+    /**
      * @param $header
      *
      * @return $this

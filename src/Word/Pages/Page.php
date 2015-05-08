@@ -4,6 +4,7 @@ namespace Maatwebsite\Clerk\Word\Pages;
 
 use Closure;
 use Maatwebsite\Clerk\Adapter;
+use Maatwebsite\Clerk\Templates\TemplateFactory;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
 abstract class Page extends Adapter
@@ -63,6 +64,28 @@ abstract class Page extends Adapter
         $text->call($callback);
 
         $this->text[] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Load from template.
+     *
+     * @param       $template
+     * @param array $data
+     * @param null  $engine
+     *
+     * @return mixed
+     */
+    public function loadTemplate($template, array $data = [], $engine = null)
+    {
+        // Init factory based on given engine, based on extension or use of default engine
+        $factory = TemplateFactory::create($template, $engine);
+
+        // Render the template
+        $html = $factory->make($template, $data)->render();
+
+        $this->addHtml($html);
 
         return $this;
     }
