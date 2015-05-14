@@ -65,7 +65,7 @@ abstract class File
     {
         $writer = $this->initWriter();
 
-        return $writer->store($path, $filename = null);
+        return $writer->store($path, $filename);
     }
 
     /**

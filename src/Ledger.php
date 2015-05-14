@@ -17,6 +17,7 @@ class Ledger implements ArrayAccess
     protected $items = [
 
         'drivers'   => [
+            'pdf'       => 'Snappy',
             'csv'       => 'LeagueCsv',
             'excel2003' => 'PHPExcel',
             'excel2007' => 'PHPExcel',
@@ -28,6 +29,13 @@ class Ledger implements ArrayAccess
             'enclosure'   => '"',
             'line_ending' => "\r\n",
             'encoding'    => 'UTF-8',
+        ],
+        'pdf'       => [
+            'snappy' => [
+                'binary'  => '/usr/local/bin/wkhtmltopdf',
+                'options' => [],
+                'timeout' => false,
+            ]
         ],
         'templates' => [
             'default' => 'php',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Maatwebsite\Clerk\Word;
+namespace Maatwebsite\Clerk\Pdf;
 
 interface Page
 {

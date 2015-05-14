@@ -42,7 +42,7 @@ class SheetParser
         // Get the sheet heading row
         $heading = (new HeadingParser($this->settings))->parse($sheet);
 
-        // Row parser
+        // Row parsers
         $parser = new RowParser($this->settings, $heading);
 
         foreach ($sheet->getRowIterator($this->getStartRow()) as $index => $row) {

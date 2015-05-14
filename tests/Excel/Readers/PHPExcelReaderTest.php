@@ -196,14 +196,6 @@ class PHPExcelReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(';', $reader->getReader()->getEnclosure());
     }
 
-    public function test_set_line_ending()
-    {
-        $reader = new Reader('CSV', __DIR__ . '/files/test.xls');
-
-        $reader->setLineEnding(';');
-        $this->assertEquals(';', $reader->getReader()->getLineEnding());
-    }
-
     /**
      * @return Reader
      */

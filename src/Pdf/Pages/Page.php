@@ -1,23 +1,17 @@
 <?php
 
-namespace Maatwebsite\Clerk\Word\Pages;
+namespace Maatwebsite\Clerk\Pdf\Pages;
 
 use Closure;
-use Maatwebsite\Clerk\Adapter;
 use Maatwebsite\Clerk\Templates\TemplateFactory;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
-abstract class Page extends Adapter
+abstract class Page
 {
     /*
      * Traits
      */
     use CallableTrait;
-
-    /**
-     * @var mixed
-     */
-    protected $driver;
 
     /**
      * @var array|Text[]

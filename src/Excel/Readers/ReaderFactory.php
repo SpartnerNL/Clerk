@@ -4,7 +4,7 @@ namespace Maatwebsite\Clerk\Excel\Readers;
 
 use Closure;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
-use Maatwebsite\Clerk\Excel\Reader;
+use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
 /**
@@ -19,7 +19,7 @@ class ReaderFactory
      * @param callable $callback
      *
      * @throws DriverNotFoundException
-     * @return Reader
+     * @return ReaderInterface
      */
     public static function create($driver, $file, Closure $callback = null, $type = null)
     {
