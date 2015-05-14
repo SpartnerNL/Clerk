@@ -28,6 +28,6 @@ class Csv extends Excel
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.' . $type . '.csv', 'LeagueCsv');
+        return Ledger::resolve('drivers.' . $type . '.csv', 'LeagueCsv');
     }
 }

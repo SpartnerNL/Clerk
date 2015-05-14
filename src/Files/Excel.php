@@ -100,6 +100,6 @@ class Excel extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.' . $type . '.excel2003', 'PHPExcel');
+        return Ledger::resolve('drivers.' . $type . '.excel2003', 'PHPExcel');
     }
 }

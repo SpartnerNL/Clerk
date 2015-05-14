@@ -28,6 +28,6 @@ class Excel2007 extends Excel
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.' . $type . '.excel2007', 'PHPExcel');
+        return Ledger::resolve('drivers.' . $type . '.excel2007', 'PHPExcel');
     }
 }

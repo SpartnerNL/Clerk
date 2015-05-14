@@ -3,15 +3,18 @@
 namespace Maatwebsite\Clerk;
 
 use ArrayAccess;
+use Closure;
+use Maatwebsite\Clerk\Drivers\DriverInterface;
+use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
 /**
  * Class Ledger.
  */
 class Ledger implements ArrayAccess
 {
+
     /**
      * All of the configuration items.
-     *
      * @var array
      */
     protected $items = [
@@ -63,6 +66,59 @@ class Ledger implements ArrayAccess
     ];
 
     /**
+     * @var array
+     */
+    protected $drivers = [];
+
+    /**
+     * @param          $key
+     * @param callable $callback
+     *
+     * @return mixed
+     * @throws \ErrorException
+     */
+    public function registerConfig($key, Closure $callback)
+    {
+        $driver = call_user_func($callback);
+
+        if ($driver instanceof DriverInterface) {
+            $this->drivers[$key] = $driver;
+
+            return $driver;
+        }
+
+        throw new \ErrorException('You should return a class that implements DriverInterface');
+    }
+
+    /**
+     * Get the specified configuration value.
+     *
+     * @param string $key
+     * @param mixed  $default
+     *
+     * @return mixed
+     * @throws DriverNotFoundException
+     */
+    public function resolveConfig($key, $default = null)
+    {
+        $driverName = str_replace('drivers.', '', $key);
+
+        if (isset($this->drivers[$driverName])) {
+            return $this->drivers[$driverName];
+        }
+
+        $class = __NAMESPACE__ . '\\Drivers\\' . $this->getConfig($key, $default);
+
+        if (class_exists($class)) {
+            return $this->registerConfig($driverName, function () use ($class, $key) {
+                return new $class($key);
+            });
+        }
+
+        throw new DriverNotFoundException("Driver {$this->getConfig($key, $default)} not found");
+    }
+
+    /**
      * Determine if the given configuration value exists.
      *
      * @param string $key
@@ -106,7 +162,6 @@ class Ledger implements ArrayAccess
 
     /**
      * Get all of the configuration items for the application.
-     *
      * @return array
      */
     public function all()

@@ -2,6 +2,7 @@
 
 namespace Maatwebsite\Clerk\Excel\Writers;
 
+use Maatwebsite\Clerk\Drivers\DriverInterface;
 use Maatwebsite\Clerk\Excel\Workbook;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 use Maatwebsite\Clerk\Exceptions\ExportFailedException;
@@ -12,16 +13,16 @@ use Maatwebsite\Clerk\Exceptions\ExportFailedException;
 class WriterFactory
 {
     /**
-     * @param          $driver
-     * @param          $type
-     * @param          $extension
-     * @param Workbook $workbook
+     * @param DriverInterface $driver
+     * @param                 $type
+     * @param                 $extension
+     * @param Workbook        $workbook
      *
      * @throws DriverNotFoundException
      * @throws ExportFailedException
      * @return Writer
      */
-    public static function create($driver, $type, $extension, Workbook $workbook)
+    public static function create(DriverInterface $driver, $type, $extension, Workbook $workbook)
     {
         // Protected export
         if ($workbook->getSheetCount() < 1) {
@@ -41,27 +42,27 @@ class WriterFactory
             return new $class($type, $extension, $workbook);
         }
 
-        throw new DriverNotFoundException("Writer driver [{$driver}] was not found");
+        throw new DriverNotFoundException("Writer driver [{$driver->getName()}] was not found");
     }
 
     /**
-     * @param $driver
+     * @param DriverInterface $driver
      *
      * @return string
      */
-    protected static function getClassByDriver($driver)
+    protected static function getClassByDriver(DriverInterface $driver)
     {
-        return 'Maatwebsite\\Clerk\\Excel\\Adapters\\' . $driver . '\\Writers\\Writer';
+        return $driver->getWriterClass('Excel');
     }
 
     /**
-     * @param $driver
-     * @param $type
+     * @param DriverInterface $driver
+     * @param                 $type
      *
      * @return string
      */
-    private static function getClassByDriverAndType($driver, $type)
+    private static function getClassByDriverAndType(DriverInterface $driver, $type)
     {
-        return 'Maatwebsite\\Clerk\\Excel\\Adapters\\' . $driver . '\\Writers\\' . ucfirst(strtolower($type)) . 'Writer';
+        return $driver->getWriterClassByType('Excel', $type);
     }
 }

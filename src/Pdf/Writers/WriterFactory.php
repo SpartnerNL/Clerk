@@ -2,6 +2,7 @@
 
 namespace Maatwebsite\Clerk\Pdf\Writers;
 
+use Maatwebsite\Clerk\Drivers\DriverInterface;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 use Maatwebsite\Clerk\Exceptions\ExportFailedException;
 use Maatwebsite\Clerk\Pdf\Document;
@@ -9,23 +10,17 @@ use Maatwebsite\Clerk\Pdf\Document;
 class WriterFactory
 {
     /**
-     * @param          $driver
-     * @param          $type
-     * @param          $extension
-     * @param Document $document
+     * @param DriverInterface $driver
+     * @param                 $type
+     * @param                 $extension
+     * @param Document        $document
      *
      * @throws DriverNotFoundException
      * @throws ExportFailedException
      * @return Writer
      */
-    public static function create($driver, $type, $extension, Document $document)
+    public static function create(DriverInterface $driver, $type, $extension, Document $document)
     {
-        $class = self::getClassByDriverAndType($driver, $type);
-
-        if (class_exists($class)) {
-            return new $class($type, $extension, $document);
-        }
-
         // Default writer
         $class = self::getClassByDriver($driver);
 
@@ -33,27 +28,16 @@ class WriterFactory
             return new $class($type, $extension, $document);
         }
 
-        throw new DriverNotFoundException("Writer driver [{$driver}] was not found");
+        throw new DriverNotFoundException("Writer driver [{$driver->getName()}] was not found");
     }
 
     /**
-     * @param $driver
+     * @param DriverInterface $driver
      *
      * @return string
      */
-    protected static function getClassByDriver($driver)
+    protected static function getClassByDriver(DriverInterface $driver)
     {
-        return 'Maatwebsite\\Clerk\\Pdf\\Adapters\\' . $driver . '\\Writers\\Writer';
-    }
-
-    /**
-     * @param $driver
-     * @param $type
-     *
-     * @return string
-     */
-    private static function getClassByDriverAndType($driver, $type)
-    {
-        return 'Maatwebsite\\Clerk\\Pdf\\Adapters\\' . $driver . '\\Writers\\' . ucfirst(strtolower($type)) . 'Writer';
+        return $driver->getWriterClass('Pdf');
     }
 }

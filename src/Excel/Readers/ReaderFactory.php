@@ -3,6 +3,7 @@
 namespace Maatwebsite\Clerk\Excel\Readers;
 
 use Closure;
+use Maatwebsite\Clerk\Drivers\DriverInterface;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Identifiers\FormatIdentifier;
 use Maatwebsite\Clerk\Excel\Reader as ReaderInterface;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
@@ -13,17 +14,17 @@ use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 class ReaderFactory
 {
     /**
-     * @param          $driver
-     * @param          $type
-     * @param          $file
-     * @param callable $callback
+     * @param DriverInterface $driver
+     * @param                 $type
+     * @param                 $file
+     * @param callable        $callback
      *
      * @throws DriverNotFoundException
      * @return ReaderInterface
      */
-    public static function create($driver, $file, Closure $callback = null, $type = null)
+    public static function create(DriverInterface $driver, $file, Closure $callback = null, $type = null)
     {
-        $type  = $type ?: self::getTypeByFile($file);
+        $type = $type ?: self::getTypeByFile($file);
         $class = self::getClassByDriverAndType($driver, $type);
 
         if (class_exists($class)) {
@@ -37,30 +38,30 @@ class ReaderFactory
             return new $class($type, $file, $callback);
         }
 
-        throw new DriverNotFoundException("Reader driver [{$driver}] was not found");
+        throw new DriverNotFoundException("Reader driver [{$driver->getName()}] was not found");
     }
 
     /**
-     * @param $driver
+     * @param DriverInterface $driver
      *
      * @return string
      */
-    protected static function getDefaultClass($driver)
+    protected static function getDefaultClass(DriverInterface $driver)
     {
-        return 'Maatwebsite\\Clerk\\Excel\\Adapters\\' . $driver . '\\Readers\Reader';
+        return $driver->getReaderClass('Excel');
     }
 
     /**
      * Get a specific reader.
      *
-     * @param $driver
+     * @param DriverInterface $driver
      * @param $type
      *
      * @return string
      */
-    protected static function getClassByDriverAndType($driver, $type)
+    protected static function getClassByDriverAndType(DriverInterface $driver, $type)
     {
-        return 'Maatwebsite\\Clerk\\Excel\\Adapters\\' . $driver . '\\Readers\\' . ucfirst(strtolower($type)) . 'Reader';
+        return $driver->getReaderClassByType('Excel', $type);
     }
 
     /**

@@ -106,6 +106,6 @@ class Pdf extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.' . $type . '.pdf', 'Snappy');
+        return Ledger::resolve('drivers.' . $type . '.pdf', 'Snappy');
     }
 }

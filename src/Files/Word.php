@@ -96,6 +96,6 @@ class Word extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.' . $type . '.word2003', 'PHPWord');
+        return Ledger::resolve('drivers.' . $type . '.word2003', 'PHPWord');
     }
 }

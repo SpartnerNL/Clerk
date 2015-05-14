@@ -3,6 +3,7 @@
 namespace Maatwebsite\Clerk\Excel\Workbooks;
 
 use Closure;
+use Maatwebsite\Clerk\Drivers\DriverInterface;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 
 /**
@@ -11,14 +12,14 @@ use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 class WorkbookFactory
 {
     /**
-     * @param          $driver
-     * @param          $title
-     * @param callable $callback
+     * @param DriverInterface $driver
+     * @param                 $title
+     * @param callable        $callback
      *
      * @throws DriverNotFoundException
      * @return Workbook
      */
-    public static function create($driver, $title, Closure $callback = null)
+    public static function create(DriverInterface $driver, $title, Closure $callback = null)
     {
         $class = self::getClassByType($driver);
 
@@ -26,16 +27,16 @@ class WorkbookFactory
             return new $class($title, $callback);
         }
 
-        throw new DriverNotFoundException("Workbook driver [{$driver}] was not found");
+        throw new DriverNotFoundException("Workbook driver [{$driver->getName()}] was not found");
     }
 
     /**
-     * @param $driver
+     * @param DriverInterface $driver
      *
      * @return string
      */
-    protected static function getClassByType($driver)
+    protected static function getClassByType(DriverInterface $driver)
     {
-        return 'Maatwebsite\\Clerk\\Excel\\Adapters\\' . $driver . '\\Workbook';
+        return $driver->getWorkbookClass('Excel');
     }
 }
