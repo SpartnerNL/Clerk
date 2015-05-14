@@ -7,6 +7,7 @@ namespace Maatwebsite\Clerk\Excel\Readers;
  */
 class ParserSettings
 {
+
     /**
      * @var array
      */
@@ -81,6 +82,11 @@ class ParserSettings
      * @var int
      */
     protected $skipAmount = 0;
+
+    /**
+     * @var array
+     */
+    protected $rowIteratorSettings = [];
 
     /**
      * @return array
@@ -380,5 +386,26 @@ class ParserSettings
         $this->needsDateFormatting = $needsDateFormatting;
 
         return $this;
+    }
+
+    /**
+     * @param      $setting
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setRowIteratorSetting($setting, $value = null)
+    {
+        $this->rowIteratorSettings[$setting] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRowIteratorSettings()
+    {
+        return $this->rowIteratorSettings;
     }
 }

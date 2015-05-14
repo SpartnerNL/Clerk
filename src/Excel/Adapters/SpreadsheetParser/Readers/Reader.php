@@ -1,21 +1,26 @@
 <?php
 
-namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
+namespace Maatwebsite\Clerk\Excel\Adapters\SpreadsheetParser\Readers;
 
+use Akeneo\Component\SpreadsheetParser\SpreadsheetInterface;
+use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
 use Closure;
-use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;
-use PHPExcel;
-use PHPExcel_IOFactory;
+use Maatwebsite\Clerk\Excel\Adapters\SpreadsheetParser\Parsers\WorkbookParser;
 use Maatwebsite\Clerk\Excel\Readers\Reader as AbstractReader;
+use Maatwebsite\Clerk\Traits\CallableTrait;
 
 /**
  * Class Reader.
  */
 class Reader extends AbstractReader
 {
+    /*
+     * Traits
+     */
+    use CallableTrait;
 
     /**
-     * @var \PHPExcel_Reader_IReader
+     * @var SpreadsheetParser
      */
     protected $reader;
 
@@ -26,20 +31,9 @@ class Reader extends AbstractReader
      */
     public function __construct($type, $file, Closure $callback = null)
     {
-        $this->setWriter($type);
         $this->file = $file;
 
         $this->call($callback);
-    }
-
-    /**
-     * Set the writer.
-     *
-     * @param $type
-     */
-    protected function setWriter($type)
-    {
-        $this->reader = PHPExcel_IOFactory::createReader($type);
     }
 
     /**
@@ -52,7 +46,8 @@ class Reader extends AbstractReader
     public function get($columns = [])
     {
         // Load the file
-        $this->driver = $this->reader->load($this->file);
+        ini_set('auto_detect_line_endings', true);
+        $this->driver = SpreadsheetParser::open($this->file);
 
         // Set selected columns
         $this->settings()->setColumns($columns);
@@ -61,15 +56,7 @@ class Reader extends AbstractReader
     }
 
     /**
-     * @return \PHPExcel_Reader_IReader
-     */
-    public function getReader()
-    {
-        return $this->reader;
-    }
-
-    /**
-     * @return PHPExcel
+     * @return SpreadsheetInterface
      */
     protected function getWorkbook()
     {

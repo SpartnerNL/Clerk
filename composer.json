@@ -21,13 +21,18 @@
     "php": ">=5.4.0",
     "nesbot/carbon": "~1.0",
     "league/csv": "~7.1.0@dev",
+    "akeneo/spreadsheet-parser": "~1.1.5",
     "phpoffice/phpexcel": "~1.8.0",
     "phpoffice/phpword": "~0.12.0",
     "patchwork/utf8": "~1.2.1",
     "illuminate/support": "~4.0|~5.0",
     "tijsverkoyen/css-to-inline-styles": "~1.5"
   },
-  "suggets": {
+  "suggests": {
+    "league/csv": "Using League CSV as CSV parser",
+    "akeneo/spreadsheet-parser": "Using Akeneo Spreadsheet parser",
+    "phpoffice/phpexcel": "PHPExcel as Excel driver",
+    "phpoffice/phpword": "PHPWord as Word driver",
     "illuminate/view": "If you want to use Blade as templating engine",
     "twig/twig": "If you want to use Twig as templating engine",
     "smarty/smarty": "If you want to use Smarty as templating engine"
