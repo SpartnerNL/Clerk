@@ -6,6 +6,12 @@ use Maatwebsite\Clerk\Exceptions\FormatNotSupportedByDriver;
 
 class AbstractDriver
 {
+
+    /**
+     * @var array
+     */
+    protected $supports = [];
+
     /**
      * @param $format
      *
@@ -15,8 +21,9 @@ class AbstractDriver
     {
         $format              = str_replace('drivers.', '', $format);
         list($type, $format) = explode('.', $format);
+        $supports = $this->supports();
 
-        if (!isset($this->supports[$type][$format])) {
+        if (!isset($supports[$type][$format])) {
             throw new FormatNotSupportedByDriver("{$this->getName()} does not support {$format} {$type}");
         }
     }
@@ -89,5 +96,13 @@ class AbstractDriver
     public function getWriterClassByType($format, $type)
     {
         return 'Maatwebsite\\Clerk\\' . $format . '\\Adapters\\' . $this->getName() . '\\Writers\\' . studly_case($type) . 'Writer';
+    }
+
+    /**
+     * @return array
+     */
+    public function supports()
+    {
+        return $this->supports;
     }
 }

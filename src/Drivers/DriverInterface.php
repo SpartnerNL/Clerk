@@ -10,6 +10,21 @@ interface DriverInterface
     public function getName();
 
     /**
+     * Indicate which reader and writer formats are supported by this driver
+     * @return array
+     * Example:
+     * return [
+     *  'reader' => [
+     *      'excel2003' => true,
+     *  ],
+     *  'writer' => [
+     *      'excel2003' => true,
+     *  ]
+     * ];
+     */
+    public function supports();
+
+    /**
      * @param $format
      *
      * @return string
