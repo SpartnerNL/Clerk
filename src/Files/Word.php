@@ -12,7 +12,6 @@ use Maatwebsite\Clerk\Word\Writers\WriterFactory;
  */
 class Word extends File
 {
-
     /**
      * @var string
      */

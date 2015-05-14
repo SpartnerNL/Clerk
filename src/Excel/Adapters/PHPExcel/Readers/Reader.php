@@ -4,16 +4,15 @@ namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Readers;
 
 use Closure;
 use Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers\WorkbookParser;
+use Maatwebsite\Clerk\Excel\Readers\Reader as AbstractReader;
 use PHPExcel;
 use PHPExcel_IOFactory;
-use Maatwebsite\Clerk\Excel\Readers\Reader as AbstractReader;
 
 /**
  * Class Reader.
  */
 class Reader extends AbstractReader
 {
-
     /**
      * @var \PHPExcel_Reader_IReader
      */

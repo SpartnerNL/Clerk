@@ -1,4 +1,6 @@
-<?php namespace Maatwebsite\Clerk\Word\Pages;
+<?php
+
+namespace Maatwebsite\Clerk\Word\Pages;
 
 use Maatwebsite\Clerk\Traits\CallableTrait;
 

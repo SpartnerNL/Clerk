@@ -5,7 +5,6 @@ namespace Maatwebsite\Clerk\Excel\Adapters\SpreadsheetParser\Parsers;
 use Akeneo\Component\SpreadsheetParser\SpreadsheetInterface;
 use Maatwebsite\Clerk\Excel\Collections\RowCollection;
 use Maatwebsite\Clerk\Excel\Readers\ParserSettings;
-use PHPExcel_Worksheet;
 
 /**
  * Class SheetParser.
@@ -49,8 +48,7 @@ class SheetParser
         $parser = new RowParser($this->settings, $heading);
 
         foreach ($workbook->createRowIterator($sheetIndex, $this->settings->getRowIteratorSettings()) as $index => $row) {
-
-            if($index >= $this->getStartRow()) {
+            if ($index >= $this->getStartRow()) {
 
                 // Limit the results when needed
                 if ($this->hasReachedLimit($index)) {

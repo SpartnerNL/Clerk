@@ -1,4 +1,6 @@
-<?php namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
+<?php
+
+namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
 
 use Maatwebsite\Clerk\Word\Page;
 use Maatwebsite\Clerk\Word\Pages\HtmlText;
@@ -7,7 +9,6 @@ use PhpOffice\PhpWord\Shared\Html;
 
 class PageWriter
 {
-
     /**
      * @param Section $section
      * @param Page    $page
@@ -18,7 +19,7 @@ class PageWriter
     {
         foreach ($page->getText() as $text) {
             if ($text instanceof HtmlText) {
-               Html::addHtml($section, $text->getText());
+                Html::addHtml($section, $text->getText());
             } else {
                 $section->addText($text->getText());
             }

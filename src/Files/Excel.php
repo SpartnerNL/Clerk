@@ -14,7 +14,6 @@ use Maatwebsite\Clerk\Ledger;
  */
 class Excel extends File
 {
-
     /**
      * @var Workbook
      */
@@ -74,8 +73,8 @@ class Excel extends File
     {
         // Passing in empty strings, will prevent a workbook from being initialized
         $instance = new static();
-        $driver = $driver ?: $instance->getDriver();
-        $format = $format ?: $instance->getFormat();
+        $driver   = $driver ?: $instance->getDriver();
+        $format   = $format ?: $instance->getFormat();
 
         return ReaderFactory::create(
             $driver,

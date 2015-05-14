@@ -7,7 +7,6 @@ namespace Maatwebsite\Clerk\Excel\Readers;
  */
 class ParserSettings
 {
-
     /**
      * @var array
      */

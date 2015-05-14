@@ -7,7 +7,6 @@ namespace Maatwebsite\Clerk\Files;
  */
 abstract class File
 {
-
     /**
      * @var string
      */

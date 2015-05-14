@@ -1,4 +1,6 @@
-<?php namespace Maatwebsite\Clerk\Excel\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Readers;
 
 use Closure;
 use Maatwebsite\Clerk\Adapter;
@@ -7,7 +9,6 @@ use Maatwebsite\Clerk\Traits\CallableTrait;
 
 abstract class Reader extends Adapter implements ReaderInterface
 {
-
     /*
      * Traits
      */

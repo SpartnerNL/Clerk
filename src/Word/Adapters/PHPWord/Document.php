@@ -9,7 +9,6 @@ use PhpOffice\PhpWord\PhpWord;
 
 class Document extends AbstractDocument implements DocumentInterface
 {
-
     /*
     * @var PHPWord
     */

@@ -2,7 +2,6 @@
 
 namespace Maatwebsite\Clerk\Excel\Adapters\PHPExcel\Parsers;
 
-use Illuminate\Support\Str;
 use Maatwebsite\Clerk\Excel\Readers\HeadingParser as AbstractHeadingParser;
 
 /**

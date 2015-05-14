@@ -41,7 +41,6 @@ class WorkbookParser
 
         // Loop through all worksheets
         foreach ($workbook->getWorksheets() as $worksheet) {
-
             $index = $workbook->getWorksheetIndex($worksheet);
 
             if ($this->isSelected($index)) {

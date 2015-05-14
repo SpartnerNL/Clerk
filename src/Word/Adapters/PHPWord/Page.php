@@ -7,14 +7,13 @@ use Maatwebsite\Clerk\Word\Pages\Page as AbstractPage;
 
 class Page extends AbstractPage implements PageInterface
 {
-
     /**
      * @var WordPage
      */
     protected $driver;
 
     /**
-     * @param                   $text
+     * @param   $text
      */
     public function __construct($text = null)
     {

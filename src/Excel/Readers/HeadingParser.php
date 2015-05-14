@@ -1,10 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Excel\Readers;
+<?php
+
+namespace Maatwebsite\Clerk\Excel\Readers;
 
 use Illuminate\Support\Str;
 
 abstract class HeadingParser
 {
-
     /**
      * @var ParserSettings
      */
@@ -70,7 +71,7 @@ abstract class HeadingParser
         }
 
         // Convert all dashes/underscores into separator
-        $flip = $separator == '-' ? '_' : '-';
+        $flip  = $separator == '-' ? '_' : '-';
         $value = preg_replace('![' . preg_quote($flip) . ']+!u', $separator, $value);
 
         // Remove all characters that are not the separator, letters, numbers, or whitespace.

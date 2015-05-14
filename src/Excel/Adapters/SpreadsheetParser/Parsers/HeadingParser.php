@@ -3,7 +3,6 @@
 namespace Maatwebsite\Clerk\Excel\Adapters\SpreadsheetParser\Parsers;
 
 use Akeneo\Component\SpreadsheetParser\SpreadsheetInterface;
-use Illuminate\Support\Str;
 use Maatwebsite\Clerk\Excel\Readers\HeadingParser as AbstractHeadingParser;
 
 /**
@@ -11,10 +10,9 @@ use Maatwebsite\Clerk\Excel\Readers\HeadingParser as AbstractHeadingParser;
  */
 class HeadingParser extends AbstractHeadingParser
 {
-
     /**
-     * @param SpreadsheetInterface                     $workbook
-     * @param                                          $sheetIndex
+     * @param SpreadsheetInterface $workbook
+     * @param                      $sheetIndex
      *
      * @return array
      */
@@ -41,7 +39,6 @@ class HeadingParser extends AbstractHeadingParser
 
         // Loop through the cells
         foreach ($row as $index => $values) {
-
             if ($index == $this->settings->getHeadingRow()) {
                 foreach ($values as $cell) {
                     $heading[] = $this->getIndex($cell);
