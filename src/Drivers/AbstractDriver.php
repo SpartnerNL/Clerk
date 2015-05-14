@@ -1,10 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Drivers;
+<?php
+
+namespace Maatwebsite\Clerk\Drivers;
 
 use Maatwebsite\Clerk\Exceptions\FormatNotSupportedByDriver;
 
 class AbstractDriver
 {
-
     /**
      * @param $format
      *
@@ -12,7 +13,7 @@ class AbstractDriver
      */
     public function __construct($format)
     {
-        $format = str_replace('drivers.', '', $format);
+        $format              = str_replace('drivers.', '', $format);
         list($type, $format) = explode('.', $format);
 
         if (!isset($this->supports[$type][$format])) {

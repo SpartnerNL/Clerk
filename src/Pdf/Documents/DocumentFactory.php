@@ -9,9 +9,9 @@ use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
 class DocumentFactory
 {
     /**
-     * @param DriverInterface  $driver
-     * @param                  $title
-     * @param callable         $callback
+     * @param DriverInterface $driver
+     * @param                 $title
+     * @param callable        $callback
      *
      * @throws DriverNotFoundException
      * @return File

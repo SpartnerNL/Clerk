@@ -1,8 +1,9 @@
-<?php namespace Maatwebsite\Clerk\Drivers;
+<?php
+
+namespace Maatwebsite\Clerk\Drivers;
 
 class PHPWord extends AbstractDriver implements DriverInterface
 {
-
     /**
      * Supported file formats
      * @var array
@@ -17,5 +18,4 @@ class PHPWord extends AbstractDriver implements DriverInterface
             'word2007' => true
         ]
     ];
-
 }

@@ -1,8 +1,9 @@
-<?php namespace Maatwebsite\Clerk\Drivers;
+<?php
+
+namespace Maatwebsite\Clerk\Drivers;
 
 class Snappy extends AbstractDriver implements DriverInterface
 {
-
     /**
      * Supported file formats
      * @var array
@@ -12,5 +13,4 @@ class Snappy extends AbstractDriver implements DriverInterface
             'pdf' => true
         ]
     ];
-
 }

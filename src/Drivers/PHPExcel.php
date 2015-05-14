@@ -1,8 +1,9 @@
-<?php namespace Maatwebsite\Clerk\Drivers;
+<?php
+
+namespace Maatwebsite\Clerk\Drivers;
 
 class PHPExcel extends AbstractDriver implements DriverInterface
 {
-
     /**
      * Supported file formats
      * @var array
@@ -19,5 +20,4 @@ class PHPExcel extends AbstractDriver implements DriverInterface
             'csv'       => true
         ]
     ];
-
 }

@@ -12,7 +12,6 @@ use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
  */
 class Ledger implements ArrayAccess
 {
-
     /**
      * All of the configuration items.
      * @var array
@@ -74,8 +73,8 @@ class Ledger implements ArrayAccess
      * @param          $key
      * @param callable $callback
      *
-     * @return mixed
      * @throws \ErrorException
+     * @return mixed
      */
     public function registerConfig($key, Closure $callback)
     {
@@ -96,8 +95,8 @@ class Ledger implements ArrayAccess
      * @param string $key
      * @param mixed  $default
      *
-     * @return mixed
      * @throws DriverNotFoundException
+     * @return mixed
      */
     public function resolveConfig($key, $default = null)
     {

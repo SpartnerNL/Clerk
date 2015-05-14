@@ -1,8 +1,9 @@
-<?php namespace Maatwebsite\Clerk\Drivers;
+<?php
+
+namespace Maatwebsite\Clerk\Drivers;
 
 class LeagueCsv extends AbstractDriver implements DriverInterface
 {
-
     /**
      * Supported file formats
      * @var array
@@ -15,5 +16,4 @@ class LeagueCsv extends AbstractDriver implements DriverInterface
             'csv' => true
         ]
     ];
-
 }

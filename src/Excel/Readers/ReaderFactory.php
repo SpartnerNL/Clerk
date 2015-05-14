@@ -24,7 +24,7 @@ class ReaderFactory
      */
     public static function create(DriverInterface $driver, $file, Closure $callback = null, $type = null)
     {
-        $type = $type ?: self::getTypeByFile($file);
+        $type  = $type ?: self::getTypeByFile($file);
         $class = self::getClassByDriverAndType($driver, $type);
 
         if (class_exists($class)) {

@@ -1,5 +1,7 @@
-<?php namespace Maatwebsite\Clerk\Exceptions;
+<?php
 
-class FormatNotSupportedByDriver extends \ErrorException {
+namespace Maatwebsite\Clerk\Exceptions;
 
+class FormatNotSupportedByDriver extends \ErrorException
+{
 }
