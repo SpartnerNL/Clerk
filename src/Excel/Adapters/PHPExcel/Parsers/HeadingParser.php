@@ -10,7 +10,6 @@ use PHPExcel_Worksheet;
  */
 class HeadingParser extends AbstractHeadingParser
 {
-
     /**
      * @param PHPExcel_Worksheet $sheet
      *

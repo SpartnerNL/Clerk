@@ -8,7 +8,7 @@ use Maatwebsite\Clerk\Pdf\Pages\Page as AbstractPage;
 class Page extends AbstractPage implements PageInterface
 {
     /**
-     * @param                   $text
+     * @param   $text
      */
     public function __construct($text = null)
     {

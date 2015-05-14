@@ -1,6 +1,7 @@
-<?php namespace Maatwebsite\Clerk\Pdf\Pages;
+<?php
+
+namespace Maatwebsite\Clerk\Pdf\Pages;
 
 class HtmlText extends Text
 {
-
 }

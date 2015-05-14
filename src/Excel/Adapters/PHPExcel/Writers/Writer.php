@@ -10,7 +10,6 @@ use Maatwebsite\Clerk\Writers\Writer as AbstractWriter;
 use PHPExcel_IOFactory;
 use PHPExcel_Writer_IWriter;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class Writer.
@@ -27,7 +26,7 @@ class Writer extends AbstractWriter implements WriterInterface
      */
     public function export($filename = null)
     {
-        $writer = $this->createWriter();
+        $writer   = $this->createWriter();
         $filename = $this->getFilename($filename);
 
         ob_start();

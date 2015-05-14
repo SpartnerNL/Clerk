@@ -1,10 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Pdf\Pages;
+<?php
+
+namespace Maatwebsite\Clerk\Pdf\Pages;
 
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
 class Text
 {
-
     use CallableTrait;
 
     /**

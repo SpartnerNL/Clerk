@@ -3,10 +3,9 @@
 namespace Maatwebsite\Clerk\Excel\Adapters\SpreadsheetParser;
 
 use Closure;
-use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Excel\Workbooks\Workbook as AbstractWorkbook;
-use SplTempFileObject;
+use Maatwebsite\Clerk\Exceptions\FeatureNotSupportedException;
 
 /**
  * Class Workbook.
@@ -19,21 +18,11 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     protected $title;
 
     /**
-     * @var LeagueWriter
+     * Set reader defaults.
      */
-    protected $driver;
-
-    /**
-     * @param              $title
-     * @param Closure      $callback
-     * @param LeagueWriter $driver
-     */
-    public function __construct($title, Closure $callback = null, LeagueWriter $driver = null)
+    protected function setDefaults()
     {
-        // Set driver instance
-        $this->driver = $driver ?: LeagueWriter::createFromFileObject(new SplTempFileObject());
 
-        parent::__construct($title, $callback);
     }
 
     /**
@@ -61,58 +50,59 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     /**
      * @param $description
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
+     * @return $this|void
      */
     public function setDescription($description)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      */
     public function getDescription()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
      * @param $company
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return $this|void
      */
     public function setCompany($company)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      */
     public function getCompany()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
      * @param $subject
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return WorkbookInterface
      */
     public function setSubject($subject)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return string
      */
     public function getSubject()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
@@ -124,9 +114,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     public function setDelimiter($delimiter)
     {
-        $this->getDriver()->setDelimiter($delimiter);
-
-        return $this;
+        throw new FeatureNotSupportedException();
     }
 
     /**
@@ -138,9 +126,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     public function setLineEnding($lineEnding)
     {
-        $this->getDriver()->setNewLine($lineEnding);
-
-        return $this;
+        throw new FeatureNotSupportedException();
     }
 
     /**
@@ -152,9 +138,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     public function setEnclosure($enclosure)
     {
-        $this->getDriver()->setEnclosure($enclosure);
-
-        return $this;
+        throw new FeatureNotSupportedException();
     }
 
     /**
@@ -166,9 +150,7 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     public function setEncoding($encoding)
     {
-        $this->getDriver()->setEncodingFrom($encoding);
-
-        return $this;
+        throw new FeatureNotSupportedException();
     }
 
     /**
@@ -177,25 +159,12 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      * @param         $title
      * @param Closure $callback
      *
+     * @throws FeatureNotSupportedException
      * @return Sheet
      */
     public function sheet($title, Closure $callback = null)
     {
-        // Init a new sheet
-        $sheet = new Sheet(
-            $this,
-            $title,
-            null,
-            $this->driver
-        );
-
-        // Preform callback on the sheet
-        $sheet->call($callback);
-
-        // Add the sheet to the collection
-        $this->addSheet($sheet);
-
-        return $sheet;
+        throw new FeatureNotSupportedException();
     }
 
     /**

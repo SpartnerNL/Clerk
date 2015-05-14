@@ -6,6 +6,7 @@ use Closure;
 use League\Csv\Writer as LeagueWriter;
 use Maatwebsite\Clerk\Excel\Workbook as WorkbookInterface;
 use Maatwebsite\Clerk\Excel\Workbooks\Workbook as AbstractWorkbook;
+use Maatwebsite\Clerk\Exceptions\FeatureNotSupportedException;
 use SplTempFileObject;
 
 /**
@@ -61,58 +62,58 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
     /**
      * @param $description
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      */
     public function setDescription($description)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      */
     public function getDescription()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
      * @param $company
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return $this|void
      */
     public function setCompany($company)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      */
     public function getCompany()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
      * @param $subject
      *
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return WorkbookInterface
      */
     public function setSubject($subject)
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**
-     * @throws FeaturedNotSupportedException
+     * @throws FeatureNotSupportedException
      * @return string
      */
     public function getSubject()
     {
-        throw new FeaturedNotSupportedException();
+        throw new FeatureNotSupportedException();
     }
 
     /**

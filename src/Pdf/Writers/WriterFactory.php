@@ -2,9 +2,9 @@
 
 namespace Maatwebsite\Clerk\Pdf\Writers;
 
-use Maatwebsite\Clerk\Pdf\Document;
-use Maatwebsite\Clerk\Exceptions\ExportFailedException;
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
+use Maatwebsite\Clerk\Exceptions\ExportFailedException;
+use Maatwebsite\Clerk\Pdf\Document;
 
 class WriterFactory
 {

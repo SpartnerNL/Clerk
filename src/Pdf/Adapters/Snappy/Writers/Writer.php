@@ -20,14 +20,14 @@ class Writer extends AbstractWriter
     public function export($filename = null)
     {
         $filename = $this->getFilename($filename);
-        $output = $this->getExportable()->getDriver()->getOutputFromHtml(
+        $output   = $this->getExportable()->getDriver()->getOutputFromHtml(
             $this->convertToHtml($this->getExportable())
         );
 
-        $response = new Response($output, 200, array(
+        $response = new Response($output, 200, [
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $this->getExtension() . '"'
-        ));
+        ]);
 
         return $response->send();
     }
@@ -46,14 +46,15 @@ class Writer extends AbstractWriter
 
         $output = $this->getExportable()->getDriver()->getOutputFromHtml(
             $this->convertToHtml($this->getExportable())
-        );;
+        );
+        ;
 
         $response = new StreamedResponse(function () use ($output) {
             echo $output;
-        }, 200, array(
+        }, 200, [
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'inline; filename="' . $filename . '.' . $this->getExtension() . '"'
-        ));
+        ]);
 
         return $response->send();
     }

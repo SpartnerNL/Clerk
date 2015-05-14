@@ -9,7 +9,6 @@ use Maatwebsite\Clerk\Pdf\Writers\WriterFactory;
 
 class Pdf extends File
 {
-
     /**
      * @var string
      */

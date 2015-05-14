@@ -10,7 +10,6 @@ use Maatwebsite\Clerk\Pdf\Documents\Document as AbstractDocument;
 
 class Document extends AbstractDocument implements DocumentInterface
 {
-
     /*
     * @var Snappy
     */
