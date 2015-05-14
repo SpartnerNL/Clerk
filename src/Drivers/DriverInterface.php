@@ -12,15 +12,15 @@ interface DriverInterface
     /**
      * Indicate which reader and writer formats are supported by this driver
      * @return array
-     * Example:
-     * return [
-     *  'reader' => [
-     *      'excel2003' => true,
-     *  ],
-     *  'writer' => [
-     *      'excel2003' => true,
-     *  ]
-     * ];
+     *               Example:
+     *               return [
+     *               'reader' => [
+     *               'excel2003' => true,
+     *               ],
+     *               'writer' => [
+     *               'excel2003' => true,
+     *               ]
+     *               ];
      */
     public function supports();
 

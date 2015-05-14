@@ -6,7 +6,6 @@ use Maatwebsite\Clerk\Exceptions\FormatNotSupportedByDriver;
 
 class AbstractDriver
 {
-
     /**
      * @var array
      */
@@ -21,7 +20,7 @@ class AbstractDriver
     {
         $format              = str_replace('drivers.', '', $format);
         list($type, $format) = explode('.', $format);
-        $supports = $this->supports();
+        $supports            = $this->supports();
 
         if (!isset($supports[$type][$format])) {
             throw new FormatNotSupportedByDriver("{$this->getName()} does not support {$format} {$type}");
