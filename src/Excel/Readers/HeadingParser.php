@@ -34,22 +34,9 @@ abstract class HeadingParser
         // Get value
         $value = $this->getOriginalIndex($cell);
 
-        switch ($config) {
-            case 'slugged':
-                return $this->getSluggedIndex($value, $this->settings->getAscii());
+        $method = 'get' . ucfirst($config) . 'Index';
 
-            case 'ascii':
-                return $this->getAsciiIndex($value);
-
-            case 'hashed':
-                return $this->getHashedIndex($value);
-
-            case 'trans':
-                return $this->getTranslatedIndex($value);
-
-            case 'original':
-                return $value;
-        }
+        return $this->{$method}($value, $this->settings->getAscii());
     }
 
     /**
@@ -114,7 +101,7 @@ abstract class HeadingParser
      *
      * @return string
      */
-    protected function getTranslatedIndex($value)
+    protected function getTransIndex($value)
     {
         if (function_exists('trans')) {
             return trans($value);
