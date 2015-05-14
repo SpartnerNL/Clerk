@@ -50,8 +50,8 @@ class HeadingParser extends AbstractHeadingParser
      *
      * @return string
      */
-    protected function getOriginalIndex($cell)
+    public function getOriginalIndex($cell)
     {
-        return $cell->getValue();
+        return is_object($cell) ? $cell->getValue() : $cell;
     }
 }
