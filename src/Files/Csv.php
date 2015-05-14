@@ -20,10 +20,14 @@ class Csv extends Excel
     protected $format = 'CSV';
 
     /**
+     * Get the driver.
+     *
+     * @param $type
+     *
      * @return mixed
      */
-    protected function getDriver()
+    protected function getDriver($type)
     {
-        return Ledger::get('drivers.csv', 'LeagueCsv');
+        return Ledger::get('drivers.'. $type .'.csv', 'LeagueCsv');
     }
 }

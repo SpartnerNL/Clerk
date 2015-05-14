@@ -22,10 +22,12 @@ class Excel2007 extends Excel
     /**
      * Get the driver.
      *
+     * @param $type
+     *
      * @return mixed
      */
-    protected function getDriver()
+    protected function getDriver($type)
     {
-        return Ledger::get('drivers.excel2007', 'PHPExcel');
+        return Ledger::get('drivers.'. $type .'.excel2007', 'PHPExcel');
     }
 }

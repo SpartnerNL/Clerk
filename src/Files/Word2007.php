@@ -22,10 +22,12 @@ class Word2007 extends Word
     /**
      * Get the driver.
      *
+     * @param $type
+     *
      * @return mixed
      */
-    protected function getDriver()
+    protected function getDriver($type)
     {
-        return Ledger::get('drivers.word2007', 'PHPWord');
+        return Ledger::get('drivers.'. $type .'.word2007', 'PHPWord');
     }
 }

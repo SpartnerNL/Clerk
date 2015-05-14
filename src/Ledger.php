@@ -17,12 +17,22 @@ class Ledger implements ArrayAccess
     protected $items = [
 
         'drivers'   => [
-            'pdf'       => 'Snappy',
-            'csv'       => 'LeagueCsv',
-            'excel2003' => 'PHPExcel',
-            'excel2007' => 'PHPExcel',
-            'word2003'  => 'PHPWord',
-            'word2007'  => 'PHPWord',
+            'writer' => [
+                'pdf'       => 'Snappy',
+                'csv'       => 'LeagueCsv',
+                'excel2003' => 'PHPExcel',
+                'excel2007' => 'PHPExcel',
+                'word2003'  => 'PHPWord',
+                'word2007'  => 'PHPWord',
+            ],
+            'reader' => [
+                'pdf'       => 'Snappy',
+                'csv'       => 'LeagueCsv',
+                'excel2003' => 'PHPExcel',
+                'excel2007' => 'PHPExcel',
+                'word2003'  => 'PHPWord',
+                'word2007'  => 'PHPWord',
+            ]
         ],
         'csv'       => [
             'delimiter'   => ',',

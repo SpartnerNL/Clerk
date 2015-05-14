@@ -30,16 +30,11 @@ class Word extends File
     /**
      * @param string      $title
      * @param Closure     $callback
-     * @param bool|string $driver
      */
-    public function __construct($title, Closure $callback = null, $driver = false)
+    public function __construct($title, Closure $callback = null)
     {
-        // Get the driver
-        $driver = $driver ?: $this->getDriver();
+        $this->document = DocumentFactory::create($this->getDriver('writer'), $title, $callback);
 
-        if ($driver) {
-            $this->document = DocumentFactory::create($driver, $title, $callback);
-        }
     }
 
     /**
@@ -47,13 +42,12 @@ class Word extends File
      *
      * @param string      $filename
      * @param Closure     $callback
-     * @param bool|string $driver
      *
      * @return static
      */
-    public static function create($filename, Closure $callback = null, $driver = false)
+    public static function create($filename, Closure $callback = null)
     {
-        return new static($filename, $callback, $driver);
+        return new static($filename, $callback);
     }
 
     /**
@@ -61,13 +55,12 @@ class Word extends File
      *
      * @param string      $file
      * @param Closure     $callback
-     * @param bool|string $driver
      * @param null        $format
      *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Reader
      */
-    public static function load($file, Closure $callback = null, $driver = false, $format = null)
+    public static function load($file, Closure $callback = null, $format = null)
     {
     }
 
@@ -78,7 +71,7 @@ class Word extends File
     public function initWriter()
     {
         $writer = WriterFactory::create(
-            $this->getDriver(),
+            $this->getDriver('writer'),
             $this->getFormat(),
             $this->getExtension(),
             $this->getDocument()
@@ -97,10 +90,13 @@ class Word extends File
 
     /**
      * Get the driver.
+     *
+     * @param $type
+     *
      * @return mixed
      */
-    protected function getDriver()
+    protected function getDriver($type)
     {
-        return Ledger::get('drivers.word2003', 'PHPWord');
+        return Ledger::get('drivers.'. $type .'.word2003', 'PHPWord');
     }
 }

@@ -75,7 +75,9 @@ abstract class File
     abstract public function initWriter();
 
     /**
+     * @param $type
+     *
      * @return mixed
      */
-    abstract protected function getDriver();
+    abstract protected function getDriver($type);
 }

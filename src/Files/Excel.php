@@ -32,16 +32,10 @@ class Excel extends File
     /**
      * @param string      $title
      * @param Closure     $callback
-     * @param bool|string $driver
      */
-    public function __construct($title = null, Closure $callback = null, $driver = false)
+    public function __construct($title = null, Closure $callback = null)
     {
-        // Get the driver
-        $driver = $driver ?: $this->getDriver();
-
-        if ($driver) {
-            $this->workbook = WorkbookFactory::create($driver, $title, $callback);
-        }
+        $this->workbook = WorkbookFactory::create($this->getDriver('writer'), $title, $callback);
     }
 
     /**
@@ -49,13 +43,12 @@ class Excel extends File
      *
      * @param string      $filename
      * @param Closure     $callback
-     * @param bool|string $driver
      *
      * @return static
      */
-    public static function create($filename, Closure $callback = null, $driver = false)
+    public static function create($filename, Closure $callback = null)
     {
-        return new static($filename, $callback, $driver);
+        return new static($filename, $callback);
     }
 
     /**
@@ -63,21 +56,19 @@ class Excel extends File
      *
      * @param string      $file
      * @param Closure     $callback
-     * @param bool|string $driver
      * @param null        $format
      *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Excel\Reader
      */
-    public static function load($file, Closure $callback = null, $driver = false, $format = null)
+    public static function load($file, Closure $callback = null, $format = null)
     {
         // Passing in empty strings, will prevent a workbook from being initialized
         $instance = new static();
-        $driver   = $driver ?: $instance->getDriver();
         $format   = $format ?: $instance->getFormat();
 
         return ReaderFactory::create(
-            $driver,
+            $instance->getDriver('reader'),
             $file,
             $callback,
             $format
@@ -91,7 +82,7 @@ class Excel extends File
     public function initWriter()
     {
         $writer = WriterFactory::create(
-            $this->getDriver(),
+            $this->getDriver('writer'),
             $this->getFormat(),
             $this->getExtension(),
             $this->getWorkbook()
@@ -102,10 +93,13 @@ class Excel extends File
 
     /**
      * Get the driver.
+     *
+     * @param $type
+     *
      * @return mixed
      */
-    protected function getDriver()
+    protected function getDriver($type)
     {
-        return Ledger::get('drivers.excel2003', 'PHPExcel');
+        return Ledger::get('drivers.'. $type .'.excel2003', 'PHPExcel');
     }
 }
