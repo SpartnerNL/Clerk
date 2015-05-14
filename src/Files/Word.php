@@ -28,20 +28,19 @@ class Word extends File
     protected $document;
 
     /**
-     * @param string      $title
-     * @param Closure     $callback
+     * @param string  $title
+     * @param Closure $callback
      */
     public function __construct($title, Closure $callback = null)
     {
         $this->document = DocumentFactory::create($this->getDriver('writer'), $title, $callback);
-
     }
 
     /**
      * Create new file.
      *
-     * @param string      $filename
-     * @param Closure     $callback
+     * @param string  $filename
+     * @param Closure $callback
      *
      * @return static
      */
@@ -53,9 +52,9 @@ class Word extends File
     /**
      * Create new file.
      *
-     * @param string      $file
-     * @param Closure     $callback
-     * @param null        $format
+     * @param string  $file
+     * @param Closure $callback
+     * @param null    $format
      *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Reader
@@ -97,6 +96,6 @@ class Word extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.'. $type .'.word2003', 'PHPWord');
+        return Ledger::get('drivers.' . $type . '.word2003', 'PHPWord');
     }
 }

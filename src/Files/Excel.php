@@ -30,8 +30,8 @@ class Excel extends File
     protected $format = 'Excel5';
 
     /**
-     * @param string      $title
-     * @param Closure     $callback
+     * @param string  $title
+     * @param Closure $callback
      */
     public function __construct($title = null, Closure $callback = null)
     {
@@ -41,8 +41,8 @@ class Excel extends File
     /**
      * Create new file.
      *
-     * @param string      $filename
-     * @param Closure     $callback
+     * @param string  $filename
+     * @param Closure $callback
      *
      * @return static
      */
@@ -54,9 +54,9 @@ class Excel extends File
     /**
      * Create new file.
      *
-     * @param string      $file
-     * @param Closure     $callback
-     * @param null        $format
+     * @param string  $file
+     * @param Closure $callback
+     * @param null    $format
      *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Excel\Reader
@@ -100,6 +100,6 @@ class Excel extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.'. $type .'.excel2003', 'PHPExcel');
+        return Ledger::get('drivers.' . $type . '.excel2003', 'PHPExcel');
     }
 }

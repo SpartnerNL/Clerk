@@ -22,7 +22,6 @@ class Workbook extends AbstractWorkbook implements WorkbookInterface
      */
     protected function setDefaults()
     {
-
     }
 
     /**

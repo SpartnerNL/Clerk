@@ -25,8 +25,8 @@ class Pdf extends File
     protected $document;
 
     /**
-     * @param string      $title
-     * @param Closure     $callback
+     * @param string  $title
+     * @param Closure $callback
      */
     public function __construct($title, Closure $callback = null)
     {
@@ -36,8 +36,8 @@ class Pdf extends File
     /**
      * Create new file.
      *
-     * @param string      $filename
-     * @param Closure     $callback
+     * @param string  $filename
+     * @param Closure $callback
      *
      * @return static
      */
@@ -49,9 +49,9 @@ class Pdf extends File
     /**
      * Create new file.
      *
-     * @param string      $file
-     * @param Closure     $callback
-     * @param null        $format
+     * @param string  $file
+     * @param Closure $callback
+     * @param null    $format
      *
      * @throws \Maatwebsite\Clerk\Exceptions\DriverNotFoundException
      * @return \Maatwebsite\Clerk\Reader
@@ -106,6 +106,6 @@ class Pdf extends File
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.'. $type .'.pdf', 'Snappy');
+        return Ledger::get('drivers.' . $type . '.pdf', 'Snappy');
     }
 }

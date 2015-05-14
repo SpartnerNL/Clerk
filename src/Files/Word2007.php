@@ -28,6 +28,6 @@ class Word2007 extends Word
      */
     protected function getDriver($type)
     {
-        return Ledger::get('drivers.'. $type .'.word2007', 'PHPWord');
+        return Ledger::get('drivers.' . $type . '.word2007', 'PHPWord');
     }
 }
