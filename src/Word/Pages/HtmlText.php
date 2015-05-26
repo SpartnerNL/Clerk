@@ -4,7 +4,6 @@ namespace Maatwebsite\Clerk\Word\Pages;
 
 class HtmlText extends Text
 {
-
     /**
      * @var bool
      */
@@ -16,7 +15,7 @@ class HtmlText extends Text
      */
     public function __construct($text, $fullHtml = false)
     {
-        $this->text = $text;
+        $this->text     = $text;
         $this->fullHtml = $fullHtml;
     }
 

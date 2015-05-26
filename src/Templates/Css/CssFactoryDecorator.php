@@ -1,10 +1,11 @@
-<?php namespace Maatwebsite\Clerk\Templates\Css;
+<?php
+
+namespace Maatwebsite\Clerk\Templates\Css;
 
 use Maatwebsite\Clerk\Templates\Factory;
 
 class CssFactoryDecorator implements Factory
 {
-
     /**
      * @var Factory
      */
