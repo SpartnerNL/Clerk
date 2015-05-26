@@ -3,6 +3,7 @@
 namespace Maatwebsite\Clerk\Templates;
 
 use Maatwebsite\Clerk\Exceptions\DriverNotFoundException;
+use Maatwebsite\Clerk\Templates\Css\CssFactoryDecorator;
 
 class TemplateFactory
 {
@@ -22,7 +23,9 @@ class TemplateFactory
         $class = self::getFactoryClass($engine);
 
         if (class_exists($class)) {
-            return new $class();
+            return new CssFactoryDecorator(
+                new $class()
+            );
         }
 
         throw new DriverNotFoundException("Template factory [{$engine}] was not found");

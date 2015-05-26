@@ -6,7 +6,6 @@ use DOMDocument;
 use Maatwebsite\Clerk\Excel\Html\Elements\Document;
 use Maatwebsite\Clerk\Excel\Sheet;
 use Maatwebsite\Clerk\Exceptions\ExportFailedException;
-use Maatwebsite\Clerk\Templates\Css\CssInliner;
 
 class HtmlToSheetConverter
 {
@@ -47,8 +46,6 @@ class HtmlToSheetConverter
      */
     public function getNormalizedHtml($html)
     {
-        $html = (new CssInliner())->transformCssToInlineStyles($html);
-
         return mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
     }
 

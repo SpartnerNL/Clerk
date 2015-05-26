@@ -86,6 +86,9 @@ abstract class Page extends Adapter
         // Render the template
         $html = $factory->make($template, $data)->render();
 
+        // Remove doctype, so drivers like PHPWord don't run into problems
+        $html = preg_replace("/<!DOCTYPE [^>]+>/", '', $html);
+
         $this->addHtml($html, null, true);
 
         return $this;
