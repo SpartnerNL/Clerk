@@ -54,12 +54,13 @@ abstract class Page extends Adapter
     /**
      * @param          $text
      * @param callable $callback
+     * @param bool     $fullHtml
      *
      * @return $this
      */
-    public function addHtml($text, Closure $callback = null)
+    public function addHtml($text, Closure $callback = null, $fullHtml = false)
     {
-        $text = new HtmlText($text);
+        $text = new HtmlText($text, $fullHtml);
 
         $text->call($callback);
 
@@ -85,7 +86,7 @@ abstract class Page extends Adapter
         // Render the template
         $html = $factory->make($template, $data)->render();
 
-        $this->addHtml($html);
+        $this->addHtml($html, null, true);
 
         return $this;
     }

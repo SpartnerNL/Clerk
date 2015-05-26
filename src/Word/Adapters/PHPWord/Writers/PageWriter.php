@@ -19,7 +19,7 @@ class PageWriter
     {
         foreach ($page->getText() as $text) {
             if ($text instanceof HtmlText) {
-                Html::addHtml($section, $text->getText());
+                Html::addHtml($section, $text->getText(), $text->isFullHtml());
             } else {
                 $section->addText($text->getText());
             }
