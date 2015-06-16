@@ -14,11 +14,26 @@ class Text
     protected $text;
 
     /**
-     * @param string $text
+     * @var null
      */
-    public function __construct($text)
+    protected $styleFont;
+
+    /**
+     * @var null
+     */
+    protected $styleParagraph;
+
+    /**
+     * @param string $text
+     * @param null   $styleFont
+     * @param null   $styleParagraph
+     * @internal param array $options
+     */
+    public function __construct($text, $styleFont = null, $styleParagraph = null)
     {
-        $this->text = $text;
+        $this->text           = $text;
+        $this->styleFont      = $styleFont;
+        $this->styleParagraph = $styleParagraph;
     }
 
     /**
@@ -35,5 +50,37 @@ class Text
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStyleFont()
+    {
+        return $this->styleFont;
+    }
+
+    /**
+     * @param null $styleFont
+     */
+    public function setStyleFont($styleFont)
+    {
+        $this->styleFont = $styleFont;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStyleParagraph()
+    {
+        return $this->styleParagraph;
+    }
+
+    /**
+     * @param null $styleParagraph
+     */
+    public function setStyleParagraph($styleParagraph)
+    {
+        $this->styleParagraph = $styleParagraph;
     }
 }

@@ -4,6 +4,7 @@ namespace Maatwebsite\Clerk\Word\Adapters\PHPWord\Writers;
 
 use Maatwebsite\Clerk\Word\Page;
 use Maatwebsite\Clerk\Word\Pages\HtmlText;
+use Maatwebsite\Clerk\Word\Pages\PreserveText;
 use PhpOffice\PhpWord\Element\Section;
 use PhpOffice\PhpWord\Shared\Html;
 
@@ -26,11 +27,27 @@ class PageWriter
         }
 
         if ($page->getHeader()) {
-            $section->addHeader()->addText($page->getHeader()->getText());
+            if ($page->getHeader()->getRawText() instanceof PreserveText) {
+                $section->addHeader()->addPreserveText(
+                    $page->getHeader()->getText(),
+                    $page->getHeader()->getRawText()->getStyleFont(),
+                    $page->getHeader()->getRawText()->getStyleParagraph()
+                );
+            } else {
+                $section->addHeader()->addText($page->getHeader()->getText());
+            }
         }
 
         if ($page->getFooter()) {
-            $section->addFooter()->addText($page->getFooter()->getText());
+            if ($page->getFooter()->getRawText() instanceof PreserveText) {
+                $section->addFooter()->addPreserveText(
+                    $page->getFooter()->getText(),
+                    $page->getFooter()->getRawText()->getStyleFont(),
+                    $page->getFooter()->getRawText()->getStyleParagraph()
+                );
+            } else {
+                $section->addFooter()->addText($page->getFooter()->getText());
+            }
         }
 
         return $section;

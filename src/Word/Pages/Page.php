@@ -129,6 +129,21 @@ abstract class Page extends Adapter
     }
 
     /**
+     * @param  string $numbering
+     * @param  null   $styleFont
+     * @param  null   $styleParagraph
+     * @return $this
+     */
+    public function setFooterNumbering($numbering = '{PAGE}', $styleFont = null, $styleParagraph = null)
+    {
+        $this->footer = new Footer(
+            new PreserveText($numbering, $styleFont, $styleParagraph)
+        );
+
+        return $this;
+    }
+
+    /**
      * @return array|Text[]
      */
     public function getText()

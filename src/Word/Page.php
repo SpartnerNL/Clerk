@@ -57,4 +57,12 @@ interface Page
      * @return string
      */
     public function getFooter();
+
+    /**
+     * @param  string $numbering
+     * @param  null   $styleFont
+     * @param  null   $styleParagraph
+     * @return $this
+     */
+    public function setFooterNumbering($numbering = '{PAGE}', $styleFont = null, $styleParagraph = null);
 }

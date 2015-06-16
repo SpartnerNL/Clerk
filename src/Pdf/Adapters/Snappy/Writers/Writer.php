@@ -83,14 +83,14 @@ class Writer extends AbstractWriter
      */
     protected function convertToHtml(Document $document)
     {
-        if($this->getExportable()->getHeader()) {
+        if ($this->getExportable()->getHeader()) {
             $this->getExportable()->getDriver()->setOption(
                 'header-right',
                 $this->getExportable()->getHeader()->getText()
             );
         }
 
-        if($this->getExportable()->getFooter()) {
+        if ($this->getExportable()->getFooter()) {
             $this->getExportable()->getDriver()->setOption(
                 'footer-right',
                 $this->getExportable()->getFooter()->getText()
