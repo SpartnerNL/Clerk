@@ -30,31 +30,7 @@ interface Page
     public function loadTemplate($template, array $data = [], $engine = null);
 
     /**
-     * @param $header
-     *
-     * @return $this
-     */
-    public function setHeader($header);
-
-    /**
-     * @param $footer
-     *
-     * @return $this
-     */
-    public function setFooter($footer);
-
-    /**
      * @return array
      */
     public function getText();
-
-    /**
-     * @return string
-     */
-    public function getHeader();
-
-    /**
-     * @return string
-     */
-    public function getFooter();
 }

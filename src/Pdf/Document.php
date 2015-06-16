@@ -42,4 +42,28 @@ interface Document extends Exportable
      * @return array|Page[]
      */
     public function getPages();
+
+    /**
+     * @param $header
+     *
+     * @return $this
+     */
+    public function setHeader($header);
+
+    /**
+     * @param $footer
+     *
+     * @return $this
+     */
+    public function setFooter($footer);
+
+    /**
+     * @return string
+     */
+    public function getHeader();
+
+    /**
+     * @return string
+     */
+    public function getFooter();
 }

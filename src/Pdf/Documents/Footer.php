@@ -1,7 +1,8 @@
 <?php
 
-namespace Maatwebsite\Clerk\Pdf\Pages;
+namespace Maatwebsite\Clerk\Pdf\Documents;
 
+use Maatwebsite\Clerk\Pdf\Pages\Text;
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
 class Footer

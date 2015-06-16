@@ -47,7 +47,6 @@ class Writer extends AbstractWriter
         $output = $this->getExportable()->getDriver()->getOutputFromHtml(
             $this->convertToHtml($this->getExportable())
         );
-        ;
 
         $response = new StreamedResponse(function () use ($output) {
             echo $output;
@@ -84,6 +83,16 @@ class Writer extends AbstractWriter
      */
     protected function convertToHtml(Document $document)
     {
+        $this->getExportable()->getDriver()->setOption(
+            'header-right',
+            $this->getExportable()->getHeader()->getText()
+        );
+
+        $this->getExportable()->getDriver()->setOption(
+            'footer-right',
+            $this->getExportable()->getFooter()->getText()
+        );
+
         $html = '';
         foreach ($document->getPages() as $page) {
             foreach ($page->getText() as $text) {

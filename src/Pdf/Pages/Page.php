@@ -19,16 +19,6 @@ abstract class Page
     protected $text = [];
 
     /**
-     * @var Header
-     */
-    protected $header;
-
-    /**
-     * @var Footer
-     */
-    protected $footer;
-
-    /**
      * @param          $text
      * @param callable $callback
      *
@@ -85,60 +75,10 @@ abstract class Page
     }
 
     /**
-     * @param          $header
-     * @param callable $callback
-     *
-     * @return $this
-     */
-    public function setHeader($header, Closure $callback = null)
-    {
-        $this->header = new Header(
-            new Text($header)
-        );
-
-        $this->header->call($callback);
-
-        return $this;
-    }
-
-    /**
-     * @param          $footer
-     * @param callable $callback
-     *
-     * @return $this
-     */
-    public function setFooter($footer, Closure $callback = null)
-    {
-        $this->footer = new Footer(
-            new Text($footer)
-        );
-
-        $this->footer->call($callback);
-
-        return $this;
-    }
-
-    /**
      * @return array|Text[]
      */
     public function getText()
     {
         return $this->text;
-    }
-
-    /**
-     * @return Header
-     */
-    public function getHeader()
-    {
-        return $this->header;
-    }
-
-    /**
-     * @return Footer
-     */
-    public function getFooter()
-    {
-        return $this->footer;
     }
 }
