@@ -1,6 +1,6 @@
 <?php
 
-namespace Maatwebsite\Clerk\Word\Pages;
+namespace Maatwebsite\Clerk\Pdf\Pages;
 
 use Maatwebsite\Clerk\Traits\CallableTrait;
 
