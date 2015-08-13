@@ -27,12 +27,12 @@ abstract class Page extends Adapter
     /**
      * @var Header
      */
-    protected $header;
+    protected $headers = [];
 
     /**
      * @var Footer
      */
-    protected $footer;
+    protected $footers = [];
 
     /**
      * @param          $text
@@ -95,35 +95,38 @@ abstract class Page extends Adapter
     }
 
     /**
-     * @param          $header
-     * @param callable $callback
+     * @param         $header
+     * @param Closure $callback
      *
      * @return $this
      */
     public function setHeader($header, Closure $callback = null)
     {
-        $this->header = new Header(
-            new Text($header)
+        $header = new Header(
+            $header instanceof Text ? $header : new Text($header)
         );
 
-        $this->header->call($callback);
+        $header->call($callback);
+
+        $this->headers[] = $header;
 
         return $this;
     }
 
     /**
      * @param          $footer
-     * @param callable $callback
-     *
+     * @param  Closure $callback
      * @return $this
      */
     public function setFooter($footer, Closure $callback = null)
     {
-        $this->footer = new Footer(
-            new Text($footer)
+        $footer = new Footer(
+            $footer instanceof Text ? $footer : new Text($footer)
         );
 
-        $this->footer->call($callback);
+        $footer->call($callback);
+
+        $this->footers[] = $footer;
 
         return $this;
     }
@@ -136,7 +139,7 @@ abstract class Page extends Adapter
      */
     public function setFooterNumbering($numbering = '{PAGE}', $styleFont = null, $styleParagraph = null)
     {
-        $this->footer = new Footer(
+        $this->footers[] = new Footer(
             new PreserveText($numbering, $styleFont, $styleParagraph)
         );
 
@@ -152,18 +155,18 @@ abstract class Page extends Adapter
     }
 
     /**
-     * @return Header
+     * @return array
      */
-    public function getHeader()
+    public function getHeaders()
     {
-        return $this->header;
+        return $this->headers;
     }
 
     /**
-     * @return Footer
+     * @return array
      */
-    public function getFooter()
+    public function getFooters()
     {
-        return $this->footer;
+        return $this->footers;
     }
 }

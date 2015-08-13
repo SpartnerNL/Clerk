@@ -26,27 +26,35 @@ class PageWriter
             }
         }
 
-        if ($page->getHeader()) {
-            if ($page->getHeader()->getRawText() instanceof PreserveText) {
-                $section->addHeader()->addPreserveText(
-                    $page->getHeader()->getText(),
-                    $page->getHeader()->getRawText()->getStyleFont(),
-                    $page->getHeader()->getRawText()->getStyleParagraph()
-                );
-            } else {
-                $section->addHeader()->addText($page->getHeader()->getText());
+        if ($page->getHeaders()) {
+            foreach ($page->getHeaders() as $header) {
+                if ($header->getRawText() instanceof PreserveText) {
+                    $section->addHeader()->addPreserveText(
+                        $header->getText(),
+                        $header->getRawText()->getStyleFont(),
+                        $header->getRawText()->getStyleParagraph()
+                    );
+                } else {
+                    $section->addHeader()->addText($header->getText());
+                }
             }
         }
 
-        if ($page->getFooter()) {
-            if ($page->getFooter()->getRawText() instanceof PreserveText) {
-                $section->addFooter()->addPreserveText(
-                    $page->getFooter()->getText(),
-                    $page->getFooter()->getRawText()->getStyleFont(),
-                    $page->getFooter()->getRawText()->getStyleParagraph()
-                );
-            } else {
-                $section->addFooter()->addText($page->getFooter()->getText());
+        if ($page->getFooters()) {
+            foreach ($page->getFooters() as $footer) {
+                if ($footer->getRawText() instanceof PreserveText) {
+                    $section->addFooter()->addPreserveText(
+                        $footer->getText(),
+                        $footer->getRawText()->getStyleFont(),
+                        $footer->getRawText()->getStyleParagraph()
+                    );
+                } else {
+                    $section->addFooter()->addText(
+                        $footer->getText(),
+                        $footer->getRawText()->getStyleFont(),
+                        $footer->getRawText()->getStyleParagraph()
+                    );
+                }
             }
         }
 

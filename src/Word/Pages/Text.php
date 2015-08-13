@@ -27,7 +27,6 @@ class Text
      * @param string $text
      * @param null   $styleFont
      * @param null   $styleParagraph
-     * @internal param array $options
      */
     public function __construct($text, $styleFont = null, $styleParagraph = null)
     {
