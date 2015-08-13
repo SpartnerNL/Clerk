@@ -23,12 +23,12 @@ abstract class Document extends Adapter
     /**
      * @var Header
      */
-    protected $header;
+    protected $headers = [];
 
     /**
      * @var Footer
      */
-    protected $footer;
+    protected $footers = [];
 
     /**
      * @param         $title
@@ -76,11 +76,13 @@ abstract class Document extends Adapter
      */
     public function setHeader($header, Closure $callback = null)
     {
-        $this->header = new Header(
-            new Text($header)
+        $header = new Header(
+            $header instanceof Text ? $header : new Text($header)
         );
 
-        $this->header->call($callback);
+        $header->call($callback);
+
+        $this->headers[] = $header;
 
         return $this;
     }
@@ -93,28 +95,30 @@ abstract class Document extends Adapter
      */
     public function setFooter($footer, Closure $callback = null)
     {
-        $this->footer = new Footer(
-            new Text($footer)
+        $footer = new Footer(
+            $footer instanceof Text ? $footer : new Text($footer)
         );
 
-        $this->footer->call($callback);
+        $footer->call($callback);
+
+        $this->footers[] = $footer;
 
         return $this;
     }
 
     /**
-     * @return Header
+     * @return array
      */
-    public function getHeader()
+    public function getHeaders()
     {
-        return $this->header;
+        return $this->headers;
     }
 
     /**
-     * @return Footer
+     * @return array
      */
-    public function getFooter()
+    public function getFooters()
     {
-        return $this->footer;
+        return $this->footers;
     }
 }

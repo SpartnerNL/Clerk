@@ -14,11 +14,18 @@ class Text
     protected $text;
 
     /**
-     * @param string $text
+     * @var string
      */
-    public function __construct($text)
+    protected $alignment;
+
+    /**
+     * @param string $text
+     * @param string $alignment
+     */
+    public function __construct($text, $alignment = 'right')
     {
-        $this->text = $text;
+        $this->text      = $text;
+        $this->alignment = $alignment;
     }
 
     /**
@@ -35,5 +42,21 @@ class Text
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlignment()
+    {
+        return $this->alignment;
+    }
+
+    /**
+     * @param string $alignment
+     */
+    public function setAlignment($alignment)
+    {
+        $this->alignment = $alignment;
     }
 }

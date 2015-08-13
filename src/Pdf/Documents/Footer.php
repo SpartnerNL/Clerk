@@ -31,6 +31,14 @@ class Footer
     }
 
     /**
+     * @return Text
+     */
+    public function getRawText()
+    {
+        return $this->text;
+    }
+
+    /**
      * @param Text $text
      */
     public function setText(Text $text)

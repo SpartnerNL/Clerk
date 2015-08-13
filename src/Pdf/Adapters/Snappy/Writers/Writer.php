@@ -83,18 +83,22 @@ class Writer extends AbstractWriter
      */
     protected function convertToHtml(Document $document)
     {
-        if ($this->getExportable()->getHeader()) {
-            $this->getExportable()->getDriver()->setOption(
-                'header-right',
-                $this->getExportable()->getHeader()->getText()
-            );
+        if ($this->getExportable()->getHeaders()) {
+            foreach ($this->getExportable()->getHeaders() as $header) {
+                $this->getExportable()->getDriver()->setOption(
+                    'header-' . $header->getRawText()->getAlignment(),
+                    $header->getText()
+                );
+            }
         }
 
-        if ($this->getExportable()->getFooter()) {
-            $this->getExportable()->getDriver()->setOption(
-                'footer-right',
-                $this->getExportable()->getFooter()->getText()
-            );
+        if ($this->getExportable()->getFooters()) {
+            foreach ($this->getExportable()->getFooters() as $footer) {
+                $this->getExportable()->getDriver()->setOption(
+                    'footer-' . $footer->getRawText()->getAlignment(),
+                    $footer->getText()
+                );
+            }
         }
 
         $html = '';

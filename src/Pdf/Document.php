@@ -60,10 +60,10 @@ interface Document extends Exportable
     /**
      * @return string
      */
-    public function getHeader();
+    public function getHeaders();
 
     /**
      * @return string
      */
-    public function getFooter();
+    public function getFooters();
 }
