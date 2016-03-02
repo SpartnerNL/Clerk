@@ -27,29 +27,47 @@ class PageWriter
         }
 
         if ($page->getHeaders()) {
+
+            $wordHeader = $section->addHeader();
+
+            $table = $wordHeader->addTable();
+            $table->addRow();
+
             foreach ($page->getHeaders() as $header) {
+
+                $cell = $table->addCell(9000 / count($page->getHeaders()));
+
                 if ($header->getRawText() instanceof PreserveText) {
-                    $section->addHeader()->addPreserveText(
+                    $cell->addHeader()->addPreserveText(
                         $header->getText(),
                         $header->getRawText()->getStyleFont(),
                         $header->getRawText()->getStyleParagraph()
                     );
                 } else {
-                    $section->addHeader()->addText($header->getText());
+                    $cell->addHeader()->addText($header->getText());
                 }
             }
         }
 
         if ($page->getFooters()) {
+
+            $wordFooter = $section->addFooter();
+
+            $table = $wordFooter->addTable();
+            $table->addRow();
+
             foreach ($page->getFooters() as $footer) {
+
+                $cell = $table->addCell(9000 / count($page->getFooters()));
+
                 if ($footer->getRawText() instanceof PreserveText) {
-                    $section->addFooter()->addPreserveText(
+                    $cell->addPreserveText(
                         $footer->getText(),
                         $footer->getRawText()->getStyleFont(),
                         $footer->getRawText()->getStyleParagraph()
                     );
                 } else {
-                    $section->addFooter()->addText(
+                    $cell->addText(
                         $footer->getText(),
                         $footer->getRawText()->getStyleFont(),
                         $footer->getRawText()->getStyleParagraph()
