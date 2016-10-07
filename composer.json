@@ -28,7 +28,7 @@
     "patchwork/utf8": "~1.2.1",
     "symfony/http-foundation": "~2.6|~2.7@dev",
     "illuminate/support": "~4.0|~5.0",
-    "tijsverkoyen/css-to-inline-styles": "~1.5"
+    "tijsverkoyen/css-to-inline-styles": "~2.0"
   },
   "suggests": {
     "league/csv": "Using League CSV as CSV parser",
